@@ -16,6 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="url" content="{{ url('/') }}">
+    
+    @livewireStyles
 
     {{-- <script src="https://unpkg.com/tailwindcss-jit-cdn"></script> --}}
     <link rel="icon" href="{{ setting('site.favicon', '/wave/favicon.png') }}" type="image/x-icon">
@@ -105,10 +107,9 @@
     @endif
     @waveCheckout
 
+    @livewireScripts
+    @stack('footer-scripts')
 </body>
 
-<script>
-    $('input[name="dates"]').daterangepicker();
-</script>
 
 </html>

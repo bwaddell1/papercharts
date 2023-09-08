@@ -42,7 +42,7 @@
                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                     </svg>
                 </div>
-                <input name="dates" type="text"
+                <input name="dates" type="text" wire:change="handleChangeSearchDate" id="daterange"
                     class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Select Dates">
             </div>
@@ -97,7 +97,7 @@
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
-                            <input id="checkbox-all-search" type="checkbox"
+                            <input id="checkbox-all-search" type="checkbox" wire:change="handleSelectAll($event.target.checked)"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                         </div>
@@ -141,6 +141,8 @@
                         <td class="w-4 p-4">
                             <div class="flex items-center">
                                 <input id="checkbox-table-search-1" type="checkbox"
+                                    wire:change="handleSelectRow({{ $visit->id }})"
+                                    {{ in_array($visit->id, $selected_rows) ? 'checked' : '' }}
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                             </div>
@@ -211,3 +213,32 @@
         </div>
     </div>
 </div>
+@push('footer-scripts')
+    <script>
+        $('input[name="dates"]').daterangepicker({
+            autoUpdateInput: false,
+        });
+
+        $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+
+        $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+            Livewire.emit('dateRangeUpdated',
+                picker.startDate.format('YYYY-MM-DD'),
+                picker.endDate.format('YYYY-MM-DD')
+            );
+        });
+
+        $('#daterange').on('cancel.daterangepicker', function(ev, picker) {
+            Livewire.emit('dateRangeUpdated',
+                null,
+                null
+            );
+        });
+    </script>
+@endpush
