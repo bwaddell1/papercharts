@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::view('trial_over', 'theme::trial_over')->name('wave.trial_over');
 	Route::view('cancelled', 'theme::cancelled')->name('wave.cancelled');
     Route::post('switch-plans', '\Wave\Http\Controllers\SubscriptionController@switchPlans')->name('wave.switch-plans');
+    Route::post('visit', '\App\Http\Controllers\VisitController@createVisit')->name('wave.add-visit');
+
 });
 
 Route::group(['middleware' => 'admin.user'], function(){

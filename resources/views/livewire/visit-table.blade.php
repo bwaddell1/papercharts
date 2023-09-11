@@ -46,7 +46,7 @@
                     class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Select Dates">
             </div>
-            <button
+            <button onclick="openAddVisitModal()"
                 class="w-32 h-full px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                 <div class="justify-start items-start gap-2 flex">
                     <div class="w-5 h-5 relative">
@@ -97,7 +97,8 @@
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
-                            <input id="checkbox-all-search" type="checkbox" wire:change="handleSelectAll($event.target.checked)"
+                            <input id="checkbox-all-search" type="checkbox"
+                                wire:change="handleSelectAll($event.target.checked)"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                         </div>
@@ -183,7 +184,7 @@
                                 Out</a>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="cursor-pointer">
+                            <div class="cursor-pointer" onclick="openEditVisitModal({{ $visit->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -193,7 +194,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="cursor-pointer">
+                            <div class="cursor-pointer" onclick="openDeleteVisitModal({{ $visit->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -212,6 +213,20 @@
             {{ $visits->links('pagination::tailwind') }}
         </div>
     </div>
+    <script>
+        window.openAddVisitModal = function() {
+            Alpine.store('addVisitModal').openModal();
+        }
+        window.openEditVisitModal = function(visit_id) {
+            Alpine.store('editVisitModal').openModal();
+            Livewire.emit('editVisit', visit_id);
+            // Alpine.store('editVisitModal').visit_id = visit_id;
+        }
+        window.openDeleteVisitModal = function(visit_id) {
+            Alpine.store('deleteVisitModal').openModal();
+            Livewire.emit('deleteVisit', visit_id);
+        }
+    </script>
 </div>
 @push('footer-scripts')
     <script>

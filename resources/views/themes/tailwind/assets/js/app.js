@@ -127,6 +127,19 @@ document.addEventListener('alpine:init', () => {
 
     });
 
+    Alpine.store('addVisitModal', {
+        open: false,
+
+        openModal() {
+            this.open = true;
+        },
+
+        close() {
+            this.open = false;
+        }
+
+    });
+
 });
 
 Alpine.start();
