@@ -74,6 +74,7 @@
     </main>
 
 
+    @include('theme::partials.lgModal')
 
     @include('theme::partials.footer')
 

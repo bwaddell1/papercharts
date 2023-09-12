@@ -4,7 +4,7 @@
 @section('content')
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-8 xl:px-5 py-4 flex justify-between">
-            <div class="text-indigo-950 text-3xl font-semibold leading-10">Welcome Back</div>
+            <div class="text-indigo-950 text-3xl font-semibold leading-10">Note Templates</div>
             <form>
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -25,8 +25,5 @@
         </div>
     </div>
 
-    @livewire('visit-table')
-    @livewire('visits.edit-visit')
-    @livewire('visits.delete-visit')
-
+    @livewire('note-templates.template-table')
 @endsection

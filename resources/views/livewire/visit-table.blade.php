@@ -318,7 +318,8 @@
     </div>
     <script>
         window.openAddVisitModal = function() {
-            Alpine.store('addVisitModal').openModal();
+            Alpine.store('lgModal').type = 'add-visit';
+            Alpine.store('lgModal').openModal();
         }
         window.openPrintVisitModal = function(selected_rows) {
             if (selected_rows == 0) {

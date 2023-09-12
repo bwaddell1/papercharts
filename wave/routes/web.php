@@ -35,6 +35,7 @@ Route::get('test', '\Wave\Http\Controllers\SubscriptionController@test');
 
 Route::group(['middleware' => 'wave'], function () {
 	Route::get('dashboard', '\Wave\Http\Controllers\DashboardController@index')->name('wave.dashboard');
+	Route::get('templates', '\Wave\Http\Controllers\TemplateController@index')->name('wave.templates.index');
 });
 
 Route::group(['middleware' => 'auth'], function(){
