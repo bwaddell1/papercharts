@@ -57,7 +57,7 @@ class SettingsTableSeeder extends Seeder
                 'id' => 6,
                 'key' => 'admin.title',
                 'display_name' => 'Admin Title',
-                'value' => 'Wave',
+                'value' => 'PaperCharts',
                 'details' => '',
                 'type' => 'text',
                 'order' => 1,
