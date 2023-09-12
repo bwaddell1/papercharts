@@ -14,6 +14,7 @@ class VisitTable extends Component
     public $start_date, $end_date;
     public $selected_rows = [];
     public $show_rows = [];
+    public $show_visit_id = true, $show_last_name = true, $show_first_name = true, $show_visit_at = true, $show_visit_type = true, $show_ready = true, $show_status = true;
 
     public function mount()
     {
@@ -55,5 +56,22 @@ class VisitTable extends Component
         else {
             $this->selected_rows = [];
         }
+    }
+
+    public function printVisits()
+    {
+        // $visits = Visit::whereIn('id', $this->selected_rows)->get();
+        $html = view('theme::prints.visits', [
+            'show_visit_id' => $this->show_visit_id,
+            'show_last_name' => $this->show_last_name,
+            'show_first_name' => $this->show_first_name,
+            'show_visit_at' => $this->show_visit_at,
+            'show_visit_type' => $this->show_visit_type,
+            'show_ready' => $this->show_ready,
+            'show_status' => $this->show_status,
+            'visits' => Visit::whereIn('id', $this->selected_rows)->get(),
+        ])->render();
+        $this->dispatchBrowserEvent('print', ['html' => $html]);
+        
     }
 }

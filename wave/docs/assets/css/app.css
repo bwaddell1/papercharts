@@ -2096,3 +2096,5 @@ html, body {
     padding-right: 0px;
   }
 }
+
+@page { margin: 0; }

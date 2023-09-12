@@ -24,7 +24,7 @@ class SettingsTableSeeder extends Seeder
                 'id' => 1,
                 'key' => 'site.title',
                 'display_name' => 'Site Title',
-                'value' => 'Wave',
+                'value' => 'PaperCharts',
                 'details' => '',
                 'type' => 'text',
                 'order' => 1,
