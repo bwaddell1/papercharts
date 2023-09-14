@@ -66,7 +66,8 @@
                                 fill="white" />
                         </svg>
                     </div> --}}
-                    <div class="text-white text-sm font-medium leading-tight">Create New</div>
+                    <a href="{{ route('wave.templates.create') }}"
+                        class="text-white text-sm font-medium leading-tight">Create New</a>
                 </div>
             </button>
         </div>
@@ -119,14 +120,14 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 flex gap-4">
-                            <div class="cursor-pointer" onclick="openEditVisitModal({{ $template->id }})">
+                            <a href="{{ route('wave.templates.edit', $template->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M3.25023 10.26L5.72023 12.73L12.4102 6.03999L9.95023 3.55999L3.25023 10.26ZM0.990234 14.99L4.85023 13.6L2.39023 11.16L0.990234 14.99ZM13.2402 0.98999C12.7602 0.98999 12.3202 1.18999 12.0002 1.49999L10.5602 2.93999L13.0302 5.40999L14.4702 3.96999C14.7902 3.64999 14.9802 3.21999 14.9802 2.72999C14.9902 1.77999 14.2102 0.98999 13.2402 0.98999Z"
                                         fill="#8F95B2" />
                                 </svg>
-                            </div>
+                            </a>
                             <div class="cursor-pointer" onclick="openDeleteVisitModal({{ $template->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">

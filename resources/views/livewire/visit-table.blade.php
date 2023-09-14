@@ -33,61 +33,65 @@
                 <div class="text-gray-500 text-sm font-normal leading-tight flex-1">{{ $visits->total() }} Visits</div>
             </div>
         </div>
-        <div class="flex gap-2">
-            <div class="relative max-w-xs">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                    </svg>
-                </div>
-                <input name="dates" type="text" wire:change="handleChangeSearchDate" id="daterange"
-                    class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Select Dates">
-            </div>
-            <button onclick="openAddVisitModal()"
-                class="w-32 h-full px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                <div class="justify-start items-start gap-2 flex">
-                    <div class="w-5 h-5 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                            fill="none">
+        <div class="flex gap-2 flex-wrap justify-end">
+            <div class="flex gap-2 flex-wrap justify-end">
+                <div class="relative w-44">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path
-                                d="M13.586 3.58598C13.7705 3.39496 13.9912 3.24259 14.2352 3.13778C14.4792 3.03296 14.7416 2.97779 15.0072 2.97548C15.2728 2.97317 15.5361 3.02377 15.7819 3.12434C16.0277 3.2249 16.251 3.3734 16.4388 3.56119C16.6266 3.74897 16.7751 3.97228 16.8756 4.21807C16.9762 4.46386 17.0268 4.72722 17.0245 4.99278C17.0222 5.25834 16.967 5.52078 16.8622 5.76479C16.7574 6.0088 16.605 6.22949 16.414 6.41398L15.621 7.20698L12.793 4.37898L13.586 3.58598ZM11.379 5.79298L3 14.172V17H5.828L14.208 8.62098L11.378 5.79298H11.379Z"
-                                fill="#6B7280" />
+                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                         </svg>
                     </div>
-                    <div class="text-gray-700 text-sm font-medium leading-tight">Add Visits</div>
+                    <input name="dates" type="text" wire:change="handleChangeSearchDate" id="daterange"
+                        class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Select Dates">
                 </div>
-            </button>
-            <button onclick="openPrintVisitModal({{ count($selected_rows) }})"
-                class="w-44 h-full px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                <div class="justify-start items-start gap-2 flex">
-                    <div class="w-5 h-5 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                            fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M12.5863 4.58598C12.7708 4.39496 12.9915 4.2426 13.2355 4.13778C13.4795 4.03296 13.742 3.97779 14.0075 3.97548C14.2731 3.97317 14.5364 4.02378 14.7822 4.12434C15.028 4.2249 15.2513 4.37341 15.4391 4.56119C15.6269 4.74898 15.7754 4.97228 15.876 5.21807C15.9765 5.46387 16.0271 5.72722 16.0248 5.99278C16.0225 6.25834 15.9673 6.52078 15.8625 6.76479C15.7577 7.0088 15.6053 7.22949 15.4143 7.41398L12.4143 10.414C12.0393 10.7889 11.5307 10.9996 11.0003 10.9996C10.47 10.9996 9.96138 10.7889 9.58633 10.414C9.39772 10.2318 9.14512 10.131 8.88292 10.1333C8.62073 10.1356 8.36991 10.2408 8.18451 10.4262C7.9991 10.6116 7.89393 10.8624 7.89165 11.1246C7.88937 11.3868 7.99017 11.6394 8.17232 11.828C8.92244 12.5779 9.93967 12.9991 11.0003 12.9991C12.061 12.9991 13.0782 12.5779 13.8283 11.828L16.8283 8.82798C17.557 8.07357 17.9601 7.06316 17.951 6.01438C17.9419 4.96559 17.5212 3.96234 16.7796 3.22071C16.038 2.47907 15.0347 2.0584 13.9859 2.04928C12.9371 2.04017 11.9267 2.44335 11.1723 3.17198L9.67232 4.67198C9.57681 4.76423 9.50063 4.87457 9.44822 4.99658C9.39581 5.11858 9.36823 5.2498 9.36707 5.38258C9.36592 5.51536 9.39122 5.64704 9.4415 5.76993C9.49178 5.89283 9.56604 6.00448 9.65993 6.09838C9.75382 6.19227 9.86547 6.26652 9.98837 6.3168C10.1113 6.36708 10.2429 6.39239 10.3757 6.39123C10.5085 6.39008 10.6397 6.36249 10.7617 6.31008C10.8837 6.25767 10.9941 6.18149 11.0863 6.08598L12.5863 4.58598ZM7.58632 9.58598C7.96138 9.21104 8.47 9.00041 9.00032 9.00041C9.53065 9.00041 10.0393 9.21104 10.4143 9.58598C10.5066 9.68149 10.6169 9.75767 10.7389 9.81008C10.8609 9.86249 10.9921 9.89008 11.1249 9.89123C11.2577 9.89239 11.3894 9.86708 11.5123 9.8168C11.6352 9.76652 11.7468 9.69227 11.8407 9.59838C11.9346 9.50448 12.0089 9.39283 12.0591 9.26993C12.1094 9.14704 12.1347 9.01536 12.1336 8.88258C12.1324 8.7498 12.1048 8.61858 12.0524 8.49658C12 8.37457 11.9238 8.26423 11.8283 8.17198C11.0782 7.4221 10.061 7.00083 9.00032 7.00083C7.93967 7.00083 6.92244 7.4221 6.17232 8.17198L3.17232 11.172C2.79028 11.541 2.48556 11.9823 2.27592 12.4704C2.06628 12.9584 1.95594 13.4833 1.95132 14.0144C1.94671 14.5455 2.04791 15.0722 2.24904 15.5638C2.45016 16.0554 2.74717 16.502 3.12274 16.8776C3.49832 17.2531 3.94492 17.5501 4.43651 17.7513C4.92809 17.9524 5.45481 18.0536 5.98593 18.049C6.51705 18.0444 7.04193 17.934 7.52994 17.7244C8.01796 17.5148 8.45934 17.21 8.82832 16.828L10.3283 15.328C10.4238 15.2357 10.5 15.1254 10.5524 15.0034C10.6048 14.8814 10.6324 14.7502 10.6336 14.6174C10.6347 14.4846 10.6094 14.3529 10.5591 14.23C10.5089 14.1071 10.4346 13.9955 10.3407 13.9016C10.2468 13.8077 10.1352 13.7334 10.0123 13.6832C9.88938 13.6329 9.7577 13.6076 9.62492 13.6087C9.49214 13.6099 9.36092 13.6375 9.23892 13.6899C9.11692 13.7423 9.00657 13.8185 8.91432 13.914L7.41432 15.414C7.22983 15.605 7.00914 15.7574 6.76513 15.8622C6.52113 15.967 6.25869 16.0222 5.99313 16.0245C5.72757 16.0268 5.46421 15.9762 5.21842 15.8756C4.97262 15.7751 4.74932 15.6266 4.56153 15.4388C4.37375 15.251 4.22524 15.0277 4.12468 14.7819C4.02412 14.5361 3.97352 14.2727 3.97582 14.0072C3.97813 13.7416 4.0333 13.4792 4.13812 13.2352C4.24294 12.9912 4.3953 12.7705 4.58632 12.586L7.58632 9.58598Z"
-                                fill="#6B7280" />
-                        </svg>
+                <button onclick="openAddVisitModal()"
+                    class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
+                    <div class="justify-start items-start gap-2 flex">
+                        <div class="w-5 h-5 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M13.586 3.58598C13.7705 3.39496 13.9912 3.24259 14.2352 3.13778C14.4792 3.03296 14.7416 2.97779 15.0072 2.97548C15.2728 2.97317 15.5361 3.02377 15.7819 3.12434C16.0277 3.2249 16.251 3.3734 16.4388 3.56119C16.6266 3.74897 16.7751 3.97228 16.8756 4.21807C16.9762 4.46386 17.0268 4.72722 17.0245 4.99278C17.0222 5.25834 16.967 5.52078 16.8622 5.76479C16.7574 6.0088 16.605 6.22949 16.414 6.41398L15.621 7.20698L12.793 4.37898L13.586 3.58598ZM11.379 5.79298L3 14.172V17H5.828L14.208 8.62098L11.378 5.79298H11.379Z"
+                                    fill="#6B7280" />
+                            </svg>
+                        </div>
+                        <div class="text-gray-700 text-sm font-medium leading-tight">Add Visits</div>
                     </div>
-                    <div class="text-gray-700 text-sm font-medium leading-tight">Print Notes</div>
-                </div>
-            </button>
-            <button
-                class="w-40 h-full px-4 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                <div class="justify-start items-start gap-2 flex">
-                    <div class="w-5 h-5 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                            fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.7074 5.29303C16.8949 5.48056 17.0002 5.73487 17.0002 6.00003C17.0002 6.26519 16.8949 6.5195 16.7074 6.70703L8.70741 14.707C8.51988 14.8945 8.26557 14.9998 8.00041 14.9998C7.73524 14.9998 7.48094 14.8945 7.29341 14.707L3.29341 10.707C3.11125 10.5184 3.01045 10.2658 3.01273 10.0036C3.01501 9.74143 3.12018 9.49062 3.30559 9.30521C3.491 9.1198 3.74181 9.01464 4.00401 9.01236C4.2662 9.01008 4.5188 9.11087 4.70741 9.29303L8.00041 12.586L15.2934 5.29303C15.4809 5.10556 15.7352 5.00024 16.0004 5.00024C16.2656 5.00024 16.5199 5.10556 16.7074 5.29303Z"
-                                fill="white" />
-                        </svg>
+                </button>
+            </div>
+            <div class="flex gap-2 flex-wrap justify-end">
+                <button onclick="openPrintVisitModal({{ count($selected_rows) }})"
+                    class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
+                    <div class="justify-start items-start gap-2 flex">
+                        <div class="w-5 h-5 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.5863 4.58598C12.7708 4.39496 12.9915 4.2426 13.2355 4.13778C13.4795 4.03296 13.742 3.97779 14.0075 3.97548C14.2731 3.97317 14.5364 4.02378 14.7822 4.12434C15.028 4.2249 15.2513 4.37341 15.4391 4.56119C15.6269 4.74898 15.7754 4.97228 15.876 5.21807C15.9765 5.46387 16.0271 5.72722 16.0248 5.99278C16.0225 6.25834 15.9673 6.52078 15.8625 6.76479C15.7577 7.0088 15.6053 7.22949 15.4143 7.41398L12.4143 10.414C12.0393 10.7889 11.5307 10.9996 11.0003 10.9996C10.47 10.9996 9.96138 10.7889 9.58633 10.414C9.39772 10.2318 9.14512 10.131 8.88292 10.1333C8.62073 10.1356 8.36991 10.2408 8.18451 10.4262C7.9991 10.6116 7.89393 10.8624 7.89165 11.1246C7.88937 11.3868 7.99017 11.6394 8.17232 11.828C8.92244 12.5779 9.93967 12.9991 11.0003 12.9991C12.061 12.9991 13.0782 12.5779 13.8283 11.828L16.8283 8.82798C17.557 8.07357 17.9601 7.06316 17.951 6.01438C17.9419 4.96559 17.5212 3.96234 16.7796 3.22071C16.038 2.47907 15.0347 2.0584 13.9859 2.04928C12.9371 2.04017 11.9267 2.44335 11.1723 3.17198L9.67232 4.67198C9.57681 4.76423 9.50063 4.87457 9.44822 4.99658C9.39581 5.11858 9.36823 5.2498 9.36707 5.38258C9.36592 5.51536 9.39122 5.64704 9.4415 5.76993C9.49178 5.89283 9.56604 6.00448 9.65993 6.09838C9.75382 6.19227 9.86547 6.26652 9.98837 6.3168C10.1113 6.36708 10.2429 6.39239 10.3757 6.39123C10.5085 6.39008 10.6397 6.36249 10.7617 6.31008C10.8837 6.25767 10.9941 6.18149 11.0863 6.08598L12.5863 4.58598ZM7.58632 9.58598C7.96138 9.21104 8.47 9.00041 9.00032 9.00041C9.53065 9.00041 10.0393 9.21104 10.4143 9.58598C10.5066 9.68149 10.6169 9.75767 10.7389 9.81008C10.8609 9.86249 10.9921 9.89008 11.1249 9.89123C11.2577 9.89239 11.3894 9.86708 11.5123 9.8168C11.6352 9.76652 11.7468 9.69227 11.8407 9.59838C11.9346 9.50448 12.0089 9.39283 12.0591 9.26993C12.1094 9.14704 12.1347 9.01536 12.1336 8.88258C12.1324 8.7498 12.1048 8.61858 12.0524 8.49658C12 8.37457 11.9238 8.26423 11.8283 8.17198C11.0782 7.4221 10.061 7.00083 9.00032 7.00083C7.93967 7.00083 6.92244 7.4221 6.17232 8.17198L3.17232 11.172C2.79028 11.541 2.48556 11.9823 2.27592 12.4704C2.06628 12.9584 1.95594 13.4833 1.95132 14.0144C1.94671 14.5455 2.04791 15.0722 2.24904 15.5638C2.45016 16.0554 2.74717 16.502 3.12274 16.8776C3.49832 17.2531 3.94492 17.5501 4.43651 17.7513C4.92809 17.9524 5.45481 18.0536 5.98593 18.049C6.51705 18.0444 7.04193 17.934 7.52994 17.7244C8.01796 17.5148 8.45934 17.21 8.82832 16.828L10.3283 15.328C10.4238 15.2357 10.5 15.1254 10.5524 15.0034C10.6048 14.8814 10.6324 14.7502 10.6336 14.6174C10.6347 14.4846 10.6094 14.3529 10.5591 14.23C10.5089 14.1071 10.4346 13.9955 10.3407 13.9016C10.2468 13.8077 10.1352 13.7334 10.0123 13.6832C9.88938 13.6329 9.7577 13.6076 9.62492 13.6087C9.49214 13.6099 9.36092 13.6375 9.23892 13.6899C9.11692 13.7423 9.00657 13.8185 8.91432 13.914L7.41432 15.414C7.22983 15.605 7.00914 15.7574 6.76513 15.8622C6.52113 15.967 6.25869 16.0222 5.99313 16.0245C5.72757 16.0268 5.46421 15.9762 5.21842 15.8756C4.97262 15.7751 4.74932 15.6266 4.56153 15.4388C4.37375 15.251 4.22524 15.0277 4.12468 14.7819C4.02412 14.5361 3.97352 14.2727 3.97582 14.0072C3.97813 13.7416 4.0333 13.4792 4.13812 13.2352C4.24294 12.9912 4.3953 12.7705 4.58632 12.586L7.58632 9.58598Z"
+                                    fill="#6B7280" />
+                            </svg>
+                        </div>
+                        <div class="text-gray-700 text-sm font-medium leading-tight">Print Notes</div>
                     </div>
-                    <div class="text-white text-sm font-medium leading-tight">Upload Visits</div>
-                </div>
-            </button>
+                </button>
+                <button
+                    class="w-44 px-2 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
+                    <div class="justify-start items-start gap-2 flex">
+                        <div class="w-5 h-5 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M16.7074 5.29303C16.8949 5.48056 17.0002 5.73487 17.0002 6.00003C17.0002 6.26519 16.8949 6.5195 16.7074 6.70703L8.70741 14.707C8.51988 14.8945 8.26557 14.9998 8.00041 14.9998C7.73524 14.9998 7.48094 14.8945 7.29341 14.707L3.29341 10.707C3.11125 10.5184 3.01045 10.2658 3.01273 10.0036C3.01501 9.74143 3.12018 9.49062 3.30559 9.30521C3.491 9.1198 3.74181 9.01464 4.00401 9.01236C4.2662 9.01008 4.5188 9.11087 4.70741 9.29303L8.00041 12.586L15.2934 5.29303C15.4809 5.10556 15.7352 5.00024 16.0004 5.00024C16.2656 5.00024 16.5199 5.10556 16.7074 5.29303Z"
+                                    fill="white" />
+                            </svg>
+                        </div>
+                        <div class="text-white text-sm font-medium leading-tight">Upload Visits</div>
+                    </div>
+                </button>
+            </div>
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -273,13 +277,15 @@
                                 <input checked id="first-name-checkbox" type="checkbox" wire:model="show_first_name"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="first-name-checkbox"
-                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">First Name</label>
+                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">First
+                                    Name</label>
                             </div>
                             <div class="flex items-center mt-4">
                                 <input checked id="visit-type-checkbox" type="checkbox" wire:model="show_visit_type"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="visit-type-checkbox"
-                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Visit Type</label>
+                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Visit
+                                    Type</label>
                             </div>
                             <div class="flex items-center mt-4">
                                 <input checked id="visit-at-checkbox" type="checkbox" wire:model="show_visit_at"

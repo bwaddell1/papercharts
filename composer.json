@@ -11,6 +11,7 @@
         "php": "^8.0.2",
         "ext-exif": "*",
         "ext-gd": "*",
+        "awizemann/metascraper": "^1.3",
         "devdojo/app": "0.11.0",
         "devdojo/themes": "0.0.7",
         "guzzlehttp/guzzle": "^7.2",
@@ -19,6 +20,7 @@
         "laravel/framework": "^9.11",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.4",
+        "maxeckel/livewire-editorjs": "^1.5",
         "tcg/voyager": "1.5.x-dev",
         "tymon/jwt-auth": "@dev"
     },
@@ -66,8 +68,9 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover",
-            "@php artisan storage:link"
+            "@php artisan package:discover --ansi",
+            "@php artisan storage:link",
+            "@php artisan vendor:publish --tag=livewire-editorjs:assets:compiled --force"
         ]
     },
     "config": {
