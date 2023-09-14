@@ -61,7 +61,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     
     @livewireScripts
-    @livewireEditorjsScripts
+    <script src="/vendor/livewire-editorjs/editorjs.js"></script>
 
 </head>
 
