@@ -37,6 +37,12 @@ class TemplateTable extends Component
         if($this->search_key != "") {
             $templates = $templates->where('visit_type', 'like', '%'.$this->search_key.'%');
         }
+        foreach($this->filter_specialties as $specialty) {
+            $templates = $templates->whereHas('specialties', function ($q) use ($specialty)
+            {
+                $q->where('specialty_id', $specialty); 
+            });
+        }
         $templates = $templates->latest()->paginate(10);
         return view('livewire.note-templates.template-table', [
             'templates' => $templates,

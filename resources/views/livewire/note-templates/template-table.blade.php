@@ -28,10 +28,10 @@
                         @foreach ($specialties as $specialty)
                             <li>
                                 <div class="flex items-center ml-6">
-                                    <input id="{{ $specialty->code }}" type="checkbox"
-                                        wire:change.debounce.200ms="set_filter_specialty('{{ $specialty->code }}')"
+                                    <input id="{{ $specialty->id }}" type="checkbox"
+                                        wire:change.debounce.200ms="set_filter_specialty('{{ $specialty->id }}')"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="{{ $specialty->code }}" class="ml-2 flex px-4 py-2">
+                                    <label for="{{ $specialty->id }}" class="ml-2 flex px-4 py-2">
                                         <span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
                                             style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
                                             {{ $specialty->name }}
