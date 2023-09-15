@@ -38,8 +38,8 @@
                     This data will be permanently deleted. This action cannot be undone. Are you sure?
                 </div>
             </div>
-            <div class="mt-5 sm:mt-6">
-                <span class="flex w-full rounded-md shadow-sm justify-end gap-4">
+            <div class="mt-5 sm:mt-6 pb-2">
+                <span class="flex w-full rounded-md justify-end gap-4">
                     <button type="button"
                         class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-gray-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                         @click="$store.deleteVisitModal.open = false;">

@@ -57,3 +57,11 @@ button:disabled, a.disabled {
     cursor: no-drop;
     background: #cccccc66 !important;
 }
+
+@media (min-width: 768px) {
+    .md\:justify-start {
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+    }
+}

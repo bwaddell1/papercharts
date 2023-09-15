@@ -15,11 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	if(setting('auth.dashboard_redirect', true) != "null"){
-    		if(!Auth::guest()){
-    			return redirect('dashboard');
-    		}
-    	}
+        return redirect('dashboard');
 
         $seo = [
 

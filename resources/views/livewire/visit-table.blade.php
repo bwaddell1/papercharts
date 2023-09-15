@@ -1,11 +1,11 @@
 <div class="flex flex-col px-8 mx-auto my-6 max-w-7xl xl:px-5 py-12">
     <div class="text-gray-900 text-3xl font-bold leading-9">Visits</div>
     <div class="flex justify-between py-4">
-        <div class="justify-start items-center gap-6 inline-flex">
+        <div class="justify-start items-center gap-6 inline-flex flex-wrap" style="height: fit-content;">
             <div class="justify-start items-center gap-1.5 flex">
                 <div class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                        fill="none">
+                        fill="none" class="w-4 h-4">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M6 6V5C6 4.20435 6.31607 3.44129 6.87868 2.87868C7.44129 2.31607 8.20435 2 9 2H11C11.7956 2 12.5587 2.31607 13.1213 2.87868C13.6839 3.44129 14 4.20435 14 5V6H16C16.5304 6 17.0391 6.21071 17.4142 6.58579C17.7893 6.96086 18 7.46957 18 8V11.57C15.4396 12.5187 12.7305 13.003 10 13C7.2695 13.003 4.56037 12.5188 2 11.57V8C2 7.46957 2.21071 6.96086 2.58579 6.58579C2.96086 6.21071 3.46957 6 4 6H6ZM8 5C8 4.73478 8.10536 4.48043 8.29289 4.29289C8.48043 4.10536 8.73478 4 9 4H11C11.2652 4 11.5196 4.10536 11.7071 4.29289C11.8946 4.48043 12 4.73478 12 5V6H8V5ZM9 10C9 9.73478 9.10536 9.48043 9.29289 9.29289C9.48043 9.10536 9.73478 9 10 9H10.01C10.2752 9 10.5296 9.10536 10.7171 9.29289C10.9046 9.48043 11.01 9.73478 11.01 10C11.01 10.2652 10.9046 10.5196 10.7171 10.7071C10.5296 10.8946 10.2752 11 10.01 11H10C9.73478 11 9.48043 10.8946 9.29289 10.7071C9.10536 10.5196 9 10.2652 9 10Z"
                             fill="#9CA3AF" />
@@ -21,7 +21,7 @@
             <div class="justify-start items-center gap-1.5 flex">
                 <div class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                        fill="none">
+                        fill="none" class="w-4 h-4">
                         <path
                             d="M8.433 7.418C8.588 7.315 8.779 7.222 9 7.151V8.849C8.79973 8.78623 8.60896 8.6964 8.433 8.582C8.07 8.34 8 8.114 8 8C8 7.886 8.07 7.66 8.433 7.418ZM11 12.849V11.151C11.22 11.222 11.412 11.315 11.567 11.418C11.931 11.661 12 11.886 12 12C12 12.114 11.93 12.34 11.567 12.582C11.391 12.6964 11.2003 12.7862 11 12.849Z"
                             fill="#9CA3AF" />

@@ -1,6 +1,6 @@
 <div class="flex flex-col px-8 mx-auto my-6 max-w-7xl xl:px-5 py-12">
-    <div class="flex justify-end py-6">
-        <div class="mx-2 relative">
+    <div class="flex justify-end py-6 flex-wrap">
+        <div class="mx-2 relative pt-4">
             <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">
                 Search for Note
             </label>
@@ -8,7 +8,7 @@
                 wire:keydown.debounce.200ms="search($event.target.value)"
                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5">
         </div>
-        <div class="mx-2 relative">
+        <div class="mx-2 relative pt-4">
             <label for="visit_type" class="block mb-2 text-sm font-medium text-gray-900">Filter By Specialty</label>
             <div class="relative">
                 <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
@@ -43,32 +43,12 @@
                     </ul>
                 </div>
             </div>
-            {{-- <div class="flex items-center ml-2">
-                @foreach ($specialties as $specialty)
-                    @if (in_array($specialty->code, $filter_specialties))
-                        <div class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
-                            style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
-                            {{ $specialty->name }}
-                        </div>
-                    @endif
-                @endforeach
-            </div> --}}
         </div>
-        <div class="ml-2 relative pt-7">
+        <div class="ml-2 relative pt-4">
             <button
-                class="w-40 h-full px-4 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                <div class="justify-start items-start gap-2 flex">
-                    {{-- <div class="w-5 h-5 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                            fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.7074 5.29303C16.8949 5.48056 17.0002 5.73487 17.0002 6.00003C17.0002 6.26519 16.8949 6.5195 16.7074 6.70703L8.70741 14.707C8.51988 14.8945 8.26557 14.9998 8.00041 14.9998C7.73524 14.9998 7.48094 14.8945 7.29341 14.707L3.29341 10.707C3.11125 10.5184 3.01045 10.2658 3.01273 10.0036C3.01501 9.74143 3.12018 9.49062 3.30559 9.30521C3.491 9.1198 3.74181 9.01464 4.00401 9.01236C4.2662 9.01008 4.5188 9.11087 4.70741 9.29303L8.00041 12.586L15.2934 5.29303C15.4809 5.10556 15.7352 5.00024 16.0004 5.00024C16.2656 5.00024 16.5199 5.10556 16.7074 5.29303Z"
-                                fill="white" />
-                        </svg>
-                    </div> --}}
+                class="w-40 h-12 mt-6 px-4 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <a href="{{ route('wave.templates.create') }}"
                         class="text-white text-sm font-medium leading-tight">Create New</a>
-                </div>
             </button>
         </div>
     </div>
