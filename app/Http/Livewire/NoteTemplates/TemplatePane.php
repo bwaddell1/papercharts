@@ -10,6 +10,7 @@ class TemplatePane extends Component
 {
 
     public $mode, $template;
+    public $collapseDropdown = true;
     public $specialties = [];
     public $selected_specialties = [];
     public $template_content, $visit_type = "";
@@ -34,7 +35,13 @@ class TemplatePane extends Component
             $this->visit_type = $this->template->visit_type;
             $this->selected_vitals = json_decode($this->template->vitals, true);
             $this->selected_element = $this->template->footer;
+            $this->selected_specialties = $this->template->specialties->pluck('id')->toArray();
         }
+    }
+
+    public function hideDropDown()
+    {
+        $this->collapseDropdown = true;
     }
 
     public function handleChangeTemplate($editorJsonData)
@@ -53,16 +60,20 @@ class TemplatePane extends Component
 
     public function save()
     {
+        if(count($this->selected_specialties) == 0) {
+            $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'You should select at least one specialty!']);
+            return false;
+        }
         if($this->mode == 'create') {
-            NoteTemplate::create([
+            $this->template = NoteTemplate::create([
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
                 'vitals' => json_encode($this->selected_vitals),
                 'footer' => $this->selected_element,
                 'status' => 'published',
             ]);
-            return redirect()->to(route("wave.templates.index"));
         }
+        $this->updateSpecialty();
         if($this->mode == 'edit') {
             $this->template->update([
                 'visit_type' => $this->visit_type,
@@ -72,6 +83,26 @@ class TemplatePane extends Component
                 'status' => 'published',
             ]);
             $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Note template is updated successfully!']);
+            return;
+        }
+        return redirect()->to(route("wave.templates.index"));
+    }
+
+    private function updateSpecialty()
+    {
+        if(count($this->selected_specialties) == 0) {
+            $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'You should select at least one specialty!']);
+            return;
+        }
+        foreach($this->template->specialties as $specialty) {
+            if(!in_array($specialty->id, $this->selected_specialties)) {
+                $this->template->specialties()->detach($specialty->id);
+            }
+        }
+        foreach($this->selected_specialties as $specialty) {
+            if(!$this->template->specialties->contains($specialty)) {
+                $this->template->specialties()->attach($specialty);
+            }
         }
     }
 

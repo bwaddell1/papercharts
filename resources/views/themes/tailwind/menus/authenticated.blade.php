@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div> --}}
-        <a href="{{ route('wave.templates.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none border-b-2 @if(Request::is('templates')){{ 'border-b-2 border-blue-500 text-gray-900 focus:border-indigo-700' }}@else{{ 'text-gray-500 border-transparent hover:border-gray-300 hover:text-gray-700 focus:text-gray-700 focus:border-gray-300' }}@endif">Note Templates</a>
+        <a href="{{ route('wave.templates.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none border-b-2 @if(Request::is('template*')){{ 'border-b-2 border-blue-500 text-gray-900 focus:border-indigo-700' }}@else{{ 'text-gray-500 border-transparent hover:border-gray-300 hover:text-gray-700 focus:text-gray-700 focus:border-gray-300' }}@endif">Note Templates</a>
         <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">Support</a>
     </div>
 

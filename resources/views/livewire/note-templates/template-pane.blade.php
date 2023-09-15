@@ -5,18 +5,30 @@
                 <div class="flex justify-end">
                     <div class="flex gap-1 justify-center items-center flex-wrap mr-6">
                         @foreach ($specialties as $specialty)
-                            @if (in_array($specialty->code, $selected_specialties))
-                                <span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
-                                    style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
+                            @if (in_array($specialty->id, $selected_specialties))
+                                <span id="badge_{{ $specialty->id }}"
+                                    style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}"
+                                    class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium rounded">
                                     {{ $specialty->name }}
+                                    <button type="button" wire:click="set_specialty('{{ $specialty->id }}')"
+                                        class="inline-flex items-center p-1 ml-2 text-sm text-white-400 bg-transparent rounded-sm">
+                                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Remove badge</span>
+                                    </button>
                                 </span>
                             @endif
                         @endforeach
                     </div>
                     <div class="relative">
-                        <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
-                            class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 py-2.5 px-4 inline-flex items-center justify-between"
-                            type="button">
+                        <div class="fixed {{ $collapseDropdown ? 'hidden' : '' }} top-0 left-0 right-0 bottom-0"
+                            style="z-index: 100" wire:click="hideDropDown"></div>
+                        <button wire:click.prevent.stop="$toggle('collapseDropdown')"
+                            class="relative border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 py-2.5 px-4 inline-flex items-center justify-between"
+                            style="z-index: 101;" type="button">
                             Select Specialties
                             <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 10 6">
@@ -25,17 +37,18 @@
                             </svg>
                         </button>
                         <!-- Dropdown menu -->
-                        <div id="dropdownHover" wire:ignore
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 dark:bg-gray-700">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownHoverButton">
+                        <div id="dropdownHover"
+                            class="z-10 {{ $collapseDropdown ? 'hidden' : '' }} bg-white divide-y divide-gray-100 rounded-lg shadow w-56 dark:bg-gray-700"
+                            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-8px, 52px); z-index: 101;">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
                                 @foreach ($specialties as $specialty)
                                     <li>
                                         <div class="flex items-center ml-6">
-                                            <input id="{{ $specialty->code }}" type="checkbox"
-                                                wire:change.debounce.200ms="set_specialty('{{ $specialty->code }}')"
+                                            <input id="{{ $specialty->id }}" type="checkbox"
+                                                {{ in_array($specialty->id, $selected_specialties) ? 'checked' : '' }}
+                                                wire:change.debounce.200ms="set_specialty('{{ $specialty->id }}')"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="{{ $specialty->code }}" class="ml-2 flex px-4 py-2">
+                                            <label for="{{ $specialty->id }}" class="ml-2 flex px-4 py-2">
                                                 <span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
                                                     style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
                                                     {{ $specialty->name }}
@@ -48,9 +61,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex mt-2 items-center" style="margin: 0 36px;">
+                <div class="flex items-center" style="margin: 0 36px; margin-top: 6px;">
                     <label for="email" class="block text-sm font-medium text-gray-900" style="width: 80px">
-                        Visit Type    
+                        Visit Type
                     </label>
                     <input type="text" id="visit_type" wire:model="visit_type"
                         class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80"
@@ -98,7 +111,7 @@
                             <li class="w-full rounded-t-lg dark:border-gray-600">
                                 <div class="flex items-center pl-3 py-2">
                                     <input id="{{ $footer_element }}" type="radio" value="{{ $footer_element }}"
-                                        name="footer_element" wire:model="selected_element"
+                                        name="footer_element" wire:model="selected_element" required
                                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                                     <label for="{{ $footer_element }}" class="ml-2 text-sm font-medium text-gray-700">
                                         {{ formatString($footer_element) }}
@@ -111,7 +124,7 @@
             </div>
         </div>
         <div class="flex justify-end mt-6 px-6">
-            <button type="button"
+            <button type="button" onclick="openDeleteNoteTemplate({{ $template->id }})"
                 class="flex gap-1 items-center focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
@@ -148,4 +161,10 @@
             </button>
         </div>
     </form>
+    <script>
+        window.openDeleteNoteTemplate = function(template_id) {
+            Alpine.store('deleteNoteTemplateModal').openModal();
+            Livewire.emit('deleteNoteTemplate', template_id);
+        }
+    </script>
 </div>

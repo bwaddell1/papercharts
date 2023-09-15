@@ -128,7 +128,7 @@
                                         fill="#8F95B2" />
                                 </svg>
                             </a>
-                            <div class="cursor-pointer" onclick="openDeleteVisitModal({{ $template->id }})">
+                            <div class="cursor-pointer" onclick="openDeleteNoteTemplate({{ $template->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -147,4 +147,10 @@
             {{ $templates->links('pagination::tailwind') }}
         </div>
     </div>
+    <script>
+        window.openDeleteNoteTemplate = function(template_id) {
+            Alpine.store('deleteNoteTemplateModal').openModal();
+            Livewire.emit('deleteNoteTemplate', template_id);
+        }
+    </script>
 </div>

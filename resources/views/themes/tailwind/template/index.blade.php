@@ -26,4 +26,7 @@
     </div>
 
     @livewire('note-templates.template-table')
+
+    @livewire('note-templates.delete-note-template')
+
 @endsection

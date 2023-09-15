@@ -35,8 +35,12 @@ class TemplateController extends Controller
     
     public function edit(Request $request, $template_id)
     {
+        $template = NoteTemplate::find($template_id);
+        if(!$template) {
+            return redirect()->route('wave.templates.index');
+        }
         return view('theme::template.edit', [
-            "template" => NoteTemplate::find($template_id),
+            "template" => $template,
         ]);
     }
 }

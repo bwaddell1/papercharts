@@ -26,4 +26,7 @@
     </div>
 
     @livewire('note-templates.template-pane', ['mode' => 'edit', 'template' => $template])
+
+    @livewire('note-templates.delete-note-template')
+    
 @endsection
