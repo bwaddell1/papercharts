@@ -1,7 +1,7 @@
 <div class="flex flex-col px-8 mx-auto my-6 max-w-7xl xl:px-5 py-12">
     <div class="text-gray-900 text-3xl font-bold leading-9">Visits</div>
-    <div class="flex justify-between py-4">
-        <div class="justify-start items-center gap-6 inline-flex flex-wrap" style="height: fit-content;">
+    <div class="flex justify-between py-4 flex-wrap items-center">
+        <div class="justify-start items-center gap-6 inline-flex flex-wrap mt-4" style="height: fit-content;">
             <div class="justify-start items-center gap-1.5 flex">
                 <div class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
@@ -33,7 +33,7 @@
                 <div class="text-gray-500 text-sm font-normal leading-tight flex-1">{{ $visits->total() }} Visits</div>
             </div>
         </div>
-        <div class="flex gap-2 flex-wrap justify-end">
+        <div class="flex gap-2 flex-wrap justify-end mt-4">
             <div class="flex gap-2 flex-wrap justify-end">
                 <div class="relative w-44">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
@@ -111,22 +111,16 @@
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        LAST NAME
+                        FULL NAME
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        FIRST NAME
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        DATE OF VISIT
+                        DATE
                     </th>
                     <th scope="col" class="px-6 py-3">
                         VISIT TYPE
                     </th>
                     <th scope="col" class="px-6 py-3">
                         STATUS
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        READY
                     </th>
                     <th scope="col" class="px-6 py-3">
                         COMPLETE
@@ -157,8 +151,6 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $visit->last_name }}
-                        </td>
-                        <td class="px-6 py-4">
                             {{ $visit->first_name }}
                         </td>
                         <td class="px-6 py-4">
@@ -173,14 +165,6 @@
                                 class="bg-{{ $i }}-100 text-{{ $i }}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                                 {{ strtoupper(formatString($visit->status)) }}
                             </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <input id="checkbox-table-search-1" type="checkbox"
-                                    {{ $visit->ready ? 'checked' : '' }} disabled
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                            </div>
                         </td>
                         <td class="px-6 py-4">
                             <a href="#"

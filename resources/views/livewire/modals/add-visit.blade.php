@@ -59,7 +59,7 @@
                 <div class="flex flex-col sm:flex-row my-4 gap-6">
                     <div class="w-full sm:w-1/2 sm:mx-2">
                         <div class="mt-1 relative">
-                            <label for="visit_type" class="block mb-2 text-sm font-medium text-gray-900">Visit
+                            {{-- <label for="visit_type" class="block mb-2 text-sm font-medium text-gray-900">Visit
                                 Type</label>
                             <select id="visit_type" name="visit_type" required
                                 class="shadow border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -69,7 +69,12 @@
                                 <option value="sports_physical">Sports Physical</option>
                                 <option value="skin_rash">Skin Rash</option>
                                 <option value="other">Other</option>
-                            </select>
+                            </select> --}}
+                            @livewire('visits.visit-type-select', [
+                                'name' => 'visit_type_id',
+                                'placeholder' => 'Choose a Visit Type',
+                                'searchable' => true,
+                            ], key(time() . rand(0, 999)))
                         </div>
                     </div>
                     <div class="w-full sm:w-1/2 sm:mx-2">
@@ -87,10 +92,10 @@
 </div>
 
 @push('footer-scripts')
-<script>
-    $('input[name="datepicker"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-    });
-</script>
+    <script>
+        $('input[name="datepicker"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+        });
+    </script>
 @endpush

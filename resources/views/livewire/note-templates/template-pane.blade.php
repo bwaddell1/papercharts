@@ -69,7 +69,7 @@
                         class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 lg:md-80"
                         placeholder="Visit Type" required>
                 </div>
-                <div style="min-width: 780px; overflow-x: auto" class="border border-gray-100 rounded">
+                <div class="border border-gray-100 rounded" style="margin: 0 24px;">
                     @livewire('editorjs', [
                         'editorId' => 'template',
                         'value' => $template_content,

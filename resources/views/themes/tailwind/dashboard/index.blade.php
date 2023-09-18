@@ -24,7 +24,7 @@
 
         </div>
     </div>
-
+    
     @livewire('visits.visit-table')
     @livewire('visits.edit-visit')
     @livewire('visits.delete-visit')
