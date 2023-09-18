@@ -60,6 +60,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="{{ asset('themes/' . $theme->folder . '/css/style.css') }}" rel="stylesheet">
     
+    @stack('header-scripts')
+
     @livewireScripts
     <script src="/vendor/livewire-editorjs/editorjs.js"></script>
 

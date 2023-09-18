@@ -77,7 +77,7 @@
                         <div class="text-gray-700 text-sm font-medium leading-tight">Print Notes</div>
                     </div>
                 </button>
-                <button
+                <a href="{{ route('wave.visits.upload') }}"
                     class="w-44 px-2 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="text-white text-sm font-medium leading-tight">Upload Visits</div>
                     </div>
-                </button>
+                </a>
             </div>
         </div>
     </div>

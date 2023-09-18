@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Http\Request;
 use App\Models\Visit;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class VisitController extends BaseController
 {
@@ -17,7 +14,7 @@ class VisitController extends BaseController
             'first_name' => 'required|min:2|max:191',
             'last_name' => 'required|min:2|max:191',
             'datepicker' => 'required',
-            'visit_type' => 'required'
+            'visit_type' => 'required',
         ]);
 
         $parsedDate = date_parse($validated['datepicker']);
@@ -30,5 +27,38 @@ class VisitController extends BaseController
         ]);
 
         return redirect(route('wave.dashboard'));
+    }
+
+    public function dropzoneStore(Request $request)
+    {
+        $image = $request->file('file');
+
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('visits'), $imageName);
+
+        return response()->json(['success' => $imageName]);
+    }
+
+    public function fetch()
+    {
+        $images = \File::allFiles(public_path('visits'));
+        $output = '<div class="row">';
+        foreach ($images as $image) {
+            $output .= '
+      <div class="col-md-2" style="margin-bottom:16px;" align="center">
+                <img src="' . asset('visits/' . $image->getFilename()) . '" class="img-thumbnail" width="175" height="175" style="height:175px;" />
+                <button type="button" class="btn btn-link remove_image" id="' . $image->getFilename() . '">Remove</button>
+            </div>
+      ';
+        }
+        $output .= '</div>';
+        echo $output;
+    }
+
+    public function delete(Request $request)
+    {
+        if ($request->get('name')) {
+            \File::delete(public_path('visits/' . $request->get('name')));
+        }
     }
 }

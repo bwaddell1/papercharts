@@ -69,6 +69,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('switch-plans', '\Wave\Http\Controllers\SubscriptionController@switchPlans')->name('wave.switch-plans');
     Route::post('visit', '\App\Http\Controllers\VisitController@createVisit')->name('wave.add-visit');
 
+	Route::post('dropzone/visits/store', '\App\Http\Controllers\VisitController@dropzoneStore')->name('wave.visits.dropzone.store');
+	Route::get('dropzone/visits/fetch', '\App\Http\Controllers\VisitController@fetch')->name('wave.visits.dropzone.fetch');
+	Route::get('dropzone/visits/delete', '\App\Http\Controllers\VisitController@delete')->name('wave.visits.dropzone.delete');
+	Route::view('visits/upload', 'theme::visits.upload')->name('wave.visits.upload');
+
 });
 
 Route::group(['middleware' => 'admin.user'], function(){

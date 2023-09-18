@@ -28,7 +28,7 @@ class VisitTable extends Component
         }
         $visits = $visits->latest()->paginate(10);
         $this->show_rows = $visits->pluck('id')->toArray();
-        return view('livewire.visit-table', [
+        return view('livewire.visits.visit-table', [
             'visits' => $visits,
         ]);
     }
