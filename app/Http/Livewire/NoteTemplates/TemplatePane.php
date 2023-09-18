@@ -22,7 +22,7 @@ class TemplatePane extends Component
     public $vitals = ["heart_rate", "respiratory_rate", "weight", "blood_pressure", "BMI"];
     public $selected_vitals = [];
     public $footer_elements = ["signature", "time", "date"];
-    public $selected_element;
+    public $selected_elements = [];
     
     public function mount()
     {
@@ -90,7 +90,7 @@ class TemplatePane extends Component
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
                 'vitals' => json_encode($this->selected_vitals),
-                'footer' => $this->selected_element,
+                'footer' => json_encode($this->selected_element),
                 'status' => 'published',
             ]);
             $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Note template is updated successfully!']);

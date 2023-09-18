@@ -1,7 +1,7 @@
 <div class="max-w-7xl mx-auto my-6" style="margin-top: 40px;">
     <form wire:submit.prevent="save">
         <div class="block lg:flex">
-            <div class="bg-white shadow flex flex-col px-8 xl:px-5 py-12 pb-4 template-panel flex-1 mx-4">
+            <div class="bg-white shadow flex flex-col px-8 xl:px-5 py-12 pb-4 flex-1 mx-4">
                 <div class="flex justify-end">
                     <div class="flex gap-1 justify-center items-center flex-wrap mr-6">
                         @foreach ($specialties as $specialty)
@@ -102,10 +102,11 @@
                         @foreach ($footer_elements as $footer_element)
                             <li class="w-full rounded-t-lg dark:border-gray-600 px-8 lg:px-0">
                                 <div class="flex items-center pl-3 py-2">
-                                    <input id="{{ $footer_element }}" type="radio" value="{{ $footer_element }}"
-                                        name="footer_element" wire:model="selected_element" required
-                                        class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                    <label for="{{ $footer_element }}" class="ml-2 text-sm font-medium text-gray-700">
+                                    <input id="{{ $footer_element }}" type="checkbox"
+                                        wire:model="selected_elements.{{ $footer_element }}"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="{{ $footer_element }}"
+                                        class="w-full py-2 ml-2 text-sm font-medium text-gray-700">
                                         {{ formatString($footer_element) }}
                                     </label>
                                 </div>
