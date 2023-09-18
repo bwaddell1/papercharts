@@ -18,7 +18,7 @@ class TemplatePane extends Component
         'editorjs-save:template' => 'handleChangeTemplate',
     ];
     
-    private $placeholder = '{"time":1694709745372,"blocks":[{"id":"dCaXH7VEce","type":"header","data":{"text":"Add Title","level":1}},{"id":"rW4933SKvS","type":"paragraph","data":{"text":"<span style=\"color: rgb(0, 0, 0); font-family: Inter, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">Add des<\/span>c<editorjs-style><editorjs-style class=\"\" style=\"margin-bottom: 8px; display: inline-block;\">ription<\/editorjs-style><\/editorjs-style>","alignment":"left"}},{"id":"j0NcmPUZY1","type":"paragraph","data":{"text":"<editorjs-style class=\"template-subject bg-gray-50 font-semibold pl-8 text-gray-500\">Subjective<\/editorjs-style><editorjs-style class=\"template-content bg-gray-50 font-semibold\" style=\"\">add sample hpi text here.. as if it were a completed note<\/editorjs-style>","alignment":"left"}},{"id":"rNEFvpPM-W","type":"paragraph","data":{"text":"<editorjs-style class=\"template-subject template-white-content font-semibold pl-8 text-gray-500\">Objective<\/editorjs-style><editorjs-style class=\"template-content template-white-content font-semibold\" style=\"\">(select vital signs on the right column to include in your note)<\/editorjs-style>","alignment":"left"}},{"id":"j0NcmPUZY2","type":"paragraph","data":{"text":"<editorjs-style class=\"template-subject bg-gray-50 font-semibold pl-8 text-gray-500\">Physical Exam<\/editorjs-style><editorjs-style class=\"template-content bg-gray-50 font-semibold\" style=\"\">Add a physical Exam to suit your needs<\/editorjs-style>","alignment":"left"}},{"id":"rNEFvpPM-a","type":"paragraph","data":{"text":"<editorjs-style class=\"template-subject template-white-content font-semibold pl-8 text-gray-500\">Assessment<\/editorjs-style><editorjs-style class=\"template-content template-white-content font-semibold\" style=\"\">Add a diagnosis and ICD10 code<\/editorjs-style>","alignment":"left"}},{"id":"j0NcmPUZY3","type":"paragraph","data":{"text":"<editorjs-style class=\"template-subject bg-gray-50 font-semibold pl-8 text-gray-500\">Plan<\/editorjs-style><editorjs-style class=\"template-content bg-gray-50 font-semibold\" style=\"\">Add a plan<\/editorjs-style>","alignment":"left"}}],"version":"2.28.0"}';
+    private $placeholder = '{"time":1694709745372,"blocks":[{"id":"visit_type","type":"header","data":{"text":"Add Title","level":1}},{"id":"description","type":"paragraph","data":{"text":"<span style=\\"color: rgb(0, 0, 0); font-family: Inter, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\\">Add des</span>c<editorjs-style><editorjs-style class=\\"\\" style=\\"margin-bottom: 8px; display: inline-block;\\">ription</editorjs-style></editorjs-style>","alignment":"left"}}],"version":"2.28.0"}';
     public $vitals = ["heart_rate", "respiratory_rate", "weight", "blood_pressure", "BMI"];
     public $selected_vitals = [];
     public $footer_elements = ["signature", "time", "date"];
@@ -60,6 +60,17 @@ class TemplatePane extends Component
 
     public function save()
     {
+        $rows = $this->template_content['blocks'];
+        $this->visit_type = "";
+        foreach($rows as $row) {
+            if($row['id'] == 'visit_type') {
+                $this->visit_type = $row['data']['text'];
+            }
+        }
+        if($this->visit_type == "") {
+            $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'You should add a title!']);
+            return false;
+        }
         if(count($this->selected_specialties) == 0) {
             $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'You should select at least one specialty!']);
             return false;

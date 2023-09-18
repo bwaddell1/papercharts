@@ -28,9 +28,9 @@
                 <div class="text-gray-500 text-sm font-normal leading-tight flex-1">{{ $visits->total() }} Visits</div>
             </div>
         </div>
-        <div class="flex gap-2 flex-wrap justify-end mt-4">
+        <div class="flex gap-2 flex-wrap justify-end mt-4 ml-auto">
             <div class="flex gap-2 flex-wrap justify-end">
-                <button onclick="openAddVisitModal()"
+                <button data-modal-target="addVisitModal" data-modal-toggle="addVisitModal"
                     class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">

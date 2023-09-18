@@ -61,15 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center flex-wrap justify-end md:justify-start" style="margin: 8px 0px;">
-                    <label for="email" class="block text-sm font-medium text-gray-900 py-1" style="width: 80px">
-                        Visit Type
-                    </label>
-                    <input type="text" id="visit_type" wire:model="visit_type"
-                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 lg:md-80"
-                        placeholder="Visit Type" required>
-                </div>
-                <div class="border border-gray-100 rounded" style="margin: 0 24px;">
+                <div class="border border-gray-100 rounded" style="margin: 0 24px; margin-top: 16px;">
                     @livewire('editorjs', [
                         'editorId' => 'template',
                         'value' => $template_content,

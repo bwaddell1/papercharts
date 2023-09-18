@@ -5,13 +5,9 @@ import Underline from '@editorjs/underline';
 import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Quote from '@editorjs/quote';
-import Delimiter from '@editorjs/delimiter';
-import Alert from 'editorjs-alert';
 import Paragraph from 'editorjs-paragraph-with-alignment';
 import NestedList from '@editorjs/nested-list';
 import Checklist from '@editorjs/checklist';
-import Table from 'editorjs-table';
-import EditorjsColumns from '@calumk/editorjs-columns';
 import ColorPlugin from 'editorjs-text-color-plugin';
 import { StyleInlineTool } from 'editorjs-style';
 
@@ -85,14 +81,17 @@ window.editorInstance = function (dataProperty, editorId, readOnly, placeholder,
                             defaultStyle: 'unordered'
                         },
                     },
-                    header: Header,
+                    header: {
+                        class: Header,
+                        config: {
+                            levels: [1, 2],
+                        },
+                    },
                     underline: Underline,
                     code: Code,
                     'inline-code': InlineCode,
                     quote: Quote,
                     // warning: Warning,
-                    delimiter: Delimiter,
-                    alert: Alert,
                     paragraph: {
                         class: Paragraph,
                         inlineToolbar: true,
@@ -100,34 +99,6 @@ window.editorInstance = function (dataProperty, editorId, readOnly, placeholder,
                     checklist: {
                         class: Checklist,
                         inlineToolbar: true,
-                    },
-                    table: {
-                        class: Table,
-                    },
-                    columns: {
-                        class: EditorjsColumns,
-                        config: {
-                            EditorJsLibrary: EditorJS, // Pass the library instance to the columns instance.
-                            tools: {
-                                header: Header,
-                                alert: Alert,
-                                paragraph: {
-                                    class: Paragraph,
-                                    inlineToolbar: true,
-                                },
-                                delimiter: Delimiter,
-                                underline: Underline,
-                                Color: {
-                                    class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-                                    config: {
-                                        colorCollections: ['#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
-                                        defaultColor: '#FF1300',
-                                        type: 'text',
-                                        customPicker: true // add a button to allow selecting any colour  
-                                    }
-                                },
-                            }
-                        }
                     },
                     Color: {
                         class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
