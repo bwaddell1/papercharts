@@ -3,75 +3,53 @@
     <div class="flex justify-between py-4 flex-wrap items-center">
         <div class="justify-start items-center gap-6 inline-flex flex-wrap mt-4" style="height: fit-content;">
             <div class="justify-start items-center gap-1.5 flex">
-                <div class="pr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                        fill="none" class="w-4 h-4">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M6 6V5C6 4.20435 6.31607 3.44129 6.87868 2.87868C7.44129 2.31607 8.20435 2 9 2H11C11.7956 2 12.5587 2.31607 13.1213 2.87868C13.6839 3.44129 14 4.20435 14 5V6H16C16.5304 6 17.0391 6.21071 17.4142 6.58579C17.7893 6.96086 18 7.46957 18 8V11.57C15.4396 12.5187 12.7305 13.003 10 13C7.2695 13.003 4.56037 12.5188 2 11.57V8C2 7.46957 2.21071 6.96086 2.58579 6.58579C2.96086 6.21071 3.46957 6 4 6H6ZM8 5C8 4.73478 8.10536 4.48043 8.29289 4.29289C8.48043 4.10536 8.73478 4 9 4H11C11.2652 4 11.5196 4.10536 11.7071 4.29289C11.8946 4.48043 12 4.73478 12 5V6H8V5ZM9 10C9 9.73478 9.10536 9.48043 9.29289 9.29289C9.48043 9.10536 9.73478 9 10 9H10.01C10.2752 9 10.5296 9.10536 10.7171 9.29289C10.9046 9.48043 11.01 9.73478 11.01 10C11.01 10.2652 10.9046 10.5196 10.7171 10.7071C10.5296 10.8946 10.2752 11 10.01 11H10C9.73478 11 9.48043 10.8946 9.29289 10.7071C9.10536 10.5196 9 10.2652 9 10Z"
-                            fill="#9CA3AF" />
-                        <path
-                            d="M2 13.692V16C2 16.5304 2.21071 17.0392 2.58579 17.4142C2.96086 17.7893 3.46957 18 4 18H16C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0392 18 16.5304 18 16V13.692C15.4224 14.5608 12.7201 15.0026 10 15C7.204 15 4.513 14.54 2 13.692Z"
-                            fill="#9CA3AF" />
-                    </svg>
-                </div>
-                <div class="text-gray-500 text-sm font-normal leading-tight flex-1">
-                    {{ date_format(now(), 'm/d/Y') }}
-                </div>
-            </div>
-            <div class="justify-start items-center gap-1.5 flex">
-                <div class="pr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                        fill="none" class="w-4 h-4">
-                        <path
-                            d="M8.433 7.418C8.588 7.315 8.779 7.222 9 7.151V8.849C8.79973 8.78623 8.60896 8.6964 8.433 8.582C8.07 8.34 8 8.114 8 8C8 7.886 8.07 7.66 8.433 7.418ZM11 12.849V11.151C11.22 11.222 11.412 11.315 11.567 11.418C11.931 11.661 12 11.886 12 12C12 12.114 11.93 12.34 11.567 12.582C11.391 12.6964 11.2003 12.7862 11 12.849Z"
-                            fill="#9CA3AF" />
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M10 18C12.1217 18 14.1566 17.1571 15.6569 15.6569C17.1571 14.1566 18 12.1217 18 10C18 7.87827 17.1571 5.84344 15.6569 4.34315C14.1566 2.84285 12.1217 2 10 2C7.87827 2 5.84344 2.84285 4.34315 4.34315C2.84285 5.84344 2 7.87827 2 10C2 12.1217 2.84285 14.1566 4.34315 15.6569C5.84344 17.1571 7.87827 18 10 18ZM11 5C11 4.73478 10.8946 4.48043 10.7071 4.29289C10.5196 4.10536 10.2652 4 10 4C9.73478 4 9.48043 4.10536 9.29289 4.29289C9.10536 4.48043 9 4.73478 9 5V5.092C8.40268 5.19833 7.83276 5.42344 7.324 5.754C6.602 6.234 6 7.009 6 8C6 8.99 6.602 9.765 7.324 10.246C7.804 10.566 8.378 10.791 9 10.908V12.849C8.609 12.722 8.32 12.532 8.157 12.345C8.0724 12.2412 7.96782 12.1554 7.84945 12.0928C7.73107 12.0302 7.60133 11.992 7.46791 11.9804C7.33449 11.9689 7.20012 11.9843 7.07276 12.0257C6.9454 12.0671 6.82765 12.1336 6.72649 12.2214C6.62534 12.3091 6.54284 12.4163 6.48389 12.5365C6.42494 12.6568 6.39075 12.7876 6.38334 12.9214C6.37592 13.0551 6.39544 13.1889 6.44073 13.3149C6.48602 13.441 6.55617 13.5566 6.647 13.655C7.209 14.304 8.06 14.731 9 14.908V15C9 15.2652 9.10536 15.5196 9.29289 15.7071C9.48043 15.8946 9.73478 16 10 16C10.2652 16 10.5196 15.8946 10.7071 15.7071C10.8946 15.5196 11 15.2652 11 15V14.908C11.5973 14.8017 12.1672 14.5766 12.676 14.246C13.398 13.766 14 12.991 14 12C14 11.01 13.398 10.235 12.676 9.754C12.1672 9.42344 11.5973 9.19833 11 9.092V7.151C11.391 7.278 11.68 7.468 11.843 7.655C11.9284 7.75631 12.0331 7.83965 12.1509 7.90016C12.2688 7.96067 12.3975 7.99716 12.5296 8.00749C12.6617 8.01783 12.7945 8.00182 12.9204 7.96038C13.0462 7.91894 13.1626 7.85291 13.2627 7.76612C13.3628 7.67932 13.4447 7.5735 13.5035 7.4548C13.5624 7.33609 13.5971 7.20688 13.6056 7.07465C13.6141 6.94243 13.5962 6.80984 13.553 6.68458C13.5098 6.55932 13.4422 6.44389 13.354 6.345C12.791 5.696 11.941 5.269 11 5.092V5Z"
-                            fill="#9CA3AF" />
-                    </svg>
-                </div>
-                <div class="text-gray-500 text-sm font-normal leading-tight flex-1">{{ $visits->total() }} Visits</div>
-            </div>
-        </div>
-        <div class="flex gap-2 flex-wrap justify-end mt-4">
-            <div class="flex gap-2 flex-wrap justify-end">
                 <div class="relative w-44">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                         </svg>
                     </div>
                     <input name="dates" type="text" wire:change="handleChangeSearchDate" id="daterange"
                         class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Select Dates">
                 </div>
+            </div>
+            <div class="justify-start items-center gap-1.5 flex">
+                <div class="pr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+
+                </div>
+                <div class="text-gray-500 text-sm font-normal leading-tight flex-1">{{ $visits->total() }} Visits</div>
+            </div>
+        </div>
+        <div class="flex gap-2 flex-wrap justify-end mt-4">
+            <div class="flex gap-2 flex-wrap justify-end">
                 <button onclick="openAddVisitModal()"
                     class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="none">
-                                <path
-                                    d="M13.586 3.58598C13.7705 3.39496 13.9912 3.24259 14.2352 3.13778C14.4792 3.03296 14.7416 2.97779 15.0072 2.97548C15.2728 2.97317 15.5361 3.02377 15.7819 3.12434C16.0277 3.2249 16.251 3.3734 16.4388 3.56119C16.6266 3.74897 16.7751 3.97228 16.8756 4.21807C16.9762 4.46386 17.0268 4.72722 17.0245 4.99278C17.0222 5.25834 16.967 5.52078 16.8622 5.76479C16.7574 6.0088 16.605 6.22949 16.414 6.41398L15.621 7.20698L12.793 4.37898L13.586 3.58598ZM11.379 5.79298L3 14.172V17H5.828L14.208 8.62098L11.378 5.79298H11.379Z"
-                                    fill="#6B7280" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                         </div>
                         <div class="text-gray-700 text-sm font-medium leading-tight">Add Visits</div>
                     </div>
                 </button>
-            </div>
-            <div class="flex gap-2 flex-wrap justify-end">
                 <button onclick="openPrintVisitModal({{ count($selected_rows) }})"
                     class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12.5863 4.58598C12.7708 4.39496 12.9915 4.2426 13.2355 4.13778C13.4795 4.03296 13.742 3.97779 14.0075 3.97548C14.2731 3.97317 14.5364 4.02378 14.7822 4.12434C15.028 4.2249 15.2513 4.37341 15.4391 4.56119C15.6269 4.74898 15.7754 4.97228 15.876 5.21807C15.9765 5.46387 16.0271 5.72722 16.0248 5.99278C16.0225 6.25834 15.9673 6.52078 15.8625 6.76479C15.7577 7.0088 15.6053 7.22949 15.4143 7.41398L12.4143 10.414C12.0393 10.7889 11.5307 10.9996 11.0003 10.9996C10.47 10.9996 9.96138 10.7889 9.58633 10.414C9.39772 10.2318 9.14512 10.131 8.88292 10.1333C8.62073 10.1356 8.36991 10.2408 8.18451 10.4262C7.9991 10.6116 7.89393 10.8624 7.89165 11.1246C7.88937 11.3868 7.99017 11.6394 8.17232 11.828C8.92244 12.5779 9.93967 12.9991 11.0003 12.9991C12.061 12.9991 13.0782 12.5779 13.8283 11.828L16.8283 8.82798C17.557 8.07357 17.9601 7.06316 17.951 6.01438C17.9419 4.96559 17.5212 3.96234 16.7796 3.22071C16.038 2.47907 15.0347 2.0584 13.9859 2.04928C12.9371 2.04017 11.9267 2.44335 11.1723 3.17198L9.67232 4.67198C9.57681 4.76423 9.50063 4.87457 9.44822 4.99658C9.39581 5.11858 9.36823 5.2498 9.36707 5.38258C9.36592 5.51536 9.39122 5.64704 9.4415 5.76993C9.49178 5.89283 9.56604 6.00448 9.65993 6.09838C9.75382 6.19227 9.86547 6.26652 9.98837 6.3168C10.1113 6.36708 10.2429 6.39239 10.3757 6.39123C10.5085 6.39008 10.6397 6.36249 10.7617 6.31008C10.8837 6.25767 10.9941 6.18149 11.0863 6.08598L12.5863 4.58598ZM7.58632 9.58598C7.96138 9.21104 8.47 9.00041 9.00032 9.00041C9.53065 9.00041 10.0393 9.21104 10.4143 9.58598C10.5066 9.68149 10.6169 9.75767 10.7389 9.81008C10.8609 9.86249 10.9921 9.89008 11.1249 9.89123C11.2577 9.89239 11.3894 9.86708 11.5123 9.8168C11.6352 9.76652 11.7468 9.69227 11.8407 9.59838C11.9346 9.50448 12.0089 9.39283 12.0591 9.26993C12.1094 9.14704 12.1347 9.01536 12.1336 8.88258C12.1324 8.7498 12.1048 8.61858 12.0524 8.49658C12 8.37457 11.9238 8.26423 11.8283 8.17198C11.0782 7.4221 10.061 7.00083 9.00032 7.00083C7.93967 7.00083 6.92244 7.4221 6.17232 8.17198L3.17232 11.172C2.79028 11.541 2.48556 11.9823 2.27592 12.4704C2.06628 12.9584 1.95594 13.4833 1.95132 14.0144C1.94671 14.5455 2.04791 15.0722 2.24904 15.5638C2.45016 16.0554 2.74717 16.502 3.12274 16.8776C3.49832 17.2531 3.94492 17.5501 4.43651 17.7513C4.92809 17.9524 5.45481 18.0536 5.98593 18.049C6.51705 18.0444 7.04193 17.934 7.52994 17.7244C8.01796 17.5148 8.45934 17.21 8.82832 16.828L10.3283 15.328C10.4238 15.2357 10.5 15.1254 10.5524 15.0034C10.6048 14.8814 10.6324 14.7502 10.6336 14.6174C10.6347 14.4846 10.6094 14.3529 10.5591 14.23C10.5089 14.1071 10.4346 13.9955 10.3407 13.9016C10.2468 13.8077 10.1352 13.7334 10.0123 13.6832C9.88938 13.6329 9.7577 13.6076 9.62492 13.6087C9.49214 13.6099 9.36092 13.6375 9.23892 13.6899C9.11692 13.7423 9.00657 13.8185 8.91432 13.914L7.41432 15.414C7.22983 15.605 7.00914 15.7574 6.76513 15.8622C6.52113 15.967 6.25869 16.0222 5.99313 16.0245C5.72757 16.0268 5.46421 15.9762 5.21842 15.8756C4.97262 15.7751 4.74932 15.6266 4.56153 15.4388C4.37375 15.251 4.22524 15.0277 4.12468 14.7819C4.02412 14.5361 3.97352 14.2727 3.97582 14.0072C3.97813 13.7416 4.0333 13.4792 4.13812 13.2352C4.24294 12.9912 4.3953 12.7705 4.58632 12.586L7.58632 9.58598Z"
-                                    fill="#6B7280" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
                             </svg>
                         </div>
                         <div class="text-gray-700 text-sm font-medium leading-tight">Print Notes</div>
@@ -81,11 +59,10 @@
                     class="w-44 px-2 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M16.7074 5.29303C16.8949 5.48056 17.0002 5.73487 17.0002 6.00003C17.0002 6.26519 16.8949 6.5195 16.7074 6.70703L8.70741 14.707C8.51988 14.8945 8.26557 14.9998 8.00041 14.9998C7.73524 14.9998 7.48094 14.8945 7.29341 14.707L3.29341 10.707C3.11125 10.5184 3.01045 10.2658 3.01273 10.0036C3.01501 9.74143 3.12018 9.49062 3.30559 9.30521C3.491 9.1198 3.74181 9.01464 4.00401 9.01236C4.2662 9.01008 4.5188 9.11087 4.70741 9.29303L8.00041 12.586L15.2934 5.29303C15.4809 5.10556 15.7352 5.00024 16.0004 5.00024C16.2656 5.00024 16.5199 5.10556 16.7074 5.29303Z"
-                                    fill="white" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="white" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                             </svg>
                         </div>
                         <div class="text-white text-sm font-medium leading-tight">Upload Visits</div>
@@ -122,13 +99,13 @@
                     <th scope="col" class="px-6 py-3">
                         STATUS
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        COMPLETE
+                    <th scope="col" class="px-6 py-3 text-center">
+                        FILL OUT
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-center">
                         EDIT
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-center">
                         DELETE
                     </th>
                 </tr>
@@ -167,9 +144,24 @@
                             </span>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Fill
-                                Out</a>
+                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline flex justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5" x="0px" class="w-5 h-5"
+                                    y="0px">
+                                    <title>Asset 398</title>
+                                    <g data-name="Layer 2">
+                                        <g data-name="Layer 1">
+                                            <path
+                                                d="M23,14H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H23a3,3,0,0,1,3,3v8A3,3,0,0,1,23,14ZM3,2A1,1,0,0,0,2,3v8a1,1,0,0,0,1,1H23a1,1,0,0,0,1-1V3a1,1,0,0,0-1-1ZM23,9a1,1,0,0,0-1-1H21a1,1,0,0,0,0,2h1A1,1,0,0,0,23,9ZM19,9a1,1,0,0,0-1-1H8a1,1,0,0,0,0,2H18A1,1,0,0,0,19,9ZM6,9A1,1,0,0,0,5,8H4a1,1,0,0,0,0,2H5A1,1,0,0,0,6,9ZM23,5a1,1,0,0,0-1-1H21a1,1,0,0,0,0,2h1A1,1,0,0,0,23,5ZM19,5a1,1,0,0,0-1-1H17a1,1,0,0,0,0,2h1A1,1,0,0,0,19,5ZM15,5a1,1,0,0,0-1-1H12a1,1,0,0,0,0,2h2A1,1,0,0,0,15,5ZM10,5A1,1,0,0,0,9,4H8A1,1,0,0,0,8,6H9A1,1,0,0,0,10,5ZM6,5A1,1,0,0,0,5,4H4A1,1,0,0,0,4,6H5A1,1,0,0,0,6,5Zm7.447,16.9,6-3a1,1,0,1,0-.894-1.79L13,19.882,7.447,17.105a1,1,0,1,0-.894,1.79l6,3a1,1,0,0,0,.894,0Z" />
+                                        </g>
+                                    </g><text x="0" y="37" fill="#000000" font-size="5px"
+                                        font-weight="bold"
+                                        font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created
+                                        by Mohamed Salah Hajji</text><text x="0" y="42"
+                                        fill="#000000" font-size="5px" font-weight="bold"
+                                        font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from
+                                        the Noun Project</text>
+                                </svg>
+                            </a>
                         </td>
                         <td class="px-6 py-4">
                             <div class="cursor-pointer" onclick="openEditVisitModal({{ $visit->id }})">
@@ -202,30 +194,30 @@
         </div>
     </div>
 
-    </div>
-    <script>
-        window.openAddVisitModal = function() {
-            Alpine.store('lgModal').type = 'add-visit';
-            Alpine.store('lgModal').openModal();
+</div>
+<script>
+    window.openAddVisitModal = function() {
+        Alpine.store('lgModal').type = 'add-visit';
+        Alpine.store('lgModal').openModal();
+    }
+    window.openPrintVisitModal = function(selected_rows) {
+        if (selected_rows == 0) {
+            popToast('danger', 'Please select visits to print.');
+            return;
         }
-        window.openPrintVisitModal = function(selected_rows) {
-            if (selected_rows == 0) {
-                popToast('danger', 'Please select visits to print.');
-                return;
-            }
-            Alpine.store('lgModal').type = 'print-visit';
-            Alpine.store('lgModal').openModal();
-        }
-        window.openEditVisitModal = function(visit_id) {
-            Alpine.store('editVisitModal').openModal();
-            Livewire.emit('editVisit', visit_id);
-            // Alpine.store('editVisitModal').visit_id = visit_id;
-        }
-        window.openDeleteVisitModal = function(visit_id) {
-            Alpine.store('deleteVisitModal').openModal();
-            Livewire.emit('deleteVisit', visit_id);
-        }
-    </script>
+        Alpine.store('lgModal').type = 'print-visit';
+        Alpine.store('lgModal').openModal();
+    }
+    window.openEditVisitModal = function(visit_id) {
+        Alpine.store('editVisitModal').openModal();
+        Livewire.emit('editVisit', visit_id);
+        // Alpine.store('editVisitModal').visit_id = visit_id;
+    }
+    window.openDeleteVisitModal = function(visit_id) {
+        Alpine.store('deleteVisitModal').openModal();
+        Livewire.emit('deleteVisit', visit_id);
+    }
+</script>
 </div>
 @push('footer-scripts')
     <script>
