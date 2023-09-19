@@ -64,4 +64,8 @@ button:disabled, a.disabled {
             -ms-flex-pack: start;
                 justify-content: flex-start;
     }
+
+    .md\:inline-block {
+        display: inline-block;
+    }
 }
