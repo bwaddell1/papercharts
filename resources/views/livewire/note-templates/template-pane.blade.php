@@ -73,7 +73,8 @@
                     ])
                 </div>
             </div>
-            <div class="bg-white shadow flex justify-between template-panel mx-4 mt-8 lg:mt-0 items-center" style="flex-direction: column;">
+            <div class="bg-white shadow flex justify-between template-panel mx-4 mt-8 lg:mt-0 items-center"
+                style="flex-direction: column;">
                 <div class="w-full">
                     <p class="text-lg py-4 text-semibold mt-2 px-8 lg:px-4">
                         Vitals
@@ -137,7 +138,7 @@
                 </svg>
                 Edit
             </a> --}}
-            <button type="button"
+            <button type="button" wire:click="handleShowVisit"
                 class="flex gap-1 items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
@@ -156,6 +157,9 @@
             </button>
         </div>
     </form>
+
+    @livewire('note-templates.view-template')
+
     <script>
         window.openDeleteNoteTemplate = function(template_id) {
             Alpine.store('deleteNoteTemplateModal').openModal();

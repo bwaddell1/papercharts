@@ -76,7 +76,7 @@
 
     @include('theme::partials.header')
 
-    <main class="flex-grow overflow-x-hidden">
+    <main class="flex-grow overflow-x-hidden relative">
         @yield('content')
     </main>
 

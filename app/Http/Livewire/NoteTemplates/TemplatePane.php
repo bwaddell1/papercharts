@@ -117,6 +117,11 @@ class TemplatePane extends Component
         }
     }
 
+    public function handleShowVisit()
+    {
+        $this->emit('showVisit', $this->template_content, $this->selected_vitals, $this->selected_elements);
+    }
+
     public function render()
     {
         return view('livewire.note-templates.template-pane');
