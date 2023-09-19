@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="bg-white shadow flex justify-between mx-4 mt-8 lg:mt-0 items-center"
-                style="flex-direction: column;">
+                style="flex-direction: column; height: fit-content;">
                 <div class="w-full">
                     <p class="text-lg py-4 text-semibold mt-2 px-8 lg:px-4">
                         Vitals

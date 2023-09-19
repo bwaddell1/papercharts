@@ -29,6 +29,7 @@ class ViewTemplate extends Component
         });
         $this->selected_elements = $selected_elements;
         $this->isShow = true;
+        $this->dispatchBrowserEvent('scroll-to-top');
     }
 
     public function render()

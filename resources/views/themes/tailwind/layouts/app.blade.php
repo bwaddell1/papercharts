@@ -53,13 +53,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
-    
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="{{ asset('themes/' . $theme->folder . '/css/style.css') }}" rel="stylesheet">
-    
+
     @stack('header-scripts')
 
     @livewireScripts
@@ -134,7 +134,7 @@
                 setTimeout(() => {
                     mywindow.document.close(); // necessary for IE >= 10
                     mywindow.focus(); // necessary for IE >= 10*/
-    
+
                     mywindow.print();
                     mywindow.close();
                 }, [50]);
@@ -142,6 +142,11 @@
             } else {
                 window.print();
             }
+        })
+        window.addEventListener('scroll-to-top', event => {
+            $("html, body").animate({
+                scrollTop: 0
+            }, "fast");
         })
     </script>
 </body>

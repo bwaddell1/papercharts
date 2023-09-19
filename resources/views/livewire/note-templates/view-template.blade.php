@@ -32,7 +32,7 @@
                         <div class="mb-4">
                             <p class="pb-4 font-bold">Vital Signs</p>
                             @foreach ($selected_vitals as $key => $value)
-                                <div class="text-md">
+                                <div style="font-size: 16px;">
                                     {{ formatString($key) }}
                                     <div class="bg-gray-100 border-t border-b flex items-center"
                                         style="min-height: 50px; margin: 4px 0; border-style: dashed; border-color: #aaa; padding: 4px 12px;">
@@ -51,8 +51,8 @@
                         <div class="mb-4">
                             <p class="pb-4 font-bold mt-8">History(s)</p>
                             @foreach ($selected_histories as $key => $value)
-                                <div class="text-md">
-                                    {{ formatString($key) }} (mark reviewed)
+                                <div style="font-size: 16px;">
+                                    [&nbsp;&nbsp;] {{ formatString($key) }} (mark reviewed)
                                     <div class="bg-gray-100 border-t border-b flex items-center"
                                         style="min-height: 100px; margin: 4px 0; border-style: dashed; border-color: #aaa; padding: 4px 12px;">
                                     </div>
