@@ -3,11 +3,9 @@
 
 @section('content')
     <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-8 xl:px-5 py-4 flex justify-between">
-            <div class="text-indigo-950 text-3xl font-semibold leading-10">Welcome Back</div>
-            <form>
-                <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="max-w-7xl mx-auto px-8 xl:px-5 flex justify-between">
+            <div class="text-indigo-950 text-3xl font-semibold leading-10 pt-8 pb-6">Welcome Back</div>
+            <div class="flex justify-center items-center">
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -20,7 +18,7 @@
                         class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Search Here" required>
                 </div>
-            </form>
+            </div>
 
         </div>
     </div>

@@ -45,16 +45,16 @@
             </div>
         </div>
         <div class="ml-2 relative pt-4">
-            <button
+            <a href="{{ route('wave.templates.create') }}"
                 class="w-40 h-12 mt-6 px-4 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                <a href="{{ route('wave.templates.create') }}" class="text-white text-sm font-medium leading-tight flex gap-1 items-center">
+                <div class="text-white text-sm font-medium leading-tight flex gap-1 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     Create New
-                </a>
-            </button>
+                </div>
+            </a>
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
