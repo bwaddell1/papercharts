@@ -9,7 +9,7 @@ class ViewTemplate extends Component
 
     protected $listeners = ['showVisit' => 'showComp'];
 
-    public $view_template, $isShow = false, $editorId, $selected_vitals = [], $selected_elements = [];
+    public $view_template, $isShow = false, $editorId, $selected_vitals = [], $selected_elements = [], $selected_histories = [];
 
     public function hideComp()
     {
@@ -17,11 +17,16 @@ class ViewTemplate extends Component
         $this->editorId = null;
     }
 
-    public function showComp($template, $selected_vitals, $selected_elements)
+    public function showComp($template, $selected_vitals, $selected_elements, $selected_histories)
     {
         $this->editorId = microtime(true);
         $this->view_template = $template;
-        $this->selected_vitals = $selected_vitals;
+        $this->selected_vitals = array_filter($selected_vitals, function($e) {
+            return $e;
+        });
+        $this->selected_histories = array_filter($selected_histories, function($e) {
+            return $e;
+        });
         $this->selected_elements = $selected_elements;
         $this->isShow = true;
     }

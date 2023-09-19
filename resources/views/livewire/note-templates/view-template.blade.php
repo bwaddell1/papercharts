@@ -12,8 +12,8 @@
         </button>
     </div>
     <div class="p-10 m-8">
-        <div class="border border-gray rounded-lg p-10">
-            <div class="flex">
+        <div class="border border-gray rounded-lg overflow-x-auto">
+            <div class="flex p-10" style="min-width: 900px;">
                 <div class="flex-1">
                     @if ($editorId)
                         @livewire('editorjs', [
@@ -28,27 +28,45 @@
                     @endif
                 </div>
                 <div class="border-l-2 text-lg" style="min-width: 20%; padding-left: 16px; margin-top: 80px;">
-                    <p class="pb-4 font-bold">Vital Signs</p>
-                    @foreach ($selected_vitals as $key => $value)
-                        @if ($value)
-                            <div class="text-md">
-                                {{ formatString($key) }}
-                                <div class="bg-gray-100 border-t border-b flex items-center"
-                                    style="min-height: 50px; margin: 4px 0; border-style: dashed; border-color: #aaa; padding: 4px 12px;">
-                                    @if ($key == 'blood_pressure')
-                                        __________/_________
-                                    @endif
+                    @if (count($selected_vitals) > 0)
+                        <div class="mb-4">
+                            <p class="pb-4 font-bold">Vital Signs</p>
+                            @foreach ($selected_vitals as $key => $value)
+                                <div class="text-md">
+                                    {{ formatString($key) }}
+                                    <div class="bg-gray-100 border-t border-b flex items-center"
+                                        style="min-height: 50px; margin: 4px 0; border-style: dashed; border-color: #aaa; padding: 4px 12px;">
+                                        @if ($key == 'blood_pressure')
+                                            __________/_________
+                                        @endif
+                                        @if ($key == 'Height/Weight')
+                                            ________ inches ________ lbs
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endforeach
+                        </div>
+                    @endif
+                    @if (count($selected_histories) > 0)
+                        <div class="mb-4">
+                            <p class="pb-4 font-bold mt-8">History(s)</p>
+                            @foreach ($selected_histories as $key => $value)
+                                <div class="text-md">
+                                    {{ formatString($key) }} (mark reviewed)
+                                    <div class="bg-gray-100 border-t border-b flex items-center"
+                                        style="min-height: 100px; margin: 4px 0; border-style: dashed; border-color: #aaa; padding: 4px 12px;">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
-            <div class="mt-16 flex gap-3 text-gray-500 justify-end mx-10">
+            <div class="mt-16 mb-8 flex gap-3 text-gray-500 justify-end mx-10">
                 @foreach ($selected_elements as $key => $value)
                     @if ($value)
                         <div class="text-md">
-                            {{ formatString($key) }}: _______________{{$key == 'signature' ? '_______________' : ''}}
+                            {{ formatString($key) }}: _______________{{ $key == 'signature' ? '_______________' : '' }}
                         </div>
                     @endif
                 @endforeach

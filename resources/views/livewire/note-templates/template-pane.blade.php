@@ -73,7 +73,7 @@
                     ])
                 </div>
             </div>
-            <div class="bg-white shadow flex justify-between template-panel mx-4 mt-8 lg:mt-0 items-center"
+            <div class="bg-white shadow flex justify-between mx-4 mt-8 lg:mt-0 items-center"
                 style="flex-direction: column;">
                 <div class="w-full">
                     <p class="text-lg py-4 text-semibold mt-2 px-8 lg:px-4">
@@ -94,8 +94,26 @@
                             </li>
                         @endforeach
                     </ul>
+                    <p class="text-lg py-4 text-semibold mt-2 px-8 lg:px-4">
+                        History(s)
+                    </p>
+                    <ul class="w-full lg:w-48 text-sm font-medium text-gray-900 bg-gray-50 py-2 px-8 lg:px-0">
+                        @foreach ($histories as $history)
+                            <li class="w-full rounded-t-lg dark:border-gray-600">
+                                <div class="flex items-center pl-3">
+                                    <input id="{{ $history }}" type="checkbox"
+                                        wire:model="selected_histories.{{ $history }}"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="{{ $history }}"
+                                        class="w-full py-2 ml-2 text-sm font-medium text-gray-700">
+                                        {{ formatString($history) }}
+                                    </label>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="w-full">
+                <div class="w-full mt-16">
                     <ul class="w-full lg:w-48 text-sm font-medium text-gray-900 bg-gray-50 py-2">
                         <p class="text-lg py-2 text-semibold mt-2 px-8 lg:px-4">
                             Footer
