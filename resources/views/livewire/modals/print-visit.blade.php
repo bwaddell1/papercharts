@@ -18,43 +18,43 @@
                 download the selected office visits</div>
 
             <div class="flex items-center mt-4">
-                <input id="visit-id-checkbox" type="checkbox" wire:model="show_visit_id"
+                <input id="visit-id-checkbox" type="checkbox" wire:model.debounce.200ms="show_visit_id"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="visit-id-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Visit
                     ID</label>
             </div>
             <div class="flex items-center mt-4">
-                <input checked id="last-name-checkbox" type="checkbox" wire:model="show_last_name"
+                <input checked id="last-name-checkbox" type="checkbox" wire:model.debounce.200ms="show_last_name"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="last-name-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last
                     Name</label>
             </div>
             <div class="flex items-center mt-4">
-                <input checked id="first-name-checkbox" type="checkbox" wire:model="show_first_name"
+                <input checked id="first-name-checkbox" type="checkbox" wire:model.debounce.200ms="show_first_name"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="first-name-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">First
                     Name</label>
             </div>
             <div class="flex items-center mt-4">
-                <input checked id="visit-type-checkbox" type="checkbox" wire:model="show_visit_type"
+                <input checked id="visit-type-checkbox" type="checkbox" wire:model.debounce.200ms="show_visit_type"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="visit-type-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Visit
                     Type</label>
             </div>
             <div class="flex items-center mt-4">
-                <input checked id="visit-at-checkbox" type="checkbox" wire:model="show_visit_at"
+                <input checked id="visit-at-checkbox" type="checkbox" wire:model.debounce.200ms="show_visit_at"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="visit-at-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Visit
                     At</label>
             </div>
             <div class="flex items-center mt-4">
-                <input checked id="status-checkbox" type="checkbox" wire:model="show_status"
+                <input checked id="status-checkbox" type="checkbox" wire:model.debounce.200ms="show_status"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="status-checkbox"
                     class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Status</label>
             </div>
             <div class="flex items-center mt-4">
-                <input checked id="ready-checkbox" type="checkbox" wire:model="show_ready"
+                <input checked id="ready-checkbox" type="checkbox" wire:model.debounce.200ms="show_ready"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="ready-checkbox"
                     class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ready</label>

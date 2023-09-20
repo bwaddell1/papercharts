@@ -84,7 +84,7 @@
                             <li class="w-full rounded-t-lg dark:border-gray-600">
                                 <div class="flex items-center pl-3">
                                     <input id="{{ $vital }}" type="checkbox"
-                                        wire:model="selected_vitals.{{ $vital }}"
+                                        wire:model.debounce.200ms="selected_vitals.{{ $vital }}"
                                         class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                     <label for="{{ $vital }}"
                                         class="w-full py-2 ml-2 text-sm font-medium text-gray-700">
@@ -104,7 +104,7 @@
                             <li class="w-full rounded-t-lg dark:border-gray-600 px-8 lg:px-0">
                                 <div class="flex items-center pl-3 py-2">
                                     <input id="{{ $footer_element }}" type="checkbox"
-                                        wire:model="selected_elements.{{ $footer_element }}"
+                                        wire:model.debounce.200ms="selected_elements.{{ $footer_element }}"
                                         class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                     <label for="{{ $footer_element }}"
                                         class="w-full py-2 ml-2 text-sm font-medium text-gray-700">
