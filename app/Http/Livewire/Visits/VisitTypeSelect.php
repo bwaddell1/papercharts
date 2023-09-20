@@ -16,7 +16,7 @@ class VisitTypeSelect extends LivewireSelect
             ->map(function (NoteTemplate $template) {
                 return [
                     'value' => $template->id,
-                    'description' => $template->visit_type,
+                    'description' => "test",
                 ];
             });
     }

@@ -58,7 +58,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row my-4 gap-6">
                     <div class="w-full sm:w-1/2 sm:mx-2">
-                        <div class="mt-1 relative">
+                        <div class="mt-1 relative searchable-select">
                             {{-- <label for="visit_type" class="block mb-2 text-sm font-medium text-gray-900">Visit
                                 Type</label>
                             <select id="visit_type" name="visit_type" required

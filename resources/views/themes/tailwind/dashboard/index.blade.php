@@ -92,13 +92,14 @@
                             </div>
                             <div class="flex flex-col sm:flex-row my-4 gap-6">
                                 <div class="w-full sm:w-1/2 sm:mx-2">
-                                    <div class="mt-1 relative">
+                                    <div class="mt-1 relative searchable-select">
                                         @livewire(
                                             'visits.visit-type-select',
                                             [
                                                 'name' => 'visit_type_id',
                                                 'placeholder' => 'Choose a Visit Type',
                                                 'searchable' => true,
+                                                'class' => 'test',
                                             ],
                                             key(time() . rand(0, 999))
                                         )

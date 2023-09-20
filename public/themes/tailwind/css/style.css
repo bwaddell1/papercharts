@@ -69,3 +69,19 @@ button:disabled, a.disabled {
         display: inline-block;
     }
 }
+
+.searchable-select input {
+    box-shadow: 0 0 #0000,0 0 #0000,0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+    color: rgb(17 24 39);
+    border-color: rgb(209 213 219);
+    border-width: 1px;
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.625rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.searchable-select div {
+    color: #000 !important;
+}
