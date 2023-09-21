@@ -21,7 +21,7 @@ class ProfileController extends Controller
             $user = $team_user->user;
             $user->role_id = Role::where('name', $request->role)->first()->id;
             $user->save();
-            $team_user->team->updateSeats(count($team_user->team->providers()));
+            $team_user->team->updateSeats($team_user->team->provider_count());
         }
         return redirect()->back();
     }

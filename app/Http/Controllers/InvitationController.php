@@ -24,7 +24,7 @@ class InvitationController extends Controller
         $user->switchTeam($team);
         $user->role_id = $role->id;
         $user->save();
-        $team->updateSeats(count($team->providers()));
+        $team->updateSeats($team->provider_count());
         $invitation->delete();
         Auth::login($user);
         return redirect('/dashboard')->banner(
@@ -53,7 +53,7 @@ class InvitationController extends Controller
         $invitation->team->users()->attach($user, ['role' => $invitation->role]);
 
         $invitation->delete();
-        $invitation->team->updateSeats(count($invitation->team->providers()));
+        $invitation->team->updateSeats($invitation->team->provider_count());
 
         // TODO: Auth/login doesn't work
         Auth::login($user);

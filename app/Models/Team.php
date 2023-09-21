@@ -64,4 +64,9 @@ class Team extends JetstreamTeam
         return $this->users->where('role_id', Role::where('name', 'provider')->first()->id);
     }
 
+    public function provider_count()
+    {
+        return max($this->users->where('role_id', Role::where('name', 'provider')->first()->id)->count(), 1);
+    }
+
 }

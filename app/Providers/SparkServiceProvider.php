@@ -30,7 +30,7 @@ class SparkServiceProvider extends ServiceProvider
         });
 
         Spark::billable(Team::class)->chargePerSeat('provider', function ($billable) {
-            return count($billable->providers());
+            return $billable->provider_count();
         });
 
         Spark::billable(Team::class)->authorize(function (Team $billable, Request $request) {
