@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->foreignId('current_team_id')->nullable()->change();
-        });
+        if (!Schema::hasColumn('users', 'current_team_id')) {
+            Schema::table('users', function (Blueprint $table) {
+                //
+                $table->foreignId('current_team_id')->nullable();
+            });
+        }
     }
 
     /**
