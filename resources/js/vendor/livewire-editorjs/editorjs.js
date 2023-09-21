@@ -74,13 +74,13 @@ window.editorInstance = function (dataProperty, editorId, readOnly, placeholder,
                     //         }
                     //     }
                     // },
-                    list: {
-                        class: NestedList,
-                        inlineToolbar: true,
-                        config: {
-                            defaultStyle: 'unordered'
-                        },
-                    },
+                    // list: {
+                    //     class: NestedList,
+                    //     inlineToolbar: true,
+                    //     config: {
+                    //         defaultStyle: 'unordered'
+                    //     },
+                    // },
                     header: {
                         class: Header,
                         config: {

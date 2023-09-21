@@ -13742,13 +13742,13 @@ window.editorInstance = function(dataProperty, editorId, readOnly, placeholder, 
                     //         }
                     //     }
                     // },
-                    list: {
-                        class: (0, (/*@__PURE__*/$parcel$interopDefault($b1351dfca257479a$exports))),
-                        inlineToolbar: true,
-                        config: {
-                            defaultStyle: "unordered"
-                        }
-                    },
+                    // list: {
+                    //     class: NestedList,
+                    //     inlineToolbar: true,
+                    //     config: {
+                    //         defaultStyle: 'unordered'
+                    //     },
+                    // },
                     header: {
                         class: (0, (/*@__PURE__*/$parcel$interopDefault($66f52c67fdffea1b$exports))),
                         config: {

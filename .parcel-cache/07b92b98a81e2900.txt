@@ -4004,7 +4004,7 @@
 75F:\project\medscrippts\papercharts\vendor\symfony\polyfill-mbstring\LICENSE133349942560000000 0
 67F:\project\medscrippts\papercharts\vendor\symfony\console\Formatter133389370463398423 1
 100F:\project\medscrippts\papercharts\vendor\tcg\voyager\publishable\assets\js\ace\libs\theme-kuroir.js133107333560000000 0
-78F:\project\medscrippts\papercharts\public\vendor\livewire-editorjs\editorjs.js133396217803744550 0
+78F:\project\medscrippts\papercharts\public\vendor\livewire-editorjs\editorjs.js133396254088045745 0
 121F:\project\medscrippts\papercharts\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\MigrateCommand.php133359641200000000 0
 105F:\project\medscrippts\papercharts\vendor\tcg\voyager\publishable\database\seeds\MenuItemsTableSeeder.php133107333560000000 0
 96F:\project\medscrippts\papercharts\vendor\laravel\ui\src\Auth\bootstrap-stubs\auth\register.stub133281208480000000 0
@@ -5551,7 +5551,7 @@
 102F:\project\medscrippts\papercharts\vendor\tcg\voyager\publishable\assets\js\ace\libs\mode-html_ruby.js133107333560000000 0
 72F:\project\medscrippts\papercharts\database\seeders\PlansTableSeeder.php133389366271452544 0
 97F:\project\medscrippts\papercharts\vendor\fakerphp\faker\src\Faker\Provider\ro_RO\PhoneNumber.php133310186780000000 0
-82F:\project\medscrippts\papercharts\public\vendor\livewire-editorjs\editorjs.js.map133396217803774466 0
+82F:\project\medscrippts\papercharts\public\vendor\livewire-editorjs\editorjs.js.map133396254088085379 0
 97F:\project\medscrippts\papercharts\vendor\tcg\voyager\publishable\assets\js\ace\libs\mode-jade.js133107333560000000 0
 88F:\project\medscrippts\papercharts\vendor\symfony\finder\Iterator\PathFilterIterator.php133352515040000000 0
 72F:\project\medscrippts\papercharts\node_modules\js-yaml\lib\type\null.js133396217700103570 0
@@ -7020,7 +7020,7 @@
 83F:\project\medscrippts\papercharts\node_modules\caniuse-lite\data\regions\alt-af.js133396217695681824 0
 87F:\project\medscrippts\papercharts\vendor\phar-io\manifest\src\xml\ManifestDocument.php132712397220000000 0
 101F:\project\medscrippts\papercharts\vendor\symfony\routing\DependencyInjection\RoutingResolverPass.php133352465040000000 0
-102F:\project\medscrippts\papercharts\storage\framework\sessions\szUktSCVb9sGq5EJQe4gULhDiVeEtlNXsn4pnY4i133396213434730807 0
+102F:\project\medscrippts\papercharts\storage\framework\sessions\szUktSCVb9sGq5EJQe4gULhDiVeEtlNXsn4pnY4i133396217989443826 0
 82F:\project\medscrippts\papercharts\vendor\nesbot\carbon\src\Carbon\Lang\ccp_IN.php133385642300000000 0
 70F:\project\medscrippts\papercharts\vendor\symfony\process\CHANGELOG.md133358639620000000 0
 71F:\project\medscrippts\papercharts\vendor\symfony\process\composer.json133358639620000000 0
@@ -15717,7 +15717,7 @@
 72F:\project\medscrippts\papercharts\resources\js\vendor\livewire-editorjs133396083733589761 1
 92F:\project\medscrippts\papercharts\public\vendor\tcg\voyager\assets\images\compass\hooks.jpg133389366272141841 0
 94F:\project\medscrippts\papercharts\node_modules\@babel\runtime\helpers\esm\arrayLikeToArray.js133396217720376044 0
-84F:\project\medscrippts\papercharts\resources\js\vendor\livewire-editorjs\editorjs.js133396217512808982 0
+84F:\project\medscrippts\papercharts\resources\js\vendor\livewire-editorjs\editorjs.js133396254046245474 0
 51F:\project\medscrippts\papercharts\public\.htaccess133389366271540933 0
 68F:\project\medscrippts\papercharts\node_modules\csso\lib\restructure133396217723102278 1
 53F:\project\medscrippts\papercharts\public\favicon.ico133389366271540933 0
@@ -15836,7 +15836,7 @@
 63F:\project\medscrippts\papercharts\public\visits\1694819358.png133396083733589761 0
 60F:\project\medscrippts\papercharts\public\vendor\binarytorch133389366271595256 1
 64F:\project\medscrippts\papercharts\node_modules\lmdb\src\env.cpp133396217723012520 0
-66F:\project\medscrippts\papercharts\public\vendor\livewire-editorjs133396217803784441 1
+66F:\project\medscrippts\papercharts\public\vendor\livewire-editorjs133396254088085379 1
 67F:\project\medscrippts\papercharts\public\vendor\tcg\voyager\assets133389366272193472 1
 73F:\project\medscrippts\papercharts\public\vendor\tcg\voyager\assets\fonts133389366272102233 1
 77F:\project\medscrippts\papercharts\public\vendor\tcg\voyager\assets\js\app.js133389366272283232 0
