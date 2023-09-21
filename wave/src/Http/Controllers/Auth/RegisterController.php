@@ -4,6 +4,7 @@ namespace Wave\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Team;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,7 +63,8 @@ class RegisterController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'username' => 'required|string|max:20|unique:users',
-                'password' => 'required|string|min:6|confirmed'
+                'password' => 'required|string|min:6|confirmed',
+                'organization' => 'required|string',
             ]);
         }
 
@@ -124,6 +126,14 @@ class RegisterController extends Controller
             'verified' => $verified,
             'trial_ends_at' => $trial_ends_at
         ]);
+
+        $team = Team::create([
+            'user_id' => $user->id,
+            'name' => $data['organization'],
+            'personal_team' => true,
+        ]);
+
+        $user->switchTeam($team);
 
         if(setting('auth.verify_email', false)){
             $this->sendVerificationEmail($user);

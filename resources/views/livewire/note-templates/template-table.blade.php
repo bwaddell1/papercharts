@@ -23,14 +23,14 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownHover" wire:ignore
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56">
+                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
                         @foreach ($specialties as $specialty)
                             <li>
                                 <div class="flex items-center ml-6">
                                     <input id="{{ $specialty->id }}" type="checkbox"
                                         wire:change.debounce.200ms="set_filter_specialty('{{ $specialty->id }}')"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                     <label for="{{ $specialty->id }}" class="ml-2 flex px-4 py-2">
                                         <span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
                                             style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
@@ -58,8 +58,8 @@
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase"
                 style="background: #E6E9F3">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -84,7 +84,7 @@
             <tbody>
                 @foreach ($templates as $key => $template)
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        class="bg-white border-b hover:bg-gray-50">
                         <td class="px-6 py-4">
                             {{ $template->visit_type }}
                         </td>

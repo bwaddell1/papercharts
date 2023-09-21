@@ -51,6 +51,27 @@ class RolesTableSeeder extends Seeder
             'created_at' => '2018-07-03 16:28:42',
             'updated_at' => '2018-07-03 17:28:32',
         ),
+        6 =>
+        array (
+            'name' => 'team_admin',
+            'display_name' => 'Organization Admin',
+            'created_at' => '2018-07-03 16:28:42',
+            'updated_at' => '2018-07-03 17:28:32',
+        ),
+        7 =>
+        array (
+            'name' => 'provider',
+            'display_name' => 'Organization Provider',
+            'created_at' => '2018-07-03 16:28:42',
+            'updated_at' => '2018-07-03 17:28:32',
+        ),
+        8 =>
+        array (
+            'name' => 'staff',
+            'display_name' => 'Organization staff',
+            'created_at' => '2018-07-03 16:28:42',
+            'updated_at' => '2018-07-03 17:28:32',
+        ),
     );
 
     /**

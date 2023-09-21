@@ -19,10 +19,13 @@
         "intervention/image": "^2.7",
         "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^9.11",
+        "laravel/jetstream": "^3.0",
+        "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.4",
+        "livewire/livewire": "^2.11",
         "maxeckel/livewire-editorjs": "^1.5",
         "tcg/voyager": "1.5.x-dev",
+        "laravel/spark-stripe": "^4.0",
         "tymon/jwt-auth": "@dev"
     },
     "require-dev": {
@@ -55,7 +58,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [],
-            "providers" : [
+            "providers": [
                 "Wave\\WaveServiceProvider"
             ]
         }
@@ -81,10 +84,14 @@
             "pestphp/pest-plugin": true
         }
     },
-    "repositories": {
-        "hooks": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://larapack.io"
+        },
+        {
+            "type": "composer",
+            "url": "https://spark.laravel.com"
         }
-    }
+    ]
 }
