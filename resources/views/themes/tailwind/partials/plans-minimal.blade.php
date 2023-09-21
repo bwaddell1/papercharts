@@ -42,7 +42,6 @@
 
 
                 </div>
-                {{count(auth()->user()->currentTeam->providers())}}
                 <div class="relative">
                     @if(auth()->user()->currentTeam->subscribedPlan($plan->id))
                         <div class="rounded-b-lg border-gray-700 border inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold transition duration-150 ease-in-out bg-gray-200 border border-transparent cursor-default text-wave-600 focus:outline-none disabled:opacity-25" disabled>
