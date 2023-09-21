@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('dropzone/visits/fetch', '\App\Http\Controllers\VisitController@fetch')->name('wave.visits.dropzone.fetch');
 	Route::get('dropzone/visits/delete', '\App\Http\Controllers\VisitController@delete')->name('wave.visits.dropzone.delete');
 	Route::view('visits/upload', 'theme::visits.upload')->name('wave.visits.upload');
+	Route::post('team/update-role', '\Wave\Http\Controllers\ProfileController@update_role')->name('wave.update-role');
 
 });
 

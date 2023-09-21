@@ -1,4 +1,4 @@
-<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+{{-- <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
 <script>
 
     window.vendor_id = parseInt('{{ config("wave.paddle.vendor") }}');
@@ -56,4 +56,4 @@
         });
     }
 
-</script>
+</script> --}}

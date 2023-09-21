@@ -12,7 +12,7 @@
                         </svg>
                     </div>
                     <input name="dates" type="text" wire:change="handleChangeSearchDate" id="daterange"
-                        class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                         placeholder="Select Dates">
                 </div>
             </div>
@@ -72,15 +72,15 @@
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase"
                 style="background: #E6E9F3">
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
                             <input id="checkbox-all-search" type="checkbox"
                                 wire:change="handleSelectAll($event.target.checked)"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                         </div>
                     </th>
@@ -113,13 +113,13 @@
             <tbody>
                 @foreach ($visits as $key => $visit)
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        class="bg-white border-b hover:bg-gray-50">
                         <td class="w-4 p-4">
                             <div class="flex items-center">
                                 <input id="checkbox-table-search-1" type="checkbox"
                                     wire:change="handleSelectRow({{ $visit->id }})"
                                     {{ in_array($visit->id, $selected_rows) ? 'checked' : '' }}
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                 <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                             </div>
                         </td>
@@ -144,7 +144,7 @@
                             </span>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline flex justify-center">
+                            <a href="#" class="font-medium text-blue-600 hover:underline flex justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5" x="0px" class="w-5 h-5"
                                     y="0px">
                                     <title>Asset 398</title>

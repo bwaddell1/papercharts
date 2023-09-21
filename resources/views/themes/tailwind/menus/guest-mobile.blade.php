@@ -14,7 +14,7 @@
                         </button>
                     </div>
                 </div>
-                <div>
+                {{-- <div>
                     <nav class="grid row-gap-8">
                         <a href="#" class="flex items-center px-8 py-3 space-x-3 transition duration-150 ease-in-out rounded-md hover:bg-gray-50">
                             <svg class="flex-shrink-0 w-6 h-6 ml-0.5 text-wave-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path></svg>
@@ -47,10 +47,10 @@
                             </div>
                         </a>
                     </nav>
-                </div>
+                </div> --}}
             </div>
             <div class="px-8 py-6 space-y-6">
-                <div class="grid grid-cols-2 row-gap-4 col-gap-8 px-1 pb-4">
+                {{-- <div class="grid grid-cols-2 row-gap-4 col-gap-8 px-1 pb-4">
                     <a href="/#pricing" class="text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out hover:text-gray-700">
                         Pricing
                     </a>
@@ -63,7 +63,7 @@
                     <a href="#" class="text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out hover:text-gray-700">
                         Videos
                     </a>
-                </div>
+                </div> --}}
                 <div class="space-y-6">
                     <span class="flex w-full rounded-md shadow-sm">
                         <a href="{{ route('register') }}" class="flex items-center justify-center w-full px-4 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out border border-transparent rounded-md bg-blue-600 hover:bg-wave-500 focus:outline-none focus:border-wave-700 focus:shadow-outline-wave active:bg-wave-700">

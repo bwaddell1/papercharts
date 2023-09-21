@@ -23,14 +23,14 @@
                         </label>
                         <div class="mt-1 relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                <svg class="w-4 h-4 text-gray-500" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
                             <input name="datepicker" type="text" id="daterange" required
-                                class="border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                                 placeholder="Select Dates">
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row my-4 gap-6">
                     <div class="w-full sm:w-1/2 sm:mx-2">
-                        <div class="mt-1 relative">
+                        <div class="mt-1 relative searchable-select">
                             {{-- <label for="visit_type" class="block mb-2 text-sm font-medium text-gray-900">Visit
                                 Type</label>
                             <select id="visit_type" name="visit_type" required

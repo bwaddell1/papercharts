@@ -21,4 +21,13 @@ class VisitTypeSelect extends LivewireSelect
             });
     }
 
+    public function selectedOption($value)
+    {
+        $template = NoteTemplate::find($value);
+
+        return [
+            'value' => $template->visit_type,
+            'description' => $template->visit_type,
+        ];
+    }
 }

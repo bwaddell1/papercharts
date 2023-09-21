@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 use Wave\Facades\Wave;
+use App\Http\Controllers\InvitationController;
 
 // Authentication routes
 Auth::routes();
@@ -26,3 +27,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 // Wave routes
 Wave::routes();
+
+
+Route::get('/team-invitations/{invitation}', [InvitationController::class, 'accept'])
+                            ->middleware(['signed'])
+                            ->name('team-invitations.accept');
+
+Route::post('/team-invitations/{invitation}/register', [InvitationController::class, 'register'])->name('team-invitations.register');
+

@@ -1,5 +1,5 @@
 <nav class="flex items-center justify-end flex-1 hidden w-full h-full space-x-10 md:flex">
-    <div @mouseenter="dropdown = true" @mouseleave="dropdown=false" @click.away="dropdown=false" x-data="{ dropdown: false }" class="relative h-full select-none">
+    {{-- <div @mouseenter="dropdown = true" @mouseleave="dropdown=false" @click.away="dropdown=false" x-data="{ dropdown: false }" class="relative h-full select-none">
         <div :class="{ 'text-wave-600': dropdown, 'text-white': !dropdown }" class="inline-flex items-center h-full space-x-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out cursor-pointer select-none group hover:text-wave-600 focus:outline-none focus:text-wave-600">
             <span>Product</span>
             <svg class="w-5 h-5 text-white transition duration-150 ease-in-out group-hover:text-wave-600 group-focus:text-wave-600" x-bind:class="{ 'text-wave-600': dropdown, 'text-white': !dropdown }" viewBox="0 0 20 20" fill="currentColor">
@@ -226,9 +226,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="w-1 h-5 mx-10 border-r border-gray-300"></div>
+    {{-- <div class="w-1 h-5 mx-10 border-r border-gray-300"></div> --}}
     <a href="{{ route('login') }}" class="text-base font-medium leading-6 text-white whitespace-no-wrap hover:text-wave-600 focus:outline-none focus:text-white">
         Sign in
     </a>

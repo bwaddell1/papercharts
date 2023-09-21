@@ -66,6 +66,20 @@
                     @endif
 
                     <div class="mt-6">
+                        <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
+                            Organization Name
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input id="organization" type="text" name="organization" required class="w-full form-input" value="{{ old('organization') }}">
+                        </div>
+                        @if ($errors->has('organization'))
+                            <div class="mt-1 text-red-500">
+                                {{ $errors->first('organization') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="mt-6">
                         <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
                             Email Address
                         </label>

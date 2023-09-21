@@ -27,6 +27,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('note_templates');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn([
+                'content',
+                'vitals',
+                'footer'
+            ]);
+        });
     }
 };

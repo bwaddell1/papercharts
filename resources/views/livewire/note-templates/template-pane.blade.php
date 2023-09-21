@@ -38,16 +38,16 @@
                         </button>
                         <!-- Dropdown menu -->
                         <div id="dropdownHover"
-                            class="z-10 {{ $collapseDropdown ? 'hidden' : '' }} bg-white divide-y divide-gray-100 rounded-lg shadow w-56 dark:bg-gray-700"
+                            class="z-10 {{ $collapseDropdown ? 'hidden' : '' }} bg-white divide-y divide-gray-100 rounded-lg shadow w-56"
                             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-8px, 52px); z-index: 101;">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                            <ul class="py-2 text-sm text-gray-700">
                                 @foreach ($specialties as $specialty)
                                     <li>
                                         <div class="flex items-center ml-6">
                                             <input id="{{ $specialty->id }}" type="checkbox"
                                                 {{ in_array($specialty->id, $selected_specialties) ? 'checked' : '' }}
                                                 wire:change.debounce.200ms="set_specialty('{{ $specialty->id }}')"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                             <label for="{{ $specialty->id }}" class="ml-2 flex px-4 py-2">
                                                 <span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
                                                     style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
@@ -81,10 +81,10 @@
                     </p>
                     <ul class="w-full lg:w-48 text-sm font-medium text-gray-900 bg-gray-50 py-2 px-8 lg:px-0">
                         @foreach ($vitals as $vital)
-                            <li class="w-full rounded-t-lg dark:border-gray-600">
+                            <li class="w-full rounded-t-lg">
                                 <div class="flex items-center pl-3">
                                     <input id="{{ $vital }}" type="checkbox"
-                                        wire:model="selected_vitals.{{ $vital }}"
+                                        wire:model.debounce.200ms="selected_vitals.{{ $vital }}"
                                         class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                     <label for="{{ $vital }}"
                                         class="w-full py-2 ml-2 text-sm font-medium text-gray-700">
@@ -119,10 +119,10 @@
                             Footer
                         </p>
                         @foreach ($footer_elements as $footer_element)
-                            <li class="w-full rounded-t-lg dark:border-gray-600 px-8 lg:px-0">
+                            <li class="w-full rounded-t-lg px-8 lg:px-0">
                                 <div class="flex items-center pl-3 py-2">
                                     <input id="{{ $footer_element }}" type="checkbox"
-                                        wire:model="selected_elements.{{ $footer_element }}"
+                                        wire:model.debounce.200ms="selected_elements.{{ $footer_element }}"
                                         class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                     <label for="{{ $footer_element }}"
                                         class="w-full py-2 ml-2 text-sm font-medium text-gray-700">

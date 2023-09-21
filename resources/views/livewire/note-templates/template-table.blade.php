@@ -4,7 +4,7 @@
             <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">
                 Search for Note
             </label>
-            <input type="text" id="first_name" name="first_name" required placeholder="Search by patient name or ID"
+            <input type="text" id="first_name" name="first_name" required placeholder="Search by visit type" wire:ignore
                 wire:keydown.debounce.200ms="search($event.target.value)"
                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5">
         </div>
@@ -23,14 +23,14 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownHover" wire:ignore
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56">
+                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
                         @foreach ($specialties as $specialty)
                             <li>
                                 <div class="flex items-center ml-6">
                                     <input id="{{ $specialty->id }}" type="checkbox"
                                         wire:change.debounce.200ms="set_filter_specialty('{{ $specialty->id }}')"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                     <label for="{{ $specialty->id }}" class="ml-2 flex px-4 py-2">
                                         <span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded select-none"
                                             style="color: {{ $specialty->color }}; background: {{ $specialty->bg_color }}">
@@ -45,16 +45,21 @@
             </div>
         </div>
         <div class="ml-2 relative pt-4">
-            <button
+            <a href="{{ route('wave.templates.create') }}"
                 class="w-40 h-12 mt-6 px-4 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                    <a href="{{ route('wave.templates.create') }}"
-                        class="text-white text-sm font-medium leading-tight">Create New</a>
-            </button>
+                <div class="text-white text-sm font-medium leading-tight flex gap-1 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Create New
+                </div>
+            </a>
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase"
                 style="background: #E6E9F3">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -79,7 +84,7 @@
             <tbody>
                 @foreach ($templates as $key => $template)
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        class="bg-white border-b hover:bg-gray-50">
                         <td class="px-6 py-4">
                             {{ $template->visit_type }}
                         </td>
