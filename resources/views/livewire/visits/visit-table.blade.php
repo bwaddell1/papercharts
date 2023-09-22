@@ -55,7 +55,7 @@
                         <div class="text-gray-700 text-sm font-medium leading-tight">Print Notes</div>
                     </div>
                 </button>
-                <a href="{{ route('wave.visits.upload') }}"
+                <button data-modal-target="uploadVisitModal" data-modal-toggle="uploadVisitModal"
                     class="w-44 px-2 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="text-white text-sm font-medium leading-tight">Upload Visits</div>
                     </div>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -196,8 +196,8 @@
 
 </div>
 <script>
-    window.openAddVisitModal = function() {
-        Alpine.store('lgModal').type = 'add-visit';
+    window.openUploadVisitModal = function() {
+        Alpine.store('lgModal').type = 'upload-visit';
         Alpine.store('lgModal').openModal();
     }
     window.openPrintVisitModal = function(selected_rows) {

@@ -36,7 +36,8 @@ class TemplatePane extends Component
             $this->template_content = json_decode($this->template->content, true);
             $this->visit_type = $this->template->visit_type;
             $this->selected_vitals = json_decode($this->template->vitals, true);
-            $this->selected_element = $this->template->footer;
+            $this->selected_elements = json_decode($this->template->footer, true);
+            $this->selected_histories = json_decode($this->template->history, true);
             $this->selected_specialties = $this->template->specialties->pluck('id')->toArray();
         }
     }
@@ -82,7 +83,8 @@ class TemplatePane extends Component
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
                 'vitals' => json_encode($this->selected_vitals),
-                'footer' => $this->selected_element,
+                'footer' => json_encode($this->selected_elements),
+                'history' => json_encode($this->selected_histories),
                 'status' => 'published',
             ]);
         }
@@ -92,7 +94,8 @@ class TemplatePane extends Component
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
                 'vitals' => json_encode($this->selected_vitals),
-                'footer' => json_encode($this->selected_element),
+                'footer' => json_encode($this->selected_elements),
+                'history' => json_encode($this->selected_histories),
                 'status' => 'published',
             ]);
             $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Note template is updated successfully!']);

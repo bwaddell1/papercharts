@@ -56,12 +56,21 @@
 
     <div class="flex sm:ml-6 sm:items-center">
 
-        @if (auth()->user()->currentTeam->isOnTrial())
-            @php $trialLeft = date_diff(auth()->user()->currentTeam->genericTrialEndsAt(), now())->format('%d Days') @endphp
-            <div class="relative items-center justify-center hidden h-full md:flex">
-                <span class="px-3 py-1 text-xs text-red-600 bg-red-100 border border-gray-200 rounded-md">You have
-                    {{ $trialLeft }} left on your Trial</span>
-            </div>
+        @if (!auth()->user()->hasRole('admin'))
+            @if (auth()->user()->currentTeam->isOnTrial())
+                @php
+                    $trialLeft = date_diff(
+                        auth()
+                            ->user()
+                            ->currentTeam->genericTrialEndsAt(),
+                        now(),
+                    )->format('%d Days');
+                @endphp
+                <div class="relative items-center justify-center hidden h-full md:flex">
+                    <span class="px-3 py-1 text-xs text-red-600 bg-red-100 border border-gray-200 rounded-md">You have
+                        {{ $trialLeft }} left on your Trial</span>
+                </div>
+            @endif
         @endif
 
         @include('theme::partials.notifications')
@@ -108,10 +117,12 @@
                             <span
                                 class="inline-block px-2 my-1 -ml-1 text-xs font-medium leading-5 text-gray-600 bg-gray-200 rounded">{{ auth()->user()->role->display_name }}</span>
                         </div>
-                        @if (auth()->user()->currentTeam->isOnTrial())
-                            <a href="{{ route('wave.settings', 'plans') }}"
-                                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Upgrade
-                                My Account</a>
+                        @if (!auth()->user()->hasRole('admin'))
+                            @if (auth()->user()->currentTeam->isOnTrial())
+                                <a href="{{ route('wave.settings', 'plans') }}"
+                                    class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Upgrade
+                                    My Account</a>
+                            @endif
                         @endif
                         @if (
                             !auth()->guest() &&
