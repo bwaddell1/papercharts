@@ -24,6 +24,8 @@ class VisitController extends BaseController
             "last_name" => $validated['last_name'],
             "visit_at" => sprintf('%04d-%02d-%02d', $parsedDate['year'], $parsedDate['month'], $parsedDate['day']),
             "visit_type" => $validated['visit_type'],
+            "team_id" => auth()->user()->currentTeam->id,
+            "user_id" => auth()->user()->id,
         ]);
 
         return redirect(route('wave.dashboard'));

@@ -12,8 +12,8 @@ class VisitTable extends Component
 
     protected $listeners = ['dateRangeUpdated' => 'handleChangeSearchDate'];
     public $start_date, $end_date;
-    public $selected_rows = [];
-    public $show_rows = [];
+    public $selected_rows = [], $show_rows = [];
+    public $filterProvider = "";
     public $show_visit_id = true, $show_last_name = true, $show_first_name = true, $show_visit_at = true, $show_visit_type = true, $show_ready = true, $show_status = true;
 
     public function mount()
@@ -23,6 +23,12 @@ class VisitTable extends Component
     public function render()
     {
         $visits = Visit::query();
+        if(auth()->user()->currentTeam) {
+            $visits = $visits->where('team_id', auth()->user()->currentTeam->id);
+        }
+        if($this->filterProvider) {
+            $visits = $visits->where('user_id', $this->filterProvider);
+        }
         if($this->start_date && $this->end_date) {
             $visits = $visits->where('visit_at', '>=', $this->start_date)->where('visit_at', '<=', $this->end_date);
         }
