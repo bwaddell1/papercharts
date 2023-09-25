@@ -78,17 +78,29 @@ class TemplatePane extends Component
             $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'You should select at least one specialty!']);
             return false;
         }
-        if ($this->mode == 'create') {
+        if ($this->mode == 'create' || (auth()->user()->currentTeam && $this->template != null && $this->template->is_public)) {
+            if(auth()->user()->currentTeam && $this->template != null && $this->template->is_public && $this->visit_type == $this->template->visit_type) {
+                $this->visit_type = $this->visit_type . " (Cloned by " . auth()->user()->currentTeam->name . ")";
+            }
+            $same_name_exist = NoteTemplate::where('visit_type', $this->visit_type)->where('team_id', auth()->user()->currentTeam->id)->exists();
+            if($same_name_exist) {
+                $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Visit type already exists! Please use a different title.']);
+                return false;
+            }
             $this->template = NoteTemplate::create([
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
                 'vitals' => json_encode($this->selected_vitals),
                 'footer' => json_encode($this->selected_elements),
                 'history' => json_encode($this->selected_histories),
+                'team_id' => auth()->user()->currentTeam ? auth()->user()->currentTeam->id : null,
+                'user_id' => auth()->user()->id,
+                'is_public' => auth()->user()->currentTeam ? false : true,
                 'status' => 'published',
             ]);
+            $this->updateSpecialty();
+            return redirect()->to(route("wave.templates.index"));
         }
-        $this->updateSpecialty();
         if ($this->mode == 'edit') {
             $this->template->update([
                 'visit_type' => $this->visit_type,
@@ -98,10 +110,9 @@ class TemplatePane extends Component
                 'history' => json_encode($this->selected_histories),
                 'status' => 'published',
             ]);
+            $this->updateSpecialty();
             $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Note template is updated successfully!']);
-            return;
         }
-        return redirect()->to(route("wave.templates.index"));
     }
 
     private function updateSpecialty()

@@ -43,6 +43,11 @@ class TemplateTable extends Component
                 $q->where('specialty_id', $specialty); 
             });
         }
+        if(auth()->user()->currentTeam) {
+            $templates = $templates->where(function ($query) {
+                $query->where('team_id', auth()->user()->currentTeam->id)->orWhere('is_public', true);
+            });
+        }
         $templates = $templates->latest()->paginate(10);
         return view('livewire.note-templates.template-table', [
             'templates' => $templates,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Visit;
+use App\Models\NoteTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -26,6 +27,10 @@ class VisitController extends BaseController
             "visit_type" => $validated['visit_type'],
             "team_id" => auth()->user()->currentTeam->id,
             "user_id" => auth()->user()->id,
+        ]);
+
+        NoteTemplate::find($validated['visit_type'])->update([
+            "last_used" => now(),
         ]);
 
         return redirect(route('wave.dashboard'));

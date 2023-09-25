@@ -10,4 +10,9 @@ class Visit extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function visitType()
+    {
+        return $this->belongsTo(NoteTemplate::class, 'visit_type');
+    }
 }

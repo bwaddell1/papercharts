@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Modals;
 
-use Livewire\Component;
 use App\Models\NoteTemplate;
+use Livewire\Component;
 
 class AddVisit extends Component
 {
@@ -52,12 +52,14 @@ class AddVisit extends Component
 
     public function updated($name, $value)
     {
-        dd($name, $value);
-        if($name == 'query') {
-            $this->templates = NoteTemplate::where('visit_type', 'like', '%' . $value . '%')
-                ->get()
-                ->toArray();
-                dd($this->templates);
+        if ($name == 'query') {
+            $this->templates = NoteTemplate::where('visit_type', 'like', '%' . $value . '%');
+            if (auth()->user()->currentTeam) {
+                $this->templates = $this->templates->where(function ($query) {
+                    $query->where('team_id', auth()->user()->currentTeam->id)->orWhere('is_public', true);
+                });
+            }
+            $this->templates->get()->toArray();
         }
     }
 

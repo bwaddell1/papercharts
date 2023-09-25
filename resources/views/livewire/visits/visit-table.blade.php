@@ -12,7 +12,7 @@
                     </svg>
                 </div>
                 <input name="dates" type="text" wire:change="handleChangeSearchDate" id="daterange"
-                    class="bg-gray-50 border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                     placeholder="Select Dates">
             </div>
             @if (auth()->user()->currentTeam)
@@ -29,7 +29,7 @@
         </div>
         <div class="flex gap-2 flex-wrap justify-end mt-4 ml-auto">
             <button data-modal-target="addVisitModal" data-modal-toggle="addVisitModal"
-                class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
+                class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
                 <div class="justify-start items-start gap-2 flex">
                     <div class="w-5 h-5 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -41,7 +41,7 @@
                 </div>
             </button>
             <button onclick="openPrintVisitModal({{ count($selected_rows) }})"
-                class="w-44 px-4 py-2 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
+                class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
                 <div class="justify-start items-start gap-2 flex">
                     <div class="w-5 h-5 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -54,7 +54,7 @@
                 </div>
             </button>
             <button data-modal-target="uploadVisitModal" data-modal-toggle="uploadVisitModal"
-                class="w-44 px-2 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
+                class="w-44 px-2 py-2 bg-indigo-600 rounded-md border border-gray-300 justify-center items-center inline-flex">
                 <div class="justify-start items-start gap-2 flex">
                     <div class="w-5 h-5 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -140,7 +140,7 @@
                             {{ date_format(date_create($visit->visit_at), 'm/d/Y') }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $visit->visit_type }}
+                            {{ $visit->visitType->visit_type }}
                         </td>
                         <td class="px-6 py-4">
                             <?php $i = $visit->status == 'complete' ? 'green' : ($visit->status == 'processing' ? 'blue' : ($visit->status == 'not_started' ? 'red' : 'gray')); ?>
