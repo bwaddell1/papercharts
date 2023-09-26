@@ -12,7 +12,7 @@ class VisitTable extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['dateRangeUpdated' => 'handleChangeSearchDate'];
+    protected $listeners = ['dateRangeUpdated' => 'handleChangeSearchDate', 'printVisits'];
     public $start_date, $end_date;
     public $selected_rows = [], $show_rows = [];
     public $filterProvider = "";
@@ -65,15 +65,16 @@ class VisitTable extends Component
         }
     }
 
-    public function printVisits()
+    public function printVisits($visit_id)
     {
 
-        if (count($this->selected_rows) == 0) {
-            $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Please select visits to print.']);
-            return new Response();
-        }
+        // if (count($this->selected_rows) == 0) {
+        //     $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Please select visits to print.']);
+        //     return new Response();
+        // }
 
-        $visits = Visit::whereIn('id', $this->selected_rows)->get();
+        // $visits = Visit::whereIn('id', $this->selected_rows)->get();
+        $visits = Visit::where('id', $visit_id)->get();
 
         $pdf = PDF::loadView('theme::prints.visits', [
             'visits' => $visits,
@@ -81,7 +82,7 @@ class VisitTable extends Component
 
         return response()->streamDownload(fn() =>
             print($pdf)
-            , "visits-temp.pdf");
+            , "Visit - #{$visits[0]->id}.pdf");
         // return response()->download($pdf->download('visits-temp.pdf'));
     }
 

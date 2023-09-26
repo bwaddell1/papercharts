@@ -40,7 +40,7 @@
                     <div class="text-gray-700 text-sm font-medium leading-tight">Add Visits</div>
                 </div>
             </button>
-            <button wire:click="printVisits"
+            <button onclick="printVisits('{{ json_encode($selected_rows) }}')"
                 class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
                 <div class="justify-start items-start gap-2 flex">
                     <div class="w-5 h-5 relative">
@@ -83,7 +83,7 @@
         <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase" style="background: #E6E9F3">
                 <tr>
-                    <th scope="col" class="p-4">
+                    <th scope="col" class="p-4" style="width: 48px;">
                         <div class="flex items-center">
                             <input id="checkbox-all-search" type="checkbox"
                                 wire:change="handleSelectAll($event.target.checked)"
@@ -91,28 +91,28 @@
                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                         </div>
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1/12" style="min-width: 50px;">
                         ID
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-3/12" style="min-width: 160px;">
                         FULL NAME
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1.5/12" style="min-width: 100px;">
                         DATE
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-2/12" style="min-width: 150px;">
                         VISIT TYPE
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-2/12" style="min-width: 120px;">
                         STATUS
                     </th>
-                    <th scope="col" class="px-6 py-3 text-center">
+                    <th scope="col" class="px-2 py-3 text-center" style="width: 85px; min-width: 85px;">
                         FILL OUT
                     </th>
-                    <th scope="col" class="px-6 py-3 text-center">
+                    <th scope="col" class="px-2 py-3 text-center" style="width: 55px; min-width: 55px;">
                         EDIT
                     </th>
-                    <th scope="col" class="px-6 py-3 text-center">
+                    <th scope="col" class="px-2 py-3 text-center" style="width: 75px; min-width: 75px;">
                         DELETE
                     </th>
                 </tr>
@@ -129,27 +129,27 @@
                                 <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                             </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             #{{ $visit->id }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             {{ $visit->last_name }}
                             {{ $visit->first_name }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             {{ date_format(date_create($visit->visit_at), 'm/d/Y') }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             {{ $visit->visitType->visit_type }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             <?php $i = $visit->status == 'complete' ? 'green' : ($visit->status == 'processing' ? 'blue' : ($visit->status == 'not_started' ? 'red' : 'gray')); ?>
                             <span
                                 class="bg-{{ $i }}-100 text-{{ $i }}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                                 {{ strtoupper(formatString($visit->status)) }}
                             </span>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             <a href="#" class="font-medium text-blue-600 hover:underline flex justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5" x="0px"
                                     class="w-5 h-5" y="0px">
@@ -169,7 +169,7 @@
                                 </svg>
                             </a>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             <div class="cursor-pointer" onclick="openEditVisitModal({{ $visit->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
@@ -179,7 +179,7 @@
                                 </svg>
                             </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             <div class="cursor-pointer" onclick="openDeleteVisitModal({{ $visit->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
@@ -214,6 +214,15 @@
     window.openDeleteVisitModal = function(visit_id) {
         Alpine.store('deleteVisitModal').openModal();
         Livewire.emit('deleteVisit', visit_id);
+    }
+
+    printVisits = function(visits) {
+        visits = JSON.parse(visits);
+        for (let i = 0; i < visits.length; i++) {
+            setTimeout(() => {
+                Livewire.emit('printVisits', visits[i]);
+            }, 300 * i);
+        }
     }
 </script>
 </div>

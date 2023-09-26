@@ -85,3 +85,23 @@ button:disabled, a.disabled {
 .searchable-select div {
     color: #000 !important;
 }
+
+.w-1\/12 {
+    width: 8.333333% !important;
+}
+
+.w-2\/12 {
+    width: 16.666666% !important;
+}
+
+.w-1\.5\/12 {
+    width: 12.5% !important;
+}
+
+.w-3\/12 {
+    width: 25% !important;
+}
+
+.w-4\/12 {
+    width: 33.333333% !important;
+}

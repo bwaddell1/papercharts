@@ -62,22 +62,22 @@
             <thead class="text-xs text-gray-700 uppercase"
                 style="background: #E6E9F3">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 w-4/12" style="min-width: 250px;">
                         VISIT TYPE
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1/12" style="min-width: 40px;">
                         ID
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1.5/12" style="min-width: 100px;">
                         DATE CREATED
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1.5/12" style="min-width: 100px;">
                         LAST USED
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1.5/12" style="min-width: 100px;">
                         STATUS
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 py-3 w-1/12" style="min-width: 80px;">
                     </th>
                 </tr>
             </thead>
@@ -88,23 +88,23 @@
                         <td class="px-6 py-4">
                             {{ $template->visit_type }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             #{{ $template->id }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             {{ date_format(date_create($template->created_at), 'm/d/Y') }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             {{ $template->last_used ? date_format(date_create($template->last_used), 'm/d/Y') : '' }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-2 py-4">
                             <?php $i = $template->status == 'published' ? 'green' : 'gray'; ?>
                             <span
                                 class="bg-{{ $i }}-100 text-{{ $i }}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                                 {{ strtoupper(formatString($template->status)) }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 flex gap-4">
+                        <td class="px-2 py-4 flex gap-4">
                             <a href="{{ route('wave.templates.edit', $template->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
