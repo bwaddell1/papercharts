@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Visits;
 
-use Livewire\Component;
 use App\Models\Visit;
+use Illuminate\Http\Response;
+use Livewire\Component;
 use Livewire\WithPagination;
+use PDF;
 
 class VisitTable extends Component
 {
@@ -19,17 +21,17 @@ class VisitTable extends Component
     public function mount()
     {
     }
-    
+
     public function render()
     {
         $visits = Visit::query();
-        if(auth()->user()->currentTeam) {
+        if (auth()->user()->currentTeam) {
             $visits = $visits->where('team_id', auth()->user()->currentTeam->id);
         }
-        if($this->filterProvider) {
+        if ($this->filterProvider) {
             $visits = $visits->where('user_id', $this->filterProvider);
         }
-        if($this->start_date && $this->end_date) {
+        if ($this->start_date && $this->end_date) {
             $visits = $visits->where('visit_at', '>=', $this->start_date)->where('visit_at', '<=', $this->end_date);
         }
         $visits = $visits->latest()->paginate(10);
@@ -47,7 +49,7 @@ class VisitTable extends Component
 
     public function handleSelectRow($id)
     {
-        if(in_array($id, $this->selected_rows)) {
+        if (in_array($id, $this->selected_rows)) {
             $this->selected_rows = array_diff($this->selected_rows, [$id]);
         } else {
             array_push($this->selected_rows, $id);
@@ -56,28 +58,31 @@ class VisitTable extends Component
 
     public function handleSelectAll($value)
     {
-        if($value) {
+        if ($value) {
             $this->selected_rows = $this->show_rows;
-        }
-        else {
+        } else {
             $this->selected_rows = [];
         }
     }
 
     public function printVisits()
     {
-        // $visits = Visit::whereIn('id', $this->selected_rows)->get();
-        $html = view('theme::prints.visits', [
-            'show_visit_id' => $this->show_visit_id,
-            'show_last_name' => $this->show_last_name,
-            'show_first_name' => $this->show_first_name,
-            'show_visit_at' => $this->show_visit_at,
-            'show_visit_type' => $this->show_visit_type,
-            'show_ready' => $this->show_ready,
-            'show_status' => $this->show_status,
-            'visits' => Visit::whereIn('id', $this->selected_rows)->get(),
-        ])->render();
-        $this->dispatchBrowserEvent('print', ['html' => $html]);
-        
+
+        if (count($this->selected_rows) == 0) {
+            $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Please select visits to print.']);
+            return new Response();
+        }
+
+        $visits = Visit::whereIn('id', $this->selected_rows)->get();
+
+        $pdf = PDF::loadView('theme::prints.visits', [
+            'visits' => $visits,
+        ])->output();
+
+        return response()->streamDownload(fn() =>
+            print($pdf)
+            , "visits-temp.pdf");
+        // return response()->download($pdf->download('visits-temp.pdf'));
     }
+
 }

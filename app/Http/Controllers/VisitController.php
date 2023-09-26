@@ -6,6 +6,7 @@ use App\Models\Visit;
 use App\Models\NoteTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use PDF;
 
 class VisitController extends BaseController
 {
@@ -15,15 +16,18 @@ class VisitController extends BaseController
             'first_name' => 'required|min:2|max:191',
             'last_name' => 'required|min:2|max:191',
             'datepicker' => 'required',
+            'birthdate' => 'required',
             'visit_type' => 'required',
         ]);
 
         $parsedDate = date_parse($validated['datepicker']);
+        $parsedBirthDate = date_parse($validated['birthdate']);
 
         Visit::create([
             "first_name" => $validated['first_name'],
             "last_name" => $validated['last_name'],
             "visit_at" => sprintf('%04d-%02d-%02d', $parsedDate['year'], $parsedDate['month'], $parsedDate['day']),
+            "birthdate" => sprintf('%04d-%02d-%02d', $parsedBirthDate['year'], $parsedBirthDate['month'], $parsedBirthDate['day']),
             "visit_type" => $validated['visit_type'],
             "team_id" => auth()->user()->currentTeam->id,
             "user_id" => auth()->user()->id,
@@ -68,4 +72,22 @@ class VisitController extends BaseController
             \File::delete(public_path('visits/' . $request->get('name')));
         }
     }
+
+    
+    public function print(Request $request)
+    {
+        $data = [
+            'patient_name' => $request->patient_name,
+            'date' => date('m/d/Y')
+        ];
+          
+        // $pdf = PDF::loadView('theme::prints.visits', $data);
+    
+        // return $pdf->download('visits-temp.pdf');
+        $visits = Visit::get();
+        return view('theme::prints.visits', [
+            'visits' => $visits,
+        ]);
+    }
+
 }

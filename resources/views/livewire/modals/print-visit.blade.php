@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="shadow mt-6 sm:mt-5 rounded-md">
-        <div class="px-8 py-16">
+        {{-- <div class="px-8 py-16">
             <div class="text-gray-500 text-sm font-medium font-['Inter'] leading-tight">Print or
                 download the selected office visits</div>
 
@@ -59,8 +59,9 @@
                 <label for="ready-checkbox"
                     class="ml-2 text-sm font-medium text-gray-900">Ready</label>
             </div>
-        </div>
-        <form id="print_visit_form" wire:submit.prevent="printVisits">
+        </div> --}}
+        <form id="print_visit_form" method="POST" action="{{ route('wave.visits.print') }}" >
+            @csrf
 
             <div class="bg-gray-100 flex justify-end py-3 pr-5">
                 <button

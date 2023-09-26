@@ -1,7 +1,7 @@
 <div>
     @if (Gate::check('addTeamMember', $team))
         <!-- Add Team Member -->
-        <div class="mt-10 sm:mt-0">
+        <div class="mt-0 sm:mt-0">
             <x-form-section submit="addTeamMember">
                 <x-slot name="title">
                     {{ __('Add Team Member') }}

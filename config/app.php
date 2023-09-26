@@ -189,7 +189,9 @@ return [
         Lab404\Impersonate\ImpersonateServiceProvider::class,
         Wave\WaveServiceProvider::class,
         DevDojo\Themes\ThemesServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -219,6 +221,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ])->toArray(),
 
 ];

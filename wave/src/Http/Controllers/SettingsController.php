@@ -72,6 +72,24 @@ class SettingsController extends Controller
         return back()->with(['message' => 'Successfully updated user profile', 'message_type' => 'success']);
     }
 
+    public function teamPut(Request $request){
+        $request->validate([
+            'logo' => 'nullable|base64image'
+        ],
+        [
+            'logo.base64image' => 'The logo must be a valid image.'
+        ]);
+
+        $team = auth()->user()->currentTeam;
+
+        if($request->logo){
+           $team->logo = $this->saveLogo($request->logo, $team->name);
+        }
+        $team->save();
+
+        return back()->with(['message' => 'Successfully updated organization logo', 'message_type' => 'success']);
+    }
+
     public function securityPut(Request $request){
 
         $validator = Validator::make($request->all(), [
@@ -135,6 +153,12 @@ class SettingsController extends Controller
     private function saveAvatar($avatar, $filename){
         $path = 'avatars/' . $filename . '.png';
         Storage::disk(config('voyager.storage.disk'))->put($path, file_get_contents($avatar));
+        return $path;
+    }
+
+    private function saveLogo($logo, $filename){
+        $path = 'logos/' . $filename . '.png';
+        Storage::disk(config('voyager.storage.disk'))->put($path, file_get_contents($logo));
         return $path;
     }
 

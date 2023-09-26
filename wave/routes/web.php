@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('settings/{section?}', '\Wave\Http\Controllers\SettingsController@index')->name('wave.settings');
 
 	Route::post('settings/profile', '\Wave\Http\Controllers\SettingsController@profilePut')->name('wave.settings.profile.put');
+	Route::post('settings/team', '\Wave\Http\Controllers\SettingsController@teamPut')->name('wave.settings.team.put');
 	Route::put('settings/security', '\Wave\Http\Controllers\SettingsController@securityPut')->name('wave.settings.security.put');
 
 	Route::post('settings/api', '\Wave\Http\Controllers\SettingsController@apiPost')->name('wave.settings.api.post');
@@ -73,6 +74,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('dropzone/visits/fetch', '\App\Http\Controllers\VisitController@fetch')->name('wave.visits.dropzone.fetch');
 	Route::get('dropzone/visits/delete', '\App\Http\Controllers\VisitController@delete')->name('wave.visits.dropzone.delete');
 	Route::post('team/update-role', '\Wave\Http\Controllers\ProfileController@update_role')->name('wave.update-role');
+	Route::get('visits/print', '\App\Http\Controllers\VisitController@print')->name('wave.visits.print');
 
 });
 

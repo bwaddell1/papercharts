@@ -40,7 +40,7 @@
                     <div class="text-gray-700 text-sm font-medium leading-tight">Add Visits</div>
                 </div>
             </button>
-            <button onclick="openPrintVisitModal({{ count($selected_rows) }})"
+            <button wire:click="printVisits"
                 class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
                 <div class="justify-start items-start gap-2 flex">
                     <div class="w-5 h-5 relative">
@@ -204,14 +204,6 @@
 <script>
     window.openUploadVisitModal = function() {
         Alpine.store('lgModal').type = 'upload-visit';
-        Alpine.store('lgModal').openModal();
-    }
-    window.openPrintVisitModal = function(selected_rows) {
-        if (selected_rows == 0) {
-            popToast('danger', 'Please select visits to print.');
-            return;
-        }
-        Alpine.store('lgModal').type = 'print-visit';
         Alpine.store('lgModal').openModal();
     }
     window.openEditVisitModal = function(visit_id) {

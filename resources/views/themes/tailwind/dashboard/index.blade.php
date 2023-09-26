@@ -68,8 +68,22 @@
                                             placeholder="Select Dates">
                                     </div>
                                 </div>
-                                <div class="w-full sm:w-1/2 sm:ml-2 mt-4 sm:mt-0">
-
+                                <div class="w-full sm:w-1/2 sm:mx-2">
+                                    <label for="visit_date" class="block text-sm font-medium leading-5 text-gray-700">
+                                        Visit Type
+                                    </label>
+                                    <div class="mt-1 relative searchable-select">
+                                        @livewire(
+                                            'visits.visit-type-select',
+                                            [
+                                                'name' => 'visit_type',
+                                                'placeholder' => 'Choose a Visit Type',
+                                                'searchable' => true,
+                                                'class' => 'test',
+                                            ],
+                                            key(time() . rand(0, 999))
+                                        )
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex flex-col sm:flex-row my-4 gap-6">
@@ -92,17 +106,20 @@
                             </div>
                             <div class="flex flex-col sm:flex-row my-4 gap-6">
                                 <div class="w-full sm:w-1/2 sm:mx-2">
-                                    <div class="mt-1 relative searchable-select">
-                                        @livewire(
-                                            'visits.visit-type-select',
-                                            [
-                                                'name' => 'visit_type',
-                                                'placeholder' => 'Choose a Visit Type',
-                                                'searchable' => true,
-                                                'class' => 'test',
-                                            ],
-                                            key(time() . rand(0, 999))
-                                        )
+                                    <label for="birth_date" class="block text-sm font-medium leading-5 text-gray-700">
+                                        Birth Date
+                                    </label>
+                                    <div class="mt-1 relative">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                            </svg>
+                                        </div>
+                                        <input name="birthdate" type="text" id="birth_date" required
+                                            class="border border-gray-300 shadow text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                                            placeholder="Select Dates">
                                     </div>
                                 </div>
                                 <div class="w-full sm:w-1/2 sm:mx-2">
@@ -112,6 +129,10 @@
                         </div>
                         <script>
                             $('input[name="datepicker"]').daterangepicker({
+                                singleDatePicker: true,
+                                showDropdowns: true,
+                            });
+                            $('input[name="birthdate"]').daterangepicker({
                                 singleDatePicker: true,
                                 showDropdowns: true,
                             });
