@@ -81,12 +81,27 @@ class VisitController extends BaseController
             'date' => date('m/d/Y')
         ];
           
-        // $pdf = PDF::loadView('theme::prints.visits', $data);
-    
-        // return $pdf->download('visits-temp.pdf');
         $visits = Visit::get();
+        
+        $template = $visits[0]->visitType;
+
+        $this->selected_vitals = array_filter(json_decode($template->vitals, true), function($e) {
+            return $e;
+        });
+        
+        $this->selected_histories = array_filter(json_decode($template->history, true), function($e) {
+            return $e;
+        });
+
+        $this->selected_elements = array_filter(json_decode($template->footer, true), function($e) {
+            return $e;
+        });
+
         return view('theme::prints.visits', [
             'visits' => $visits,
+            'selected_vitals' => $this->selected_vitals,
+            'selected_histories' => $this->selected_histories,
+            'selected_elements' => $this->selected_elements,
         ]);
     }
 

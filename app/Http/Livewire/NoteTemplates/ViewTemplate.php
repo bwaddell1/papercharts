@@ -27,7 +27,9 @@ class ViewTemplate extends Component
         $this->selected_histories = array_filter($selected_histories, function($e) {
             return $e;
         });
-        $this->selected_elements = $selected_elements;
+        $this->selected_elements = array_filter($selected_elements, function($e) {
+            return $e;
+        });;
         $this->isShow = true;
         $this->dispatchBrowserEvent('scroll-to-top');
     }

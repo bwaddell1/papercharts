@@ -218,6 +218,9 @@
 
     printVisits = function(visits) {
         visits = JSON.parse(visits);
+        if(!visits || visits.length == 0) {
+            popToast('danger', "Please select visits to print.");
+        }
         for (let i = 0; i < visits.length; i++) {
             setTimeout(() => {
                 Livewire.emit('printVisits', visits[i]);

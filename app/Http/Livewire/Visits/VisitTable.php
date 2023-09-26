@@ -68,22 +68,32 @@ class VisitTable extends Component
     public function printVisits($visit_id)
     {
 
-        // if (count($this->selected_rows) == 0) {
-        //     $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Please select visits to print.']);
-        //     return new Response();
-        // }
-
-        // $visits = Visit::whereIn('id', $this->selected_rows)->get();
         $visits = Visit::where('id', $visit_id)->get();
+
+        $template = $visits[0]->visitType;
+
+        $this->selected_vitals = array_filter(json_decode($template->vitals, true), function($e) {
+            return $e;
+        });
+        
+        $this->selected_histories = array_filter(json_decode($template->history, true), function($e) {
+            return $e;
+        });
+
+        $this->selected_elements = array_filter(json_decode($template->footer, true), function($e) {
+            return $e;
+        });
 
         $pdf = PDF::loadView('theme::prints.visits', [
             'visits' => $visits,
+            'selected_vitals' => $this->selected_vitals,
+            'selected_histories' => $this->selected_histories,
+            'selected_elements' => $this->selected_elements,
         ])->output();
 
         return response()->streamDownload(fn() =>
             print($pdf)
             , "Visit - #{$visits[0]->id}.pdf");
-        // return response()->download($pdf->download('visits-temp.pdf'));
     }
 
 }
