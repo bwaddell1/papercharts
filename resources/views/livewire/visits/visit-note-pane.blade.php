@@ -2,7 +2,7 @@
     <form wire:submit.prevent="save">
         <div class="bg-white shadow" style="width: fit-content; margin: 0 auto;">
             <div class="block flex justify-center" style="padding: 0 48px;">
-                <div class="flex flex-col py-12 pb-4 flex-1" style="max-width: 750px;">
+                <div class="flex flex-col py-12 pb-4 flex-1" style="width: 750px;">
                     <div style="margin-top: 16px;">
                         @livewire('editorjs', [
                             'editorId' => 'visit_note',
