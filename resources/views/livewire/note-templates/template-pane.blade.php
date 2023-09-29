@@ -1,7 +1,7 @@
 <div class="max-w-7xl mx-auto my-6" style="margin-top: 40px;">
     <form wire:submit.prevent="save">
         <div class="block lg:flex">
-            <div class="bg-white shadow flex flex-col px-8 xl:px-5 py-12 pb-4 flex-1 mx-4">
+            <div class="bg-white shadow flex flex-col px-8 xl:px-5 py-12 pb-4 flex-1 mx-4" style="max-width: 750px;">
                 <div class="flex justify-end">
                     <div class="flex gap-1 justify-center items-center flex-wrap mr-6">
                         @foreach ($specialties as $specialty)

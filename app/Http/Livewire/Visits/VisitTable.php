@@ -6,6 +6,7 @@ use App\Models\Visit;
 use Illuminate\Http\Response;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Jobs\GenerateNoteJob;
 use PDF;
 
 class VisitTable extends Component
@@ -16,7 +17,7 @@ class VisitTable extends Component
     public $start_date, $end_date;
     public $selected_rows = [], $show_rows = [];
     public $filterProvider = "";
-    public $show_visit_id = true, $show_last_name = true, $show_first_name = true, $show_visit_at = true, $show_visit_type = true, $show_ready = true, $show_status = true;
+    public $generate_note_id, $prompt = "", $note_generating = false;
 
     public function mount()
     {
@@ -91,9 +92,46 @@ class VisitTable extends Component
             'selected_elements' => $this->selected_elements,
         ])->output();
 
+        $visits[0]->status = "printed";
+        $visits[0]->save();
+
         return response()->streamDownload(fn() =>
             print($pdf)
             , "Visit - #{$visits[0]->id}.pdf");
+    }
+
+    public function generate_note()
+    {
+        dispatch(new GenerateNoteJob($this->generate_note_id, $this->prompt));
+        $visit = Visit::find($this->generate_note_id);
+        $visit->note_content = null;
+        $visit->save();
+        $this->dispatchBrowserEvent('generateNote');
+        $this->note_generating = true;
+    }
+
+    public function handleOpenQuickNoteModal($visit_id)
+    {
+        $this->generate_note_id = $visit_id;
+    }
+
+    public function closeQuickNoteModal()
+    {
+        $this->prompt = "";
+        $this->generate_note_id = null;
+        $this->note_generating = false;
+    }
+
+    public function check_generate_note()
+    {
+        if($this->generate_note_id)
+        {
+            $visit = Visit::find($this->generate_note_id);
+            if($visit->note_content)
+            {
+                $this->dispatchBrowserEvent('CompleteGenerateNote', ['visit_id' => $visit->id]);
+            }
+        }
     }
 
 }

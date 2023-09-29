@@ -5,7 +5,7 @@
         /** Define the margins of your page **/
         @page {
             size: A4;
-            margin: 48px;
+            margin: 48px 24px;
             margin-bottom: 144px;
         }
 
@@ -28,7 +28,7 @@
 
         footer {
             position: fixed;
-            bottom: -72px;
+            bottom: -48px;
             left: 0px;
             right: 0px;
             height: 48px;
@@ -40,8 +40,8 @@
             font-weight: 900
         }
 
-        main p {
-            font-size: 14px;
+        main p, main div {
+            font-size: 12px;
         }
 
     </style>
@@ -119,15 +119,17 @@
                         </td>
                     </tr>
                 </table>
-                <div style="padding: 16px; font-size: 14px;">
+                <div style="padding: 0 16px; font-size: 14px;">
                     <table style="width: 100%;">
                         <tr>
-                            <td style="width: 66%; vertical-align: baseline;">
-                                {{ jsonToHtml($visit->visitType->content) }}
+                            <td style="width: 100%; vertical-align: baseline;">
+                                <div style="max-width: 490px; overflow-x: hidden;">
+                                    {{ jsonToHtml($visit->visitType->content) }}
+                                </div>
                             </td>
-                            <td style="vertical-align: baseline;">
+                            <td style="vertical-align: baseline; background: white; padding-left: 20px;">
                                 <div
-                                    style="border-left: 2px solid #333; font-size: 1.125rem; min-width: 20%; padding-left: 16px; margin-top: 24px;">
+                                    style="border-left: 2px solid #333; font-size: 1.125rem; width: 200px; padding-left: 16px; margin-top: 24px;">
                                     @if (count($selected_vitals) > 0)
                                         <div style="margin-bottom: 16px;">
                                             <p style="margin-bottom: 16px; font-weight: bold;">Vital Signs</p>
@@ -137,7 +139,7 @@
                                                         {{ formatString($key) }}
                                                     </p>
                                                     <div
-                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 40px; margin-top: 4px; margin-bottom: 4px; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px;">
+                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 30px; margin-top: 4px; margin-bottom: 4px; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px;">
                                                         <p>
                                                             @if ($key == 'blood_pressure')
                                                                 __________/_________
@@ -160,7 +162,7 @@
                                                         [&nbsp;&nbsp;] {{ formatString($key) }} (mark reviewed)
                                                     </p>
                                                     <div
-                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 80px; margin: 4px 0; padding: 4px 12px;">
+                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 50px; margin: 4px 0; padding: 4px 12px;">
                                                     </div>
                                                 </div>
                                             @endforeach

@@ -81,7 +81,7 @@ class VisitController extends BaseController
             'date' => date('m/d/Y')
         ];
           
-        $visits = Visit::get();
+        $visits = Visit::where("id", 8)->get();
         
         $template = $visits[0]->visitType;
 
@@ -105,4 +105,14 @@ class VisitController extends BaseController
         ]);
     }
 
+    public function fill_out(Request $request, $visit_id)
+    {
+        $visit = Visit::find($visit_id);
+        if(!$visit) {
+            return redirect()->route('wave.dashboard');
+        }
+        return view('theme::visits.edit', [
+            "visit" => $visit,
+        ]);
+    }
 }
