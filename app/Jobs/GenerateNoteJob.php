@@ -42,27 +42,19 @@ class GenerateNoteJob implements ShouldQueue
     {
         $visit = Visit::find($this->visit_id);
         $template = $visit->visitType->content;
+        $sample_template = $visit->visitType->sample_note ?? "";
 
         $messages[] = [
             'role' => 'system',
             'content' => "You are a medical scribe helping write physician documentation. I will give you a short explanation and you will turn it into a complete encounter note. Be Concise.
-            Here is the short explanation: \"$this->prompt\"
-            The note should be in JSON format. Here is a similar note as to how the result should look:
-            Hpi:
-            A 5 year old previously healthy female presented with 3 days of right sided ear pain. She has also had fever, and some rhinorrhea. No other symptoms
-            Exam:
-            Gen: Well appearing, in no distress
-            HEENT: Right TM is erythematous and bulging, Left TM is normal. Eyes are PERLLA.
-            CV: RRR no murmur
-            RESP: CTAB no wheezing, normal respiratory rate
-            GI: Abdomen is soft, non-tender, non distended, normal bowel sounds
-            Derm: No rashes
-            Assessment: Right Otitis Media (ICD10: 898..8)
-            Plan:
-            1. Amoxicillin 400mg/5ml take 5 ml twice daily for ten days
-            2. Tylenol or Motrin for pain relief as needed
-            3. Follow up in 3-5 days if having persistent fevers\"
+            Here is the short explanation: \"$this->prompt\"            
+            Here is a similar note as to how the result should look:
+            
+            $this->sample_template
 
+            *************************************
+            
+            The note should be in JSON format. 
             Here is JSON that you should use: $template
 
             You can add note informations to \"text\" fields of JSON or replace \"___\" with the correct information. Also you can change \"checked\" value of \"checklist\" fields to \"true\" based on explanation.

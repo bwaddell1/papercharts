@@ -43,4 +43,21 @@ class TemplateController extends Controller
             "template" => $template,
         ]);
     }
+    
+    public function sample()
+    {
+        return view('theme::template.sample');
+    }
+    
+    public function sample_edit(Request $request, $template_id)
+    {
+        $template = NoteTemplate::find($template_id);
+        if(!$template) {
+            return redirect()->route('wave.templates.sample');
+        }
+        return view('theme::template.edit-sample', [
+            "template" => $template,
+        ]);
+    }
+    
 }

@@ -44,18 +44,6 @@
                 </div>
             </div>
         </div>
-        <div class="ml-2 relative pt-4">
-            <a href="{{ route('wave.templates.create') }}"
-                class="w-40 h-12 mt-6 px-4 py-2 bg-indigo-600 rounded-md shadow border border-gray-300 justify-center items-center inline-flex">
-                <div class="text-white text-sm font-medium leading-tight flex gap-1 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    Create New
-                </div>
-            </a>
-        </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500">
@@ -77,7 +65,7 @@
                     <th scope="col" class="px-2 py-3 w-1.5/12" style="min-width: 100px;">
                         STATUS
                     </th>
-                    <th scope="col" class="px-2 py-3 w-1/12" style="min-width: 80px;">
+                    <th scope="col" class="px-2 py-3 w-1/12" style="min-width: 40px;">
                     </th>
                 </tr>
             </thead>
@@ -98,14 +86,14 @@
                             {{ $template->last_used ? date_format(date_create($template->last_used), 'm/d/Y') : '' }}
                         </td>
                         <td class="px-2 py-4">
-                            <?php $i = $template->status == 'published' ? 'green' : 'gray'; ?>
+                            <?php $i = $template->sample_note ? 'green' : 'red'; ?>
                             <span
                                 class="bg-{{ $i }}-100 text-{{ $i }}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
-                                {{ strtoupper(formatString($template->status)) }}
+                                {{ $template->sample_note ? 'Published' : 'Not Published' }}
                             </span>
                         </td>
-                        <td class="px-2 py-4 flex gap-4">
-                            <a href="{{ route('wave.templates.edit', $template->id) }}">
+                        <td class="px-2 py-4 flex gap-4 justify-center">
+                            <a href="{{ route('wave.templates.sample.edit', $template->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     viewBox="0 0 16 16" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -113,14 +101,6 @@
                                         fill="#8F95B2" />
                                 </svg>
                             </a>
-                            <div class="cursor-pointer" onclick="openDeleteNoteTemplate({{ $template->id }})">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 16 16" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.1082 4.69647H1.87293C1.6094 4.69647 1.40234 4.90353 1.40234 5.16706C1.40234 5.43059 1.6094 5.63765 1.87293 5.63765H2.34352V15.0494C2.34352 15.5671 2.76705 15.9906 3.2847 15.9906H12.6965C13.2141 15.9906 13.6376 15.5671 13.6376 15.0494V5.63765H14.1082C14.3718 5.63765 14.5788 5.43059 14.5788 5.16706C14.5788 4.90353 14.3718 4.69647 14.1082 4.69647ZM6.10823 13.1671C6.10823 13.6847 5.6847 14.1082 5.16705 14.1082C4.6494 14.1082 4.22587 13.6847 4.22587 13.1671V7.52C4.22587 7.00235 4.6494 6.57882 5.16705 6.57882C5.6847 6.57882 6.10823 7.00235 6.10823 7.52V13.1671ZM8.93176 13.1671C8.93176 13.6847 8.50823 14.1082 7.99058 14.1082C7.47293 14.1082 7.0494 13.6847 7.0494 13.1671V7.52C7.0494 7.00235 7.47293 6.57882 7.99058 6.57882C8.50823 6.57882 8.93176 7.00235 8.93176 7.52V13.1671ZM11.7553 13.1671C11.7553 13.6847 11.3318 14.1082 10.8141 14.1082C10.2965 14.1082 9.87293 13.6847 9.87293 13.1671V7.52C9.87293 7.00235 10.2965 6.57882 10.8141 6.57882C11.3318 6.57882 11.7553 7.00235 11.7553 7.52V13.1671ZM13.6376 1.87294H9.87293C9.87293 1.35529 9.4494 0.931763 8.93176 0.931763H7.0494C6.53176 0.931763 6.10823 1.35529 6.10823 1.87294H2.34352C1.82587 1.87294 1.40234 2.29647 1.40234 2.81412V3.75529H14.5788V2.81412C14.5788 2.29647 14.1553 1.87294 13.6376 1.87294Z"
-                                        fill="#8F95B2" />
-                                </svg>
-                            </div>
                         </td>
                     </tr>
                 @endforeach

@@ -38,6 +38,8 @@ Route::group(['middleware' => 'wave'], function () {
 	Route::get('templates', '\Wave\Http\Controllers\TemplateController@index')->name('wave.templates.index');
 	Route::get('template/create', '\Wave\Http\Controllers\TemplateController@create')->name('wave.templates.create');
 	Route::get('template/edit/{template_id}', [\Wave\Http\Controllers\TemplateController::class, 'edit'])->name('wave.templates.edit');
+	Route::get('templates/samples', '\Wave\Http\Controllers\TemplateController@sample')->name('wave.templates.sample');
+	Route::get('template/sample/edit/{template_id}', [\Wave\Http\Controllers\TemplateController::class, 'sample_edit'])->name('wave.templates.sample.edit');
 });
 
 Route::group(['middleware' => 'auth'], function(){
