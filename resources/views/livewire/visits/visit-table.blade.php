@@ -1,6 +1,5 @@
 <div>
     <div class="flex flex-col px-8 mx-auto my-6 max-w-7xl xl:px-5 py-12">
-        {{config('openai.api_key')}}
         <div class="text-gray-900 text-3xl font-bold leading-9">Visits</div>
         <div class="flex justify-between py-2 flex-wrap items-center">
             <div class="justify-end md:justify-start items-center gap-2 inline-flex flex-wrap mt-4"
@@ -356,7 +355,7 @@
                     progressBar.style.width = (currentWidth + 10) + '%';
                 } else {
                     clearInterval(progressBarInterval);
-                    // alert('ok')
+                    window.location.href = `/visits/fill-out/${event.data.visit_id}`;
                 }
             }, 20);
             progressBar.style.width = '0%';
