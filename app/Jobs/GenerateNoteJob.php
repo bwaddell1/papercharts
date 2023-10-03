@@ -50,7 +50,7 @@ class GenerateNoteJob implements ShouldQueue
             Here is the short explanation: \"$this->prompt\"            
             Here is a similar note as to how the result should look:
             
-            $this->sample_template
+            $sample_template
 
             *************************************
             
