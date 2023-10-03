@@ -302,6 +302,8 @@
 
     </div>
     <script>
+        var isCompleted = false;
+
         window.openUploadVisitModal = function() {
             Alpine.store('lgModal').type = 'upload-visit';
             Alpine.store('lgModal').openModal();
@@ -348,17 +350,20 @@
 
         window.addEventListener('CompleteGenerateNote', event => {
             clearInterval(progressBarInterval);
-            const progressBar = document.getElementById('progress_bar');
-            progressBarInterval = setInterval(() => {
-                const currentWidth = parseFloat(progressBar.style.width) || 0;
-                if (currentWidth < 100) {
-                    progressBar.style.width = (currentWidth + 10) + '%';
-                } else {
-                    clearInterval(progressBarInterval);
-                    window.location.href = `/visits/fill-out/${event.data.visit_id}`;
-                }
-            }, 20);
-            progressBar.style.width = '0%';
+            if(!isCompleted) {
+                const progressBar = document.getElementById('progress_bar');
+                progressBarInterval = setInterval(() => {
+                    const currentWidth = parseFloat(progressBar.style.width) || 0;
+                    if (currentWidth < 100) {
+                        progressBar.style.width = (currentWidth + 10) + '%';
+                    } else {
+                        clearInterval(progressBarInterval);
+                        console.log(event);
+                        window.location.href = `/visits/fill-out/${event.detail.visit_id}`;
+                    }
+                }, 20);
+                isCompleted = true;
+            }
         });
 
     </script>
