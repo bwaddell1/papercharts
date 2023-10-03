@@ -1,10 +1,10 @@
 <div>
 
     <form wire:submit.prevent="save">
-        <div class="mx-auto my-6 bg-white rounded-lg shadow" style="margin-top: 40px; max-width: 940px;">
+        <div class="mx-auto my-6 bg-white rounded-lg shadow" style="margin-top: 40px; width: 940px;">
             <div class="block lg:flex justify-center">
                 <div class="flex p-10">
-                    <div class="flex-1" style="max-width: 750px;">
+                    <div class="flex-1" style="width: 750px;">
                         @livewire('editorjs', [
                             'editorId' => 'sample',
                             'value' => $template_content,
