@@ -58,9 +58,16 @@
         <div class="panel-body flex flex-wrap items-center m-8" id="uploaded_image" wire:init="fetchUploadedVisits">
             @foreach ($visits as $visit)
                 <div class="flex flex-col px-2 relative" style="margin-bottom:16px;">
-                    <img src="{{ asset('visits/' . $visit['name']) }}" class="img-thumbnail shadow" width="136"
-                        height="136" style="height:136px; border-color: #11AF22;" />
-                    <button type="button" class="absolute bg-red-500 rounded-full p-1.5" style="opacity: .75; top: 6px; right: 10px;" id="{{ $visit['name'] }}">
+                    @if(Illuminate\Support\Str::endsWith($visit['name'], '.pdf'))
+                        <img class="img-thumbnail" width="136"
+                            height="136" style="height:136px;" src="data:image/png;base64,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">
+                    @else
+                        <img src="{{ asset('visits/' . $visit['name']) }}" class="img-thumbnail shadow" width="136"
+                            height="136" style="height:136px; border-color: #11AF22;" />
+                    @endif
+                    <button type="button" class="absolute bg-red-500 rounded-full p-1.5"
+                        style="opacity: .75; top: 6px; right: 10px;" id="{{ $visit['name'] }}"
+                        wire:click="onClickCancel('{{ $visit['name'] }}')">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                             stroke="black" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -68,13 +75,32 @@
                     </button>
                 </div>
             @endforeach
+
+            @if(count($visits) == 0)
+                <div class="py-9 m-auto text-lg w-full text-center">
+                    There is no uploaded file.
+                </div>
+            @endif
         </div>
     </div>
-
+    <div class="mt-8 sm:mt-6">
+        <span class="flex w-full rounded-md justify-end gap-4">
+            <button type="button" id="close_btn"
+                class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-gray-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                data-modal-hide="uploadVisitModal">
+                Cancel
+            </button>
+            <button type="button"
+                class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-blue-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                wire:click="handleScanFiles">
+                Scan Files
+            </button>
+        </span>
+    </div>
     <script type="text/javascript">
         Dropzone.options.dropzoneForm = {
             autoProcessQueue: false,
-            acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
+            acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg,.pdf",
 
             init: function() {
                 var submitButton = document.querySelector("#submit-all");
@@ -124,5 +150,9 @@
                 }
             })
         });
+
+        window.addEventListener('close_upload_modal', event => {
+            document.getElementById("close_btn").click();
+        })
     </script>
 </div>

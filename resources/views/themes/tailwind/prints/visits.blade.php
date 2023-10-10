@@ -43,7 +43,6 @@
         main p, main div {
             font-size: 12px;
         }
-
     </style>
 
 </head>
@@ -111,7 +110,7 @@
                                         </div>
                                     </td>
                                     <td style="width: 62px; padding-left: 4px; text-align: right;">
-                                        <img src="data:image/png;base64, {!! base64_encode(QrCode::size(75)->generate("{\"visit_id\":$visit->id,\"user_id\":{{ auth()->user()->id }}},")) !!}" width="62px"
+                                        <img src="data:image/png;base64, {!! base64_encode(QrCode::size(75)->generate(json_encode(["visit_id" => $visit->id,"user_id" => auth()->user()->id]))) !!}" width="62px"
                                             height="62px">
                                     </td>
                                 </tr>

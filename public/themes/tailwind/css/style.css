@@ -105,3 +105,7 @@ button:disabled, a.disabled {
 .w-4\/12 {
     width: 33.333333% !important;
 }
+
+.cdx-checklist__item-checkbox-check {
+    border-color: #000 !important;
+}

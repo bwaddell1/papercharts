@@ -13,7 +13,7 @@ class VisitTable extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['dateRangeUpdated' => 'handleChangeSearchDate', 'printVisits'];
+    protected $listeners = ['dateRangeUpdated' => 'handleChangeSearchDate', 'printVisits', 'reloadVisits'];
     public $start_date, $end_date;
     public $selected_rows = [], $show_rows = [];
     public $filterProvider = "";
@@ -98,6 +98,11 @@ class VisitTable extends Component
         return response()->streamDownload(fn() =>
             print($pdf)
             , "Visit - #{$visits[0]->id}.pdf");
+    }
+
+    public function reloadVisits()
+    {
+        
     }
 
     public function generate_note()
