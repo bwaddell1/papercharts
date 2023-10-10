@@ -44,16 +44,16 @@ class VisitUploadPane extends Component
         foreach($this->visits as $visit)
         {
             if(\Illuminate\Support\Str::endsWith($visit['name'], '.pdf')) {
-                \File::move(public_path('visits\\' . $visit['name']), public_path('scanning\\' . $visit['name']));
-                $pdf = new \Spatie\PdfToImage\Pdf(public_path('scanning\\' . $visit['name']));
-                $pdf->saveImage(public_path('scanning\\' . $visit['name'] . '.jpg'));
-                dispatch(new OcrVisitJob(public_path('scanning\\' . $visit['name'] . '.jpg')));
+                \File::move(public_path('visits/' . $visit['name']), public_path('scanning/' . $visit['name']));
+                $pdf = new \Spatie\PdfToImage\Pdf(public_path('scanning/' . $visit['name']));
+                $pdf->saveImage(public_path('scanning/' . $visit['name'] . '.jpg'));
+                dispatch(new OcrVisitJob(public_path('scanning/' . $visit['name'] . '.jpg')));
             }
             else {
-                \File::move(public_path('visits\\' . $visit['name']), public_path('scanning\\' . $visit['name']));
-                dispatch(new OcrVisitJob(public_path('scanning\\' . $visit['name'])));
+                \File::move(public_path('visits/' . $visit['name']), public_path('scanning/' . $visit['name']));
+                dispatch(new OcrVisitJob(public_path('scanning/' . $visit['name'])));
                 $QRCodeReader = new \Libern\QRCodeReader\QRCodeReader();
-                $qrcode_text = $QRCodeReader->decode(public_path('scanning\\' . $visit['name']));
+                $qrcode_text = $QRCodeReader->decode(public_path('scanning/' . $visit['name']));
                 $qrcode_info = json_decode($qrcode_text, true);
                 $visit_id = $qrcode_info['visit_id'];
                 $visit = Visit::find($visit_id);
