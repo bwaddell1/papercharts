@@ -5,8 +5,9 @@
         /** Define the margins of your page **/
         @page {
             size: A4;
-            margin: 48px 24px;
-            margin-bottom: 144px;
+            margin: 32px 24px;
+            margin-bottom: 80px;
+            font-family: Arial;
         }
 
         header {
@@ -28,20 +29,21 @@
 
         footer {
             position: fixed;
-            bottom: -48px;
+            bottom: -44px;
             left: 0px;
             right: 0px;
             height: 48px;
             font-size: 12px !important;
 
-            /** Extra personal styles **/            
+            /** Extra personal styles **/
             text-align: center;
             line-height: 24px;
             font-weight: 900
         }
 
-        main p, main div {
-            font-size: 12px;
+        main p,
+        main div {
+            font-size: 14px;
         }
     </style>
 
@@ -52,19 +54,26 @@
     <!-- Wrap the content of your PDF inside a main tag -->
 
     <footer>
-        <div style="margin-bottom: 24px; text-align: right; margin-left: 10px;">
-            <?php
-            foreach ($selected_elements as $key => $value) {
-                if ($value) {
-                    echo '<div style="display: inline-block; margin-left: 3px; margin-right: 3px; text-align: left;">';
-                    echo formatString($key) . ': ';
-                    if ($key == 'signature') {
-                        echo '_______________';
-                    }
-                    echo '_______________</div>';
-                }
-            }
-            ?>
+        <div style="margin-bottom: 6px; text-align: right; margin-left: 10px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 50%;">
+                        @if (isset($selected_elements['signature']) && $selected_elements['signature'])
+                            Signature: ______________________________
+                        @endif
+                    </td>
+                    <td style="width: 25%; text-align: right;">
+                        @if (isset($selected_elements['time']) && $selected_elements['time'])
+                            Time: ____________
+                        @endif
+                    </td>
+                    <td style="width: 25%; text-align: right;">
+                        @if (isset($selected_elements['date']) && $selected_elements['date'])
+                            Date: ____________
+                        @endif
+                    </td>
+                </tr>
+            </table>
         </div>
         <table style="width: 100%; border-top: 2px solid black; color: #333;">
             <tr>
@@ -81,37 +90,39 @@
     <main>
         @foreach ($visits as $key => $visit)
             <div style="{{ $key < count($visits) - 1 ? 'page-break-after: always;' : '' }}">
-                <table style="width: 100%; border-bottom: 2px solid black; height: 96px;">
+                <table style="width: 100%; border-bottom: 2px solid black; height: 80px; margin-bottom: 16px;">
                     <tr>
                         <td style="width: 150%">
                             @if (auth()->user()->currentTeam->logo)
                                 <img src="./storage/{{ auth()->user()->currentTeam->logo }}" alt=""
-                                    style="height: 75px; width: auto; object-fit: contain; filter: grayscale(100%);">
+                                    style="height: 65px; width: auto; object-fit: contain; filter: grayscale(100%);">
                             @endif
                         </td>
                         <td style="text-align: left; width: 100%;">
                             <table style="width: 100%;">
                                 <tr style="width: 100%;">
                                     <td style="width: 100%">
-                                        <div style="font-size: 15px; font-weight: 900; margin-bottom: 4px;">
+                                        <div style="font-size: 12px; font-weight: 900; margin-bottom: 4px;">
                                             Patient Name:
                                             {{ $visit->first_name }}
                                             {{ $visit->last_name }}
                                         </div>
-                                        <div style="font-size: 12px; margin-bottom: 8px; font-weight: 900;">
+                                        <div style="font-size: 12px; margin-bottom: 4px; font-weight: 900;">
                                             MRN : {{ $visit->id }} &nbsp;&nbsp;&nbsp;DOB:
                                             {{ date('m/d/Y', strtotime($visit->birthdate)) }}
                                         </div>
-                                        <div style="font-size: 12px; margin-bottom: 8px; font-weight: 900;">
+                                        <div style="font-size: 12px; margin-bottom: 4px; font-weight: 900;">
                                             Date of Visit: {{ date('m/d/Y', strtotime($visit->visit_at)) }}
                                         </div>
                                         <div style="font-size: 12px; font-weight: 900;">
                                             Provider : Waddell, Ben MD
                                         </div>
                                     </td>
-                                    <td style="width: 62px; padding-left: 4px; text-align: right;">
-                                        <img src="data:image/png;base64, {!! base64_encode(QrCode::size(75)->generate(json_encode(["visit_id" => $visit->id,"user_id" => auth()->user()->id]))) !!}" width="62px"
-                                            height="62px">
+                                    <td style="width: 50px; padding-left: 4px; text-align: right;">
+                                        <img src="data:image/png;base64, {!! base64_encode(
+                                            QrCode::size(62)->generate(json_encode(['visit_id' => $visit->id, 'user_id' => auth()->user()->id])),
+                                        ) !!}" width="50px"
+                                            height="50px">
                                     </td>
                                 </tr>
                             </table>
@@ -122,31 +133,44 @@
                     <table style="width: 100%;">
                         <tr>
                             <td style="width: 100%; vertical-align: baseline;">
-                                <div style="max-width: 490px; overflow-x: hidden;">
+                                <div style="width: {{ $visit->visitType->third_column_enabled ? 340 : 490 }}px;">
                                     {{ jsonToHtml($visit->visitType->content) }}
                                 </div>
                             </td>
-                            <td style="vertical-align: baseline; background: white; padding-left: 20px;">
+                            @if ($visit->visitType->third_column_enabled)
+                                <td style="width: 100%; vertical-align: baseline; background: white; z-index: 2;">
+                                    <div
+                                        style="width: 154px; border-left: 1px solid #333; padding: 2px 0; padding-left: 12px; margin-left: 12px; margin-top: 60px; height: 815px;">
+                                        {{ jsonToHtml($visit->visitType->second_content) }}
+                                    </div>
+                                </td>
+                            @endif
+                            <td style="vertical-align: baseline; background: white; padding-left: 12px; z-index: 3;">
                                 <div
-                                    style="border-left: 2px solid #333; font-size: 1.125rem; width: 200px; padding-left: 16px; margin-top: 24px;">
+                                    style="border-left: 1px solid #333; font-size: 1.125rem; width: 166px; padding-left: 16px; margin-top: 60px;">
                                     @if (count($selected_vitals) > 0)
                                         <div style="margin-bottom: 16px;">
-                                            <p style="margin-bottom: 16px; font-weight: bold;">Vital Signs</p>
+                                            <p style="font-size: 16px; font-weight: bold; margin-bottom: 4px;">Vital
+                                                Signs</p>
                                             @foreach ($selected_vitals as $key => $value)
                                                 <div style="font-size: 16px; line-height: 1;">
-                                                    <p style="margin: 4px 0;">
-                                                        {{ formatString($key) }}
-                                                    </p>
-                                                    <div
-                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 30px; margin-top: 4px; margin-bottom: 4px; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px;">
-                                                        <p>
-                                                            @if ($key == 'blood_pressure')
-                                                                __________/_________
+                                                    <div style="padding: 5px 0;">
+                                                        @if ($key == 'Height/Weight')
+                                                            Height ________ inches
+                                                            <div style="height: 8px"></div>
+                                                            Weight ________ lbs
+                                                        @elseif ($key == 'height')
+                                                            ________ inches
+                                                        @elseif ($key == 'weight')
+                                                            ________ lbs
+                                                        @else
+                                                            {{ formatString($key) }}
+                                                            @if ($key == 'respiratory_rate')
+                                                                _________
+                                                            @else
+                                                                __________
                                                             @endif
-                                                            @if ($key == 'Height/Weight')
-                                                                ________ inches ________ lbs
-                                                            @endif
-                                                        </p>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -154,14 +178,19 @@
                                     @endif
                                     @if (count($selected_histories) > 0)
                                         <div style="margin-bottom: 16px;">
-                                            <p style="margin-bottom: 16px; font-weight: bold;">History(s)</p>
                                             @foreach ($selected_histories as $key => $value)
-                                                <div style="font-size: 16px;">
-                                                    <p style="margin: 4px 0;">
-                                                        [&nbsp;&nbsp;] {{ formatString($key) }} (mark reviewed)
+                                                <div style="margin: 4px 0;">
+                                                    <div class="margin-bottom: 0;">
+                                                        <img src="./wave/checkbox.png" width="12px" height="12px" />
+                                                        <span>
+                                                            {{ formatString($key) }}
+                                                        </span>
+                                                    </div>
+                                                    <p style="margin: 0 !important">
+                                                        (mark reviewed)
                                                     </p>
                                                     <div
-                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 50px; margin: 4px 0; padding: 4px 12px;">
+                                                        style="background-color: #f0f0f0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; min-height: 100px; margin: 4px 0; padding: 4px 12px; margin-top: 8px;">
                                                     </div>
                                                 </div>
                                             @endforeach

@@ -9,7 +9,7 @@ class ViewTemplate extends Component
 
     protected $listeners = ['showVisit' => 'showComp'];
 
-    public $view_template, $isShow = false, $editorId, $selected_vitals = [], $selected_elements = [], $selected_histories = [];
+    public $view_template, $second_column_content, $third_column_enabled, $isShow = false, $editorId, $selected_vitals = [], $selected_elements = [], $selected_histories = [];
 
     public function hideComp()
     {
@@ -17,7 +17,7 @@ class ViewTemplate extends Component
         $this->editorId = null;
     }
 
-    public function showComp($template, $selected_vitals, $selected_elements, $selected_histories)
+    public function showComp($template, $selected_vitals, $selected_elements, $selected_histories, $second_column_content, $third_column_enabled)
     {
         $this->editorId = microtime(true);
         $this->view_template = $template;
@@ -31,6 +31,8 @@ class ViewTemplate extends Component
             return $e;
         });;
         $this->isShow = true;
+        $this->second_column_content = $second_column_content;
+        $this->third_column_enabled = $third_column_enabled;
         $this->dispatchBrowserEvent('scroll-to-top');
     }
 

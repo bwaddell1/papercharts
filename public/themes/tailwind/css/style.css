@@ -8,6 +8,19 @@
     width: 930px;
     justify-content: start;
 }
+.full-editor-preview {
+    justify-content: start;
+    overflow-x: hidden;
+}
+
+.full-editor-preview h1 {
+    font-size: 2em !important;
+}
+
+.full-editor-preview .codex-editor__redactor {
+    padding-bottom: 0 !important;
+    margin-right: 0 !important;
+}
 
 .full-editor .ce-block__content {
     margin: 0 !important;
@@ -108,4 +121,9 @@ button:disabled, a.disabled {
 
 .cdx-checklist__item-checkbox-check {
     border-color: #000 !important;
+}
+
+.toggleSwitch:after {
+    top: 2px !important;
+    right: 2px;
 }

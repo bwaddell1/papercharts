@@ -4,15 +4,30 @@
             <div class="block flex justify-center" style="padding: 0 48px;">
                 <div class="flex flex-col py-12 pb-4 flex-1" style="width: 750px;">
                     <div style="margin-top: 16px;">
-                        @livewire('editorjs', [
-                            'editorId' => 'visit_note',
-                            'value' => $note_content,
-                            'uploadDisk' => 'public',
-                            'downloadDisk' => 'public',
-                            'placeholder' => 'Type Content',
-                            // 'readOnly' => false,
-                            'class' => 'full-editor',
-                        ])
+                        <div class="flex-1 flex">
+                            @livewire('editorjs', [
+                                'editorId' => 'visit_note',
+                                'value' => $note_content,
+                                'uploadDisk' => 'public',
+                                'downloadDisk' => 'public',
+                                'placeholder' => 'Type Content',
+                                // 'readOnly' => false,
+                                'class' => 'full-editor',
+                            ])
+
+                            @if ($visit->visitType->third_column_enabled)
+                                @livewire('editorjs', [
+                                    'editorId' => $editorId . '-second-column',
+                                    'value' => $second_column_content,
+                                    'uploadDisk' => 'public',
+                                    'downloadDisk' => 'public',
+                                    'placeholder' => 'Type Content',
+                                    'readOnly' => true,
+                                    'class' => 'full-editor-preview border-l border-black',
+                                    'style' => 'width: 180px; padding-left: 12px; margin-top: 48px;',
+                                ])
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <div class="border-l-2 text-lg" style="min-width: 20%; padding-left: 16px; margin-top: 80px;">
@@ -54,7 +69,8 @@
                 @foreach ($selected_elements as $key => $value)
                     @if ($value)
                         <div class="text-md">
-                            {{ formatString($key) }}: _______________{{ $key == 'signature' ? '_______________' : '' }}
+                            {{ formatString($key) }}:
+                            _______________{{ $key == 'signature' ? '_______________' : '' }}
                         </div>
                     @endif
                 @endforeach

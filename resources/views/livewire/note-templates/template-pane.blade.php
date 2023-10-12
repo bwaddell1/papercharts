@@ -1,7 +1,41 @@
 <div class="max-w-7xl mx-auto my-6" style="margin-top: 40px;">
+
+    <div class="mt-6">
+        <div class="mx-auto px-8 xl:px-5 flex justify-between bg-white p-8 shadow rounded-lg mb-8 items-center"
+            style="width: {{$allow_third_column ? 1030 : 900}}px;">
+            <ul
+                class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                <li class="mr-2">
+                    <a href="#" aria-current="page"
+                        class="inline-block p-4 text-blue-600 bg-gray-200 rounded-t-lg active">Note
+                        Template</a>
+                </li>
+                <li class="mr-2">
+                    <a href="{{ route('wave.templates.sample.edit', $template->id) }}"
+                        class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Sample
+                        Template</a>
+                </li>
+            </ul>
+            <ul
+                class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                <li class="mr-2">
+                    <a href="?allow_third_column=false" aria-current="page"
+                        class="inline-block p-4 rounded-t-lg {{!$allow_third_column ? 'text-blue-600 bg-gray-200 active' : 'hover:text-gray-600 hover:bg-gray-50'}}">Two Column
+                        Template</a>
+                </li>
+                <li class="mr-2">
+                    <a href="?allow_third_column=true"
+                        class="inline-block p-4 rounded-t-lg {{$allow_third_column ? 'text-blue-600 bg-gray-200 active' : 'hover:text-gray-600 hover:bg-gray-50'}}">Three
+                        Column
+                        Template</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <form wire:submit.prevent="save">
         <div class="block lg:flex justify-center">
-            <div class="bg-white shadow flex flex-col px-8 xl:px-5 py-12 pb-4 flex-1 mx-4" style="max-width: 750px;">
+            <div class="bg-white shadow flex flex-col px-8 xl:px-5 py-12 pb-4 flex-1 mx-4" style="max-width: {{$allow_third_column ? 800 : 670}}px;">
                 <div class="flex justify-end">
                     <div class="flex gap-1 justify-center items-center flex-wrap mr-6">
                         @foreach ($specialties as $specialty)
@@ -61,20 +95,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="border border-gray-100 rounded" style="margin: 0 24px; margin-top: 16px;">
-                    @livewire('editorjs', [
-                        'editorId' => 'template',
-                        'value' => $template_content,
-                        'uploadDisk' => 'public',
-                        'downloadDisk' => 'public',
-                        'placeholder' => 'Type Content',
-                        // 'readOnly' => false,
-                        'class' => 'full-editor',
-                    ])
+                <div class="border border-gray-100 rounded flex pb-8" style="margin: 0 24px; margin-top: 16px; font-size: 14px;">
+                    <div>
+                        @livewire('editorjs', [
+                            'editorId' => 'template',
+                            'value' => $template_content,
+                            'uploadDisk' => 'public',
+                            'downloadDisk' => 'public',
+                            'placeholder' => 'Type Content',
+                            // 'readOnly' => false,
+                            'class' => 'full-editor',
+                            'style' => $allow_third_column ? 'width: 425px;' : 'width: 570px;',
+                        ])
+                    </div>
+                    @if ($allow_third_column)
+                        <div class="mt-16 border-l border-black">
+                            @livewire('editorjs', [
+                                'editorId' => 'template_second_column',
+                                'value' => $template_second_column_content,
+                                'uploadDisk' => 'public',
+                                'downloadDisk' => 'public',
+                                'placeholder' => 'Type Second Column Content',
+                                // 'readOnly' => false,
+                                'class' => 'full-editor',
+                                'style' => 'width: 285px;',
+                            ])
+                        </div>
+                    @endif
                 </div>
             </div>
+
             <div class="bg-white shadow flex justify-between mx-4 mt-8 lg:mt-0 items-center"
-                style="flex-direction: column; height: fit-content;">
+                style="flex-direction: column; height: fit-content; max-width: 195px;">
                 <div class="w-full">
                     <p class="text-lg py-4 text-semibold mt-2 px-8 lg:px-4">
                         Vitals

@@ -20,7 +20,7 @@ if (!function_exists('jsonToHtml')) {
         foreach ($obj->blocks as $block) {
             switch ($block->type) {
                 case 'paragraph':
-                    $html .= '<p style="text-align: ' . $block->data->alignment . '">' . $block->data->text . '</p>';
+                    $html .= '<p style="word-break: break-all; text-align: ' . $block->data->alignment . '">' . $block->data->text . '</p>';
                     break;
 
                 case 'header':
@@ -51,8 +51,8 @@ if (!function_exists('jsonToHtml')) {
                 case 'checklist':
                     $html .= '<div class="ce-block__content"><div class="cdx-block cdx-checklist">';
                     foreach ($block->data->items as $item) {
-                        $checkbox = !$item->checked ? '<img src="./wave/checkbox.png" width="18px" height="18px" />' : '<img src="./wave/checkedbox.png" width="18px" height="18px" />';
-                        $html .= '<div style="margin: 8px 0;">' . $checkbox . '<div style="display: inline-block; margin-left: 6px;" contenteditable="true">' . $item->text . '</div></div>';
+                        $checkbox = !$item->checked ? '<img src="./wave/checkbox.png" width="12px" height="12px" style="margin-right: 6px;" />' : '<img src="./wave/checkedbox.png" width="12px" height="12px" style="margin-right: 6px;" />';
+                        $html .= '<div style="margin: 8px 0;">' . $checkbox . '<span contenteditable="true">' . $item->text . '</span></div>';
                     }
                     $html .= '</div></div>';
                     break;

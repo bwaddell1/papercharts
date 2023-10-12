@@ -13,9 +13,10 @@ class TemplatePane extends Component
     public $collapseDropdown = true;
     public $specialties = [];
     public $selected_specialties = [];
-    public $template_content, $visit_type = "";
+    public $template_content, $template_second_column_content, $visit_type = "";
     protected $listeners = [
         'editorjs-save:template' => 'handleChangeTemplate',
+        'editorjs-save:template_second_column' => 'handleChangeTemplateSecondColumn',
     ];
 
     private $placeholder = '{"time":1694709745372,"blocks":[{"id":"visit_type","type":"header","data":{"text":"Add Title","level":1}},{"id":"description","type":"paragraph","data":{"text":"<span style=\\"color: rgb(0, 0, 0); font-family: Inter, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\\">Add des</span>c<editorjs-style><editorjs-style class=\\"\\" style=\\"margin-bottom: 8px; display: inline-block;\\">ription</editorjs-style></editorjs-style>","alignment":"left"}}],"version":"2.28.0"}';
@@ -25,6 +26,9 @@ class TemplatePane extends Component
     public $selected_elements = ["signature" => true];
     public $histories = ["medications", "allergies", "family_history", "social_history"];
     public $selected_histories = [];
+    public $allow_third_column;
+
+    protected $queryString = ['allow_third_column' => ['except' => false]];
 
     public function mount()
     {
@@ -39,6 +43,10 @@ class TemplatePane extends Component
             $this->selected_elements = json_decode($this->template->footer, true);
             $this->selected_histories = json_decode($this->template->history, true);
             $this->selected_specialties = $this->template->specialties->pluck('id')->toArray();
+            $this->template_second_column_content = json_decode($this->template->second_content, true);
+            if($this->allow_third_column === null) {
+                $this->allow_third_column = $this->template->third_column_enabled > 0 ? true : false;
+            }
         }
     }
 
@@ -50,6 +58,11 @@ class TemplatePane extends Component
     public function handleChangeTemplate($editorJsonData)
     {
         $this->template_content = $editorJsonData;
+    }
+
+    public function handleChangeTemplateSecondColumn($editorJsonData)
+    {
+        $this->template_second_column_content = $editorJsonData;
     }
 
     public function set_specialty($specialty)
@@ -90,12 +103,14 @@ class TemplatePane extends Component
             $this->template = NoteTemplate::create([
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
+                'second_content' => json_encode($this->template_second_column_content),
                 'vitals' => json_encode($this->selected_vitals),
                 'footer' => json_encode($this->selected_elements),
                 'history' => json_encode($this->selected_histories),
                 'team_id' => auth()->user()->currentTeam ? auth()->user()->currentTeam->id : null,
                 'user_id' => auth()->user()->id,
                 'is_public' => auth()->user()->currentTeam ? false : true,
+                'third_column_enabled' => $this->allow_third_column,
                 'status' => 'published',
             ]);
             $this->updateSpecialty();
@@ -105,9 +120,11 @@ class TemplatePane extends Component
             $this->template->update([
                 'visit_type' => $this->visit_type,
                 'content' => json_encode($this->template_content),
+                'second_content' => json_encode($this->template_second_column_content),
                 'vitals' => json_encode($this->selected_vitals),
                 'footer' => json_encode($this->selected_elements),
                 'history' => json_encode($this->selected_histories),
+                'third_column_enabled' => $this->allow_third_column,
                 'status' => 'published',
             ]);
             $this->updateSpecialty();
@@ -135,7 +152,7 @@ class TemplatePane extends Component
 
     public function handleShowVisit()
     {
-        $this->emit('showVisit', $this->template_content, $this->selected_vitals, $this->selected_elements, $this->selected_histories);
+        $this->emit('showVisit', $this->template_content, $this->selected_vitals, $this->selected_elements, $this->selected_histories, $this->template_second_column_content, $this->allow_third_column);
     }
 
     public function render()

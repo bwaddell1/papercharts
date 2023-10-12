@@ -10,7 +10,7 @@ class VisitNotePane extends Component
     public $visit;
     public $collapseDropdown = true;
     public $selected_specialties = [];
-    public $note_content, $visit_type = "";
+    public $note_content, $second_column_content, $visit_type = "";
     protected $listeners = [
         'editorjs-save:visit_note' => 'handleChangeVisitNote',
     ];
