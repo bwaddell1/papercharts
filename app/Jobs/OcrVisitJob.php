@@ -2,16 +2,15 @@
 
 namespace App\Jobs;
 
+use App\Models\Visit;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use thiagoalessio\TesseractOCR\TesseractOCR;
-use OpenAI\Laravel\Facades\OpenAI;
-use App\Models\Visit;
 use Log;
+use OpenAI\Laravel\Facades\OpenAI;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class OcrVisitJob implements ShouldQueue
 {
@@ -45,10 +44,18 @@ class OcrVisitJob implements ShouldQueue
         $visit_id = $qrcode_info['visit_id'];
         $user_id = $qrcode_info['user_id'];
 
-        $omr_result = shell_exec("python3 $pythonScript " . implode(' ', $arguments));        
+        $omr_result = shell_exec("python3 $pythonScript " . implode(' ', $arguments));
         Log::channel('openai')->info($omr_result);
         Log::channel('openai')->info($ocr_result);
+        $this->generate_second_note($visit_id, $user_id, $ocr_result, $omr_result);
         $result = $this->generate_note($visit_id, $user_id, $ocr_result, $omr_result);
+
+        if (!$result) {
+            $visit = Visit::find($visit_id);
+            $visit->status = "failed";
+            $visit->save();
+        }
+
     }
 
     public function generate_note($visit_id, $user_id, $ocr_result, $omr_result)
@@ -60,7 +67,7 @@ class OcrVisitJob implements ShouldQueue
         $messages[] = [
             'role' => 'system',
             'content' => "You are a medical scribe helping write physician documentation. I will give you a short explanation and you will turn it into a complete encounter note. Be Concise.
-            Here is the ocr result of doctor's documentation. you can ignore typos: 
+            Here is the ocr result of doctor's documentation. you can ignore typos:
 
             *************************************
             $ocr_result
@@ -70,9 +77,9 @@ class OcrVisitJob implements ShouldQueue
             $omr_result
             *************************************
 
-            
-            
-            The note should be in JSON format. 
+
+
+            The note should be in JSON format.
             Here is JSON that you should use: $template
 
             You can add note informations to \"text\" fields of JSON or replace \"___\" with the correct information. Also you can change \"checked\" value of \"checklist\" fields to \"true\" based on explanation.
@@ -114,6 +121,81 @@ class OcrVisitJob implements ShouldQueue
         } catch (\Exception $ex) {
             Log::channel('openai')->info('JSON parsing failed!');
             return $this->generate_note($visit_id, $user_id, $ocr_result, $omr_result);
+        }
+        return true;
+    }
+
+    public function generate_second_note($visit_id, $user_id, $ocr_result, $omr_result)
+    {
+        $visit = Visit::find($visit_id);
+        if (!$visit->visitType->third_column_enabled) {
+            return;
+        }
+        $template = $visit->visitType->second_content;
+        $sample_template = $visit->visitType->sample_second_content ?? "";
+
+        $messages[] = [
+            'role' => 'system',
+            'content' => "You are a medical scribe helping write physician documentation. I will give you a short explanation and you will turn it into a complete encounter note. Be Concise.
+            Here is the ocr result of doctor's documentation. you can ignore typos:
+
+            *************************************
+            $ocr_result
+
+            *************************************
+            Here is the omr result of doctor's documentation. you can update checked value of json checkbox fields based on this data. you can ignore typos:
+            $omr_result
+            *************************************
+
+
+            *************************************
+            Here is the similar note as to how the result should look:
+            $sample_template
+            *************************************
+
+
+            The note should be in JSON format.
+            Here is JSON that you should use: $template
+
+            You can add note informations to \"text\" fields of JSON or replace \"___\" with the correct information. Also you can change \"checked\" value of \"checklist\" fields to \"true\" based on explanation.
+            ** MOST IMPORTANT ** You cannot change any structure of JSON in any case. You should keep all structures of JSON and just add informations.
+
+            Additionally please write and suggest an ICD10 code for the diagnosis",
+        ];
+
+        Log::channel('openai')->info(json_encode($messages));
+
+        $response = OpenAI::chat()->create([
+            'model' => 'gpt-4',
+            'messages' => $messages,
+        ]);
+
+        // OpenAI returns choices array, so select the first one
+        $content = $response['choices'][0]['message']['content'];
+
+        Log::channel('openai')->info('CHATGPT Result');
+        Log::channel('openai')->info($content);
+
+        try {
+            $startIndex = strpos($content, '{');
+            $endIndex = strrpos($content, '}');
+            $jsonString = substr($content, $startIndex, $endIndex - $startIndex + 1);
+
+            // Parse the JSON data
+            $jsonData = json_decode($jsonString, true);
+
+            if (json_last_error() === JSON_ERROR_NONE) {
+                // $jsonData now contains the parsed JSON
+                $visit->note_content = $jsonString;
+                $visit->status = "complete";
+                $visit->save();
+            } else {
+                Log::channel('openai')->info('JSON parsing failed!');
+                return $this->generate_second_note($visit_id, $user_id, $ocr_result, $omr_result);
+            }
+        } catch (\Exception $ex) {
+            Log::channel('openai')->info('JSON parsing failed!');
+            return $this->generate_second_note($visit_id, $user_id, $ocr_result, $omr_result);
         }
         return true;
     }

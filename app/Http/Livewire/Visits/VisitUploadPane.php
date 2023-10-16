@@ -63,6 +63,7 @@ class VisitUploadPane extends Component
         }
         $this->emit('reloadVisits');
         $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Scanning process start!']);
+        $this->visits = [];
         $this->dispatchBrowserEvent('close_upload_modal');
     }
 
