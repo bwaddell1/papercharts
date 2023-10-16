@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Visits;
 
+use App\Jobs\GenerateNoteJob;
 use App\Models\Visit;
+use File;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Jobs\GenerateNoteJob;
 use PDF;
 
 class VisitTable extends Component
@@ -15,9 +17,9 @@ class VisitTable extends Component
 
     protected $listeners = ['dateRangeUpdated' => 'handleChangeSearchDate', 'printVisits', 'reloadVisits'];
     public $start_date, $end_date;
-    public $selected_rows = [], $show_rows = [];
+    public $selected_rows = [], $show_rows = [], $pdf_list = [];
     public $filterProvider = "";
-    public $generate_note_id, $prompt = "", $note_generating = false;
+    public $generate_note_id, $prompt = "", $note_generating = false, $showPreviewModal = false;
 
     public function mount()
     {
@@ -73,15 +75,15 @@ class VisitTable extends Component
 
         $template = $visits[0]->visitType;
 
-        $this->selected_vitals = array_filter(json_decode($template->vitals, true), function($e) {
-            return $e;
-        });
-        
-        $this->selected_histories = array_filter(json_decode($template->history, true), function($e) {
+        $this->selected_vitals = array_filter(json_decode($template->vitals, true), function ($e) {
             return $e;
         });
 
-        $this->selected_elements = array_filter(json_decode($template->footer, true), function($e) {
+        $this->selected_histories = array_filter(json_decode($template->history, true), function ($e) {
+            return $e;
+        });
+
+        $this->selected_elements = array_filter(json_decode($template->footer, true), function ($e) {
             return $e;
         });
 
@@ -100,9 +102,81 @@ class VisitTable extends Component
             , "Visit - #{$visits[0]->id}.pdf");
     }
 
+    public function showPrintVisits()
+    {
+        if (count($this->selected_rows) == 0) {
+            $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Please select visits to print!']);
+            return;
+        }
+        $this->showPreviewModal = true;
+        $visits = Visit::whereIn('id', $this->selected_rows)->get();
+
+        $this->pdf_list = [];
+        File::cleanDirectory("storage/print_pdfs");
+
+        foreach ($visits as $visit) {
+            $template = $visit->visitType;
+
+            $this->selected_vitals = array_filter(json_decode($template->vitals, true), function ($e) {
+                return $e;
+            });
+
+            $this->selected_histories = array_filter(json_decode($template->history, true), function ($e) {
+                return $e;
+            });
+
+            $this->selected_elements = array_filter(json_decode($template->footer, true), function ($e) {
+                return $e;
+            });
+
+            $pdf = PDF::loadView('theme::prints.visits', [
+                'visits' => [$visit],
+                'selected_vitals' => $this->selected_vitals,
+                'selected_histories' => $this->selected_histories,
+                'selected_elements' => $this->selected_elements,
+            ])->output();
+
+            $visit->status = "printed";
+            $visit->save();
+
+            Storage::put("public/print_pdfs/{$visit->id}.pdf", $pdf);
+            array_push($this->pdf_list, [
+                "name" => "$visit->first_name $visit->last_name",
+                "link" => "storage/print_pdfs/{$visits[0]->id}.pdf",
+                "visitType" => $visit->visitType->visit_type,
+                "id" => $visit->id,
+            ]);
+        }
+    }
+
+    public function closePrintVisits()
+    {
+        $this->showPreviewModal = false;
+        $this->pdf_list = [];
+    }
+
+    public function downloadZipFiles()
+    {
+        $zip = new \ZipArchive();
+        $fileName = "Visits-" . now()->format('YmdHis') . ".zip";
+        if ($zip->open(public_path($fileName), \ZipArchive::CREATE) == true) {
+            $files = File::files(public_path('storage/print_pdfs'));
+            foreach ($files as $key => $value) {
+                $relativeName = basename($value);
+                $zip->addFile($value, $relativeName);
+            }
+            $zip->close();
+
+        }
+
+        File::cleanDirectory("storage/print_pdfs");
+        // return Storage::disk('exports')->download("Visits-" . now()->format('YmdHis') . ".zip");
+        return response()->download(public_path($fileName));
+    }
+
     public function reloadVisits()
     {
-        
+
     }
 
     public function generate_note()
@@ -129,11 +203,9 @@ class VisitTable extends Component
 
     public function check_generate_note()
     {
-        if($this->generate_note_id)
-        {
+        if ($this->generate_note_id) {
             $visit = Visit::find($this->generate_note_id);
-            if($visit->note_content)
-            {
+            if ($visit->note_content) {
                 $this->dispatchBrowserEvent('CompleteGenerateNote', ['visit_id' => $visit->id]);
             }
         }
