@@ -26,7 +26,7 @@ class TemplatePane extends Component
     public $selected_elements = ["signature" => true];
     public $histories = ["medications", "allergies", "family_history", "social_history"];
     public $selected_histories = [];
-    public $allow_third_column;
+    public $allow_third_column = false;
 
     protected $queryString = ['allow_third_column' => ['except' => false]];
 
@@ -44,7 +44,7 @@ class TemplatePane extends Component
             $this->selected_histories = json_decode($this->template->history, true);
             $this->selected_specialties = $this->template->specialties->pluck('id')->toArray();
             $this->template_second_column_content = json_decode($this->template->second_content, true);
-            if($this->allow_third_column === null) {
+            if ($this->allow_third_column === null) {
                 $this->allow_third_column = $this->template->third_column_enabled > 0 ? true : false;
             }
         }
@@ -92,11 +92,11 @@ class TemplatePane extends Component
             return false;
         }
         if ($this->mode == 'create' || (auth()->user()->currentTeam && $this->template != null && $this->template->is_public)) {
-            if(auth()->user()->currentTeam && $this->template != null && $this->template->is_public && $this->visit_type == $this->template->visit_type) {
+            if (auth()->user()->currentTeam && $this->template != null && $this->template->is_public && $this->visit_type == $this->template->visit_type) {
                 $this->visit_type = $this->visit_type . " (Cloned by " . auth()->user()->currentTeam->name . ")";
             }
             $same_name_exist = NoteTemplate::where('visit_type', $this->visit_type)->where('team_id', auth()->user()->currentTeam->id)->exists();
-            if($same_name_exist) {
+            if ($same_name_exist) {
                 $this->dispatchBrowserEvent('notify', ['type' => 'danger', 'message' => 'Visit type already exists! Please use a different title.']);
                 return false;
             }
