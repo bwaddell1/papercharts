@@ -50,24 +50,27 @@
     @endif
 
     <!-- Styles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="{{ asset('themes/' . $theme->folder . '/css/style.css') }}" rel="stylesheet">
+
+    @stack('header-scripts')
+
+    @livewireScripts
+
 </head>
 
 <body
-    class="flex flex-col min-h-screen @if (Request::is('/')) {{ 'bg-white' }}@else{{ 'bg-gray-50' }} @endif">
+    class="flex flex-col min-h-screen @if (Request::is('/')) {{ 'bg-white' }}@else{{ 'bg-gray-50' }} @endif @if (config('wave.dev_bar')) {{ 'pb-10' }} @endif">
 
-    <main class="flex-grow overflow-x-hidden" style="margin: 48px">
+    <main class="flex-grow overflow-x-hidden relative">
         @yield('content')
     </main>
 
-    @livewireScripts
+    @include('theme::partials.footer')
+
 </body>
 
 

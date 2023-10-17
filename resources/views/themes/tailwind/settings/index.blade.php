@@ -59,6 +59,18 @@
                     <span
                         class="absolute left-0 block w-1 transition-all duration-300 ease-out rounded-full @if (Request::is('settings/api')) {{ 'bg-wave-500 h-full top-0' }}@else{{ 'top-1/2 bg-gray-300 group-hover:top-0 h-0 group-hover:h-full' }} @endif "></span>
                 </a>
+                <a href="{{ route('wave.settings', '2FA') }}"
+                    class="block relative w-full flex items-center px-6 py-3 text-sm font-medium leading-5 @if (Request::is('settings/2FA')) {{ 'text-gray-900' }}@else{{ 'text-gray-600' }} @endif transition duration-150 ease-in-out rounded-md group hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50">
+                    <svg class="flex-shrink-0 w-5 h-5 mr-3 -ml-1 @if (Request::is('settings/2FA')) {{ 'text-gray-500' }}@else{{ 'text-gray-400' }} @endif transition duration-150 ease-in-out group-hover:text-gray-500 group-focus:text-gray-500"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                        </path>
+                    </svg>
+                    <span class="hidden truncate md:inline-block">Two Factor Verification</span>
+                    <span
+                        class="absolute left-0 block w-1 transition-all duration-300 ease-out rounded-full @if (Request::is('settings/security')) {{ 'bg-wave-500 h-full top-0' }}@else{{ 'top-1/2 bg-gray-300 group-hover:top-0 h-0 group-hover:h-full' }} @endif "></span>
+                </a>
             </div>
 
             @if (auth()->user()->hasRole('team_admin'))

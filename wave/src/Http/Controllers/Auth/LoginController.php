@@ -70,6 +70,8 @@ class LoginController extends Controller
     {
         $request->session()->regenerate();
 
+        $request->session()->forget("two_factor_verified");
+
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())

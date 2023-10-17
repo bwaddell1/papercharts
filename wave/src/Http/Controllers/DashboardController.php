@@ -25,4 +25,9 @@ class DashboardController extends Controller
     {
         return view('theme::dashboard.index');
     }
+    
+    public function twoFactorLogin(){
+        return view('theme::auth.two-factor-login');
+    }
+
 }

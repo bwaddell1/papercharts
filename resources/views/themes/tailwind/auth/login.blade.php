@@ -17,7 +17,7 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="px-4 py-8 bg-white border shadow border-gray-50 sm:rounded-lg sm:px-10">
-                <form action="#" method="POST">
+                <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div>
 
