@@ -95,7 +95,7 @@
 
                 <div class="bg-white border border-gray-100 shadow-md rounded-xl" role="menu"
                     aria-orientation="vertical" aria-labelledby="options-menu">
-                    <a href="{{ route('wave.profile', auth()->user()->username) }}"
+                    <a href="{{ route('wave.settings', 'profile') }}"
                         class="block px-4 py-3 text-gray-700 hover:text-gray-800">
 
                         <span class="block text-sm font-medium leading-tight truncate">

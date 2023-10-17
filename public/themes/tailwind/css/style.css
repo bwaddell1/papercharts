@@ -8,6 +8,7 @@
     width: 930px;
     justify-content: start;
 }
+
 .full-editor-preview {
     justify-content: start;
     overflow-x: hidden;
@@ -34,7 +35,13 @@
     margin-left: 60px;
 }
 
-.full-editor h1, .full-editor h2, .full-editor h3, .full-editor h4, .full-editor h5, .full-editor h6, .full-editor p {
+.full-editor h1,
+.full-editor h2,
+.full-editor h3,
+.full-editor h4,
+.full-editor h5,
+.full-editor h6,
+.full-editor p {
     font-size: revert !important;
 }
 
@@ -47,14 +54,14 @@ editorjs-style {
 }
 
 .template-subject {
-    min-width: 300px; 
-    width: 300px !important; 
-    padding: 20px 0;    
+    min-width: 300px;
+    width: 300px !important;
+    padding: 20px 0;
 }
 
 .template-content {
-    width: calc(100% - 300px) !important; 
-    padding: 20px 0;    
+    width: calc(100% - 300px) !important;
+    padding: 20px 0;
 }
 
 .template-white-content {
@@ -66,7 +73,8 @@ editorjs-style {
     overflow-y: auto;
 }
 
-button:disabled, a.disabled {
+button:disabled,
+a.disabled {
     cursor: no-drop;
     background: #cccccc66 !important;
 }
@@ -74,8 +82,8 @@ button:disabled, a.disabled {
 @media (min-width: 768px) {
     .md\:justify-start {
         -webkit-box-pack: start;
-            -ms-flex-pack: start;
-                justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
     }
 
     .md\:inline-block {
@@ -84,7 +92,7 @@ button:disabled, a.disabled {
 }
 
 .searchable-select input {
-    box-shadow: 0 0 #0000,0 0 #0000,0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
     color: rgb(17 24 39);
     border-color: rgb(209 213 219);
     border-width: 1px;

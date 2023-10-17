@@ -81,7 +81,7 @@
                     Copyright 2023 Papercharts.ai
                 </td>
                 <td style="text-align: right;">
-                    {{ auth()->user()->currentTeam->name }}
+                    {{ isset(auth()->user()->currentTeam->name) ? auth()->user()->currentTeam->name : "" }}
                 </td>
             </tr>
         </table>

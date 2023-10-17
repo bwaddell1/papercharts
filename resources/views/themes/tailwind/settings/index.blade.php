@@ -69,7 +69,7 @@
                     </svg>
                     <span class="hidden truncate md:inline-block">Two Factor Verification</span>
                     <span
-                        class="absolute left-0 block w-1 transition-all duration-300 ease-out rounded-full @if (Request::is('settings/security')) {{ 'bg-wave-500 h-full top-0' }}@else{{ 'top-1/2 bg-gray-300 group-hover:top-0 h-0 group-hover:h-full' }} @endif "></span>
+                        class="absolute left-0 block w-1 transition-all duration-300 ease-out rounded-full @if (Request::is('settings/2FA')) {{ 'bg-wave-500 h-full top-0' }}@else{{ 'top-1/2 bg-gray-300 group-hover:top-0 h-0 group-hover:h-full' }} @endif "></span>
                 </a>
             </div>
 
@@ -154,7 +154,7 @@
         }
 
         .croppie-container .cr-boundary {
-            border-radius: 50% !important;
+            border-radius: .375rem !important;
             overflow: hidden;
         }
 

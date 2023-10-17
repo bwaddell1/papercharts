@@ -10,7 +10,7 @@
             <div class="flex justify-center w-full my-8 lg:w-3/12 xl:w-1/5 lg:m-b0">
                 <div class="relative w-32 h-32 cursor-pointer group">
                     <img id="preview" src="{{ Voyager::image(auth()->user()->currentTeam->logo) . '?' . time() }}"
-                        alt="No Image" class="w-32 h-32 rounded-full text-center" style="line-height: 50px;">
+                        alt="No Image" class="w-32 h-32 rounded-md text-center" style="line-height: 50px;">
                     <div class="absolute inset-0 w-full h-full">
                         <input type="file" id="upload"
                             class="absolute inset-0 z-20 w-full h-full opacity-0 cursor-pointer group" accept="image/*">
