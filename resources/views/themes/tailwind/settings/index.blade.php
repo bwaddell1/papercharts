@@ -80,7 +80,8 @@
                         class="hidden px-6 pb-3 text-xs font-semibold leading-4 tracking-wider text-gray-500 uppercase md:block">
                         Billing</h3>
 
-                    <a href="{{ route('wave.settings', 'plans') }}"
+                    {{-- <a href="{{ route('wave.settings', 'plans') }}" --}}
+                    <a href="/billing"
                         class="block relative w-full flex items-center px-6 py-3 text-sm font-medium leading-5 @if (Request::is('settings/plans')) {{ 'text-gray-900' }}@else{{ 'text-gray-600' }} @endif transition duration-150 ease-in-out rounded-md group hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50">
                         <svg class="flex-shrink-0 w-5 h-5 mr-3 -ml-1 @if (Request::is('settings/plans')) {{ 'text-gray-500' }}@else{{ 'text-gray-400' }} @endif transition duration-150 ease-in-out group-hover:text-gray-500 group-focus:text-gray-500"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

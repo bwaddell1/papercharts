@@ -67,3 +67,43 @@ if (!function_exists('jsonToHtml')) {
         echo $doc->saveHTML();
     }
 }
+
+if (!function_exists('jsonToText')) {
+    function jsonToText($jsonStr)
+    {
+        $obj = json_decode($jsonStr);
+
+        $text = '';
+        foreach ($obj->blocks as $block) {
+            switch ($block->type) {
+                case 'paragraph':
+                    $text .= $block->data->text . "\n\n";
+                    break;
+
+                case 'header':
+                    $text .= $block->data->text . "\n\n";
+                    break;
+
+                case 'raw':
+                    break;
+
+                case 'list':
+                    break;
+
+                case 'code':
+                    break;
+
+                case 'image':
+                    break;
+
+                case 'checklist':
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        return trim($text);
+    }
+}

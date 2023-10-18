@@ -45,7 +45,8 @@
     font-size: revert !important;
 }
 
-.full-editor .codex-editor__redactor {
+.full-editor .codex-editor__redactor,
+.text-editor .codex-editor__redactor {
     padding-bottom: 0 !important;
 }
 
@@ -134,4 +135,12 @@ a.disabled {
 .toggleSwitch:after {
     top: 2px !important;
     right: 2px;
+}
+
+.text-editor .ce-inline-toolbar {
+    display: none;
+}
+
+.text-editor .ce-toolbar__content {
+    display: none;
 }

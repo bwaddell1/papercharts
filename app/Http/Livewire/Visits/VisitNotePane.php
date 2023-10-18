@@ -16,6 +16,7 @@ class VisitNotePane extends Component
         'editorjs-save:visit_note_second_column' => 'handleChangeVisitSecondNote',
     ];
 
+    private $placeholder = '{"time":1694709745372,"blocks":[{"id":"description","type":"paragraph","data":{"text":"","alignment":"left"}}],"version":"2.28.0"}';
     public $vitals = ["heart_rate", "respiratory_rate", "Height/Weight", "blood_pressure", "BMI"];
     public $selected_vitals = [];
     public $footer_elements = ["signature", "time", "date"];
@@ -26,7 +27,7 @@ class VisitNotePane extends Component
 
     public function mount()
     {
-        $this->note_content = json_decode($this->visit->note_content ?? $this->visit->visitType->content, true);
+        $this->note_content = json_decode($this->visit->note_content ?? $this->placeholder, true);
         $this->second_column_content = json_decode($this->visit->second_note_content ?? $this->visit->visitType->second_content, true);
         $this->selected_vitals = json_decode($this->visit->visitType->vitals, true);
         $this->selected_elements = json_decode($this->visit->visitType->footer, true);
@@ -62,9 +63,15 @@ class VisitNotePane extends Component
     public function clearNote()
     {
         $this->visit->update([
-            'note_content' => $this->visit->visitType->content,
+            'note_content' => $this->placeholder,
         ]);
         $this->dispatchBrowserEvent('page-reload');
+    }
+
+    public function copyText()
+    {
+        $this->dispatchBrowserEvent('clipboard', ['message' => jsonToText(json_encode($this->note_content))]);
+        $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Copied!']);
     }
 
     public function render()

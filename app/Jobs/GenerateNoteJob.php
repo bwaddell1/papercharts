@@ -17,6 +17,8 @@ class GenerateNoteJob implements ShouldQueue
 
     public $visit_id, $prompt;
 
+    private $placeholder = '{"time":1694709745372,"blocks":[{"id":"description","type":"paragraph","data":{"text":"","alignment":"left"}}],"version":"2.28.0"}';
+
     /**
      * Create a new job instance.
      *
@@ -35,7 +37,6 @@ class GenerateNoteJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->generate_second_note();
         $this->generate_note();
     }
 
@@ -50,16 +51,10 @@ class GenerateNoteJob implements ShouldQueue
             'content' => "You are a medical scribe helping write physician documentation. I will give you a short explanation and you will turn it into a complete encounter note. Be Concise.
             Here is the short explanation: \"$this->prompt\"
             Here is a similar note as to how the result should look:
-
-            $sample_template
-
+            
             *************************************
-
-            The note should be in JSON format.
-            Here is JSON that you should use: $template
-
-            You can add note informations to \"text\" fields of JSON or replace \"___\" with the correct information. Also you can change \"checked\" value of \"checklist\" fields to \"true\" based on explanation.
-            ** MOST IMPORTANT ** You cannot change any structure of JSON in any case. You should keep all structures of JSON and just add informations.
+            $sample_template
+            *************************************
 
             Additionally please write and suggest an ICD10 code for the diagnosis",
         ];
@@ -78,89 +73,17 @@ class GenerateNoteJob implements ShouldQueue
         Log::channel('openai')->info('CHATGPT Result');
         Log::channel('openai')->info($content);
 
-        try {
-            $startIndex = strpos($content, '{');
-            $endIndex = strrpos($content, '}');
-            $jsonString = substr($content, $startIndex, $endIndex - $startIndex + 1);
-
-            // Parse the JSON data
-            $jsonData = json_decode($jsonString, true);
-
-            if (json_last_error() === JSON_ERROR_NONE) {
-                // $jsonData now contains the parsed JSON
-                $visit->note_content = $jsonString;
-                $visit->save();
-            } else {
-                Log::channel('openai')->info('JSON parsing failed!');
-                $this->generate_note();
-            }
-        } catch (\Exception $ex) {
-            Log::channel('openai')->info('JSON parsing failed!');
+        if ($content) {
+            $placeholder_string = json_decode($this->placeholder, true);
+            $placeholder_string['blocks'][0]['data']['text'] = nl2br($content);
+            // $jsonData now contains the parsed JSON
+            $visit->note_content = $placeholder_string;
+            $visit->status = "complete";
+            $visit->save();
+        } else {
+            Log::channel('openai')->info('ChatGPT generate failed!');
             $this->generate_note();
         }
-    }
-
-    public function generate_second_note()
-    {
-        $visit = Visit::find($this->visit_id);
-        if (!$visit->visitType->third_column_enabled) {
-            return;
-        }
-        $template = $visit->visitType->second_content;
-        $sample_template = $visit->visitType->sample_second_content ?? "";
-
-        $messages[] = [
-            'role' => 'system',
-            'content' => "You are a medical scribe helping write physician documentation. I will give you a short explanation and you will turn it into a complete encounter note. Be Concise.
-            Here is the short explanation: \"$this->prompt\"
-            Here is a similar note as to how the result should look:
-
-            $sample_template
-
-            *************************************
-
-            The note should be in JSON format.
-            Here is JSON that you should use: $template
-
-            You can add note informations to \"text\" fields of JSON or replace \"___\" with the correct information. Also you can change \"checked\" value of \"checklist\" fields to \"true\" based on explanation.
-            ** MOST IMPORTANT ** You cannot change any structure of JSON in any case. You should keep all structures of JSON and just add informations.
-
-            Additionally please write and suggest an ICD10 code for the diagnosis",
-        ];
-
-        Log::channel('openai')->info('Second AI Content Generating......');
-        Log::channel('openai')->info(json_encode($messages));
-
-        $response = OpenAI::chat()->create([
-            'model' => 'gpt-4',
-            'messages' => $messages,
-        ]);
-
-        // OpenAI returns choices array, so select the first one
-        $content = $response['choices'][0]['message']['content'];
-
-        Log::channel('openai')->info('CHATGPT Result');
-        Log::channel('openai')->info($content);
-
-        try {
-            $startIndex = strpos($content, '{');
-            $endIndex = strrpos($content, '}');
-            $jsonString = substr($content, $startIndex, $endIndex - $startIndex + 1);
-
-            // Parse the JSON data
-            $jsonData = json_decode($jsonString, true);
-
-            if (json_last_error() === JSON_ERROR_NONE) {
-                // $jsonData now contains the parsed JSON
-                $visit->second_note_content = $jsonString;
-                $visit->save();
-            } else {
-                Log::channel('openai')->info('JSON parsing failed!');
-                $this->generate_second_note();
-            }
-        } catch (\Exception $ex) {
-            Log::channel('openai')->info('JSON parsing failed!');
-            $this->generate_second_note();
-        }
+        
     }
 }

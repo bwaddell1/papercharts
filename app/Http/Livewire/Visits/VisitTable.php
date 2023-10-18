@@ -184,9 +184,12 @@ class VisitTable extends Component
         dispatch(new GenerateNoteJob($this->generate_note_id, $this->prompt));
         $visit = Visit::find($this->generate_note_id);
         $visit->note_content = null;
+        $visit->status = "processing";
         $visit->save();
-        $this->dispatchBrowserEvent('generateNote');
-        $this->note_generating = true;
+        $this->closeQuickNoteModal();
+        $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Request is processing!']);
+        // $this->dispatchBrowserEvent('generateNote');
+        // $this->note_generating = true;
     }
 
     public function handleOpenQuickNoteModal($visit_id)
