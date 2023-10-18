@@ -10,7 +10,7 @@
                             'value' => $note_content,
                             'uploadDisk' => 'public',
                             'downloadDisk' => 'public',
-                            'placeholder' => 'Type Content',
+                            'placeholder' => 'Type visit result content',
                             // 'readOnly' => false,
                             'class' => 'text-editor',
                             'style' => 'width: 970px;',
