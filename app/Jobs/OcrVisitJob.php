@@ -62,7 +62,7 @@ class OcrVisitJob implements ShouldQueue
     {
         $visit = Visit::find($visit_id);
         $template = $visit->visitType->content;
-        $sample_template = $visit->visitType->sample_note ?? "";
+        $sample_template = $visit->visitType->sample_note ? jsonToText($visit->visitType->sample_note) : "";
 
         $messages[] = [
             'role' => 'system',
