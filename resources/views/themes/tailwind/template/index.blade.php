@@ -24,7 +24,7 @@
     </div>
 
     <div class="py-12">
-        <div class="bg-white max-w-7xl mx-auto px-8 xl:px-5 rounded-lg shadow">
+        <div class="max-w-7xl mx-auto px-8 xl:px-5">
 
             @livewire('note-templates.template-table')
 
