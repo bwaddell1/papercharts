@@ -152,7 +152,7 @@ class TemplatePane extends Component
 
     public function handleShowVisit()
     {
-        $this->emit('showVisit', $this->template_content, $this->selected_vitals, $this->selected_elements, $this->selected_histories, $this->template_second_column_content, $this->allow_third_column);
+        $this->emit('showVisit', $this->template->id, $this->template_content, $this->selected_vitals, $this->selected_elements, $this->selected_histories, $this->template_second_column_content, $this->allow_third_column);
     }
 
     public function render()
