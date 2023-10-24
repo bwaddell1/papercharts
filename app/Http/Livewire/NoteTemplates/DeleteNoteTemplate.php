@@ -4,11 +4,12 @@ namespace App\Http\Livewire\NoteTemplates;
 
 use Livewire\Component;
 use App\Models\NoteTemplate;
+use App\Models\Visit;
 
 class DeleteNoteTemplate extends Component
 {
     public $noteTemplate_id, $noteTemplate_name;
-    
+
     protected $listeners = ['deleteNoteTemplate' => 'setNoteTemplate',];
 
     public function setNoteTemplate($noteTemplate_id)
@@ -18,7 +19,8 @@ class DeleteNoteTemplate extends Component
 
     public function handleDeleteNoteTemplate()
     {
-        NoteTemplate::find($this->noteTemplate_id)->delete();        
+        Visit::where("visit_type", $this->noteTemplate_id)->delete();
+        NoteTemplate::find($this->noteTemplate_id)->delete();
         $this->dispatchBrowserEvent('page-reload');
     }
 
