@@ -51,7 +51,7 @@ class GenerateNoteJob implements ShouldQueue
             'content' => "You are a medical scribe helping write physician documentation. I will give you a short explanation and you will turn it into a complete encounter note. Be Concise.
             Here is the short explanation: \"$this->prompt\"
             Here is a similar note as to how the result should look:
-            
+
             *************************************
             $sample_template
             *************************************
@@ -63,7 +63,7 @@ class GenerateNoteJob implements ShouldQueue
         Log::channel('openai')->info(json_encode($messages));
 
         $response = OpenAI::chat()->create([
-            'model' => 'gpt-4',
+            'model' => 'gpt-3.5-turbo',
             'messages' => $messages,
         ]);
 
@@ -84,6 +84,6 @@ class GenerateNoteJob implements ShouldQueue
             Log::channel('openai')->info('ChatGPT generate failed!');
             $this->generate_note();
         }
-        
+
     }
 }

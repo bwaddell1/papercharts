@@ -77,7 +77,7 @@ class OcrVisitJob implements ShouldQueue
             Here is the omr result of doctor's documentation. you can update checked value of json checkbox fields based on this data. you can ignore typos:
             $omr_result
             *************************************
-            
+
             *************************************
             Here is a similar note as to how the result should look:
             $sample_template
@@ -89,7 +89,7 @@ class OcrVisitJob implements ShouldQueue
         Log::channel('openai')->info(json_encode($messages));
 
         $response = OpenAI::chat()->create([
-            'model' => 'gpt-4',
+            'model' => 'gpt-3.5-turbo',
             'messages' => $messages,
         ]);
 
