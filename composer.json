@@ -54,6 +54,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Zxing\\": "vendor/libern/qr-code-reader/src/lib/",
+            "Zxing\\Common\\": "vendor/libern/qr-code-reader/src/lib/common/",
             "Wave\\": "wave/src/"
         }
     },
