@@ -44,18 +44,19 @@ class OcrVisitJob implements ShouldQueue
         $qrcode_info = json_decode($qrcode_text, true);
         $visit_id = $qrcode_info['visit_id'];
         $user_id = $qrcode_info['user_id'];
+        $visit = Visit::find($visit_id);
 
-        $omr_result = shell_exec("python3 $pythonScript " . implode(' ', $arguments));
-        Log::channel('openai')->info($omr_result);
-        Log::channel('openai')->info($ocr_result);
-        $result = $this->generate_note($visit_id, $user_id, $ocr_result, $omr_result);
+        if($visit) {
+            $omr_result = shell_exec("python3 $pythonScript " . implode(' ', $arguments));
+            Log::channel('openai')->info($omr_result);
+            Log::channel('openai')->info($ocr_result);
+            $result = $this->generate_note($visit_id, $user_id, $ocr_result, $omr_result);
 
-        if (!$result) {
-            $visit = Visit::find($visit_id);
-            $visit->status = "failed";
-            $visit->save();
+            if (!$result) {
+                $visit->status = "failed";
+                $visit->save();
+            }
         }
-
     }
 
     public function generate_note($visit_id, $user_id, $ocr_result, $omr_result)

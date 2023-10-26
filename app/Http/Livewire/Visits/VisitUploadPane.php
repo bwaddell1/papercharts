@@ -5,8 +5,6 @@ namespace App\Http\Livewire\Visits;
 use Livewire\Component;
 use App\Jobs\OcrVisitJob;
 use App\Models\Visit;
-use Libern\QRCodeReader\QRCodeReader;
-use Zxing\Common\HybridBinarizer;
 
 class VisitUploadPane extends Component
 {
@@ -50,24 +48,28 @@ class VisitUploadPane extends Component
                 $pdf = new \Spatie\PdfToImage\Pdf(public_path('scanning/' . $visit['name']));
                 $pdf->saveImage(public_path('scanning/' . $visit['name'] . '.jpg'));
                 dispatch(new OcrVisitJob(public_path('scanning/' . $visit['name'] . '.jpg')));
-                $QRCodeReader = new QRCodeReader();
+                $QRCodeReader = new \Libern\QRCodeReader\QRCodeReader();
                 $qrcode_text = $QRCodeReader->decode(public_path('scanning/' . $visit['name'] . '.jpg'));
                 $qrcode_info = json_decode($qrcode_text, true);
                 $visit_id = $qrcode_info['visit_id'];
                 $visit = Visit::find($visit_id);
-                $visit->status = "processing";
-                $visit->save();
+                if($visit) {
+                    $visit->status = "processing";
+                    $visit->save();
+                }
             }
             else {
                 \File::move(public_path('visits/' . $visit['name']), public_path('scanning/' . $visit['name']));
                 dispatch(new OcrVisitJob(public_path('scanning/' . $visit['name'])));
-                $QRCodeReader = new QRCodeReader();
+                $QRCodeReader = new \Libern\QRCodeReader\QRCodeReader();
                 $qrcode_text = $QRCodeReader->decode(public_path('scanning/' . $visit['name']));
                 $qrcode_info = json_decode($qrcode_text, true);
                 $visit_id = $qrcode_info['visit_id'];
                 $visit = Visit::find($visit_id);
-                $visit->status = "processing";
-                $visit->save();
+                if($visit) {
+                    $visit->status = "processing";
+                    $visit->save();
+                }
             }
         }
         $this->emit('reloadVisits');
