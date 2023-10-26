@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Jobs\OcrVisitJob;
 use App\Models\Visit;
 use Libern\QRCodeReader\QRCodeReader;
+use Zxing\Common\HybridBinarizer;
 
 class VisitUploadPane extends Component
 {
