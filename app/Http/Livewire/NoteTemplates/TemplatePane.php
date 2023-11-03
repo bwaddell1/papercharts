@@ -19,7 +19,7 @@ class TemplatePane extends Component
         'editorjs-save:template_second_column' => 'handleChangeTemplateSecondColumn',
     ];
 
-    private $placeholder = '{"time":1694709745372,"blocks":[{"id":"visit_type","type":"header","data":{"text":"Add Title","level":1}},{"id":"description","type":"paragraph","data":{"text":"<span style=\\"color: rgb(0, 0, 0); font-family: Inter, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\\">Add des</span>c<editorjs-style><editorjs-style class=\\"\\" style=\\"margin-bottom: 8px; display: inline-block;\\">ription</editorjs-style></editorjs-style>","alignment":"left"}}],"version":"2.28.0"}';
+    private $placeholder = '{"time":1694709745372,"blocks":[{"id":"visit_type","type":"header","data":{"text":"Add Title","level":1}},{"id":"description","type":"paragraph","data":{"text":"<span style=\\"color: rgb(0, 0, 0); font-family: Inter, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\\">Add description</span>","alignment":"left"}}],"version":"2.28.0"}';
     public $vitals = ["heart_rate", "respiratory_rate", "Height/Weight", "blood_pressure", "BMI"];
     public $selected_vitals = [];
     public $footer_elements = ["signature", "time", "date"];
@@ -152,7 +152,7 @@ class TemplatePane extends Component
 
     public function handleShowVisit()
     {
-        $this->emit('showVisit', $this->template->id, $this->template_content, $this->selected_vitals, $this->selected_elements, $this->selected_histories, $this->template_second_column_content, $this->allow_third_column);
+        $this->emit('showVisit', $this->template ? $this->template->id : "preview", $this->template_content, $this->allow_third_column, $this->template_second_column_content, $this->selected_vitals, $this->selected_elements, $this->selected_histories, $this->template_second_column_content, $this->allow_third_column);
     }
 
     public function render()

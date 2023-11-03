@@ -17,7 +17,7 @@ if (!function_exists('jsonToHtml')) {
         $obj = json_decode($jsonStr);
 
         $html = '';
-        foreach ($obj->blocks as $block) {
+        foreach ($obj->blocks ?? [] as $block) {
             switch ($block->type) {
                 case 'paragraph':
                     $html .= '<p style="word-break: break-all; text-align: ' . $block->data->alignment . '">' . $block->data->text . '</p>';
@@ -62,6 +62,8 @@ if (!function_exists('jsonToHtml')) {
             }
         }
 
+        $html = '<html>' . str_replace("editorjs-style", "span", $html) . '</html>';
+
         $doc = new DOMDocument();
         $doc->loadHTML($html);
         echo $doc->saveHTML();
@@ -74,7 +76,7 @@ if (!function_exists('jsonToText')) {
         $obj = json_decode($jsonStr);
 
         $text = '';
-        foreach ($obj->blocks as $block) {
+        foreach ($obj->blocks ?? [] as $block) {
             switch ($block->type) {
                 case 'paragraph':
                     $text .= $block->data->text . "\n\n";

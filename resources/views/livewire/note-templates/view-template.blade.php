@@ -11,11 +11,11 @@
             <span class="sr-only">Close modal</span>
         </button>
     </div>
-    <div class="p-10 m-8 flex justify-center">
-        <div class="border border-gray rounded-lg overflow-x-auto" style="width: 795px; font-size: 14px;">
+    <div class="p-10 m-8 flex justify-center h-full">
+        <div class="border border-gray rounded-lg overflow-x-auto" style="max-width: 795px; font-size: 14px; width: 80vw;">
             @if ($template_id)
                 <embed src="{{ asset("storage/print_pdfs/{$template_id}.pdf") }}"
-                    type="application/pdf" width="100%" height="900px" />
+                    type="application/pdf" width="100%" height="100%" />
             @endif
         </div>
     </div>

@@ -22,7 +22,7 @@ class ViewTemplate extends Component
         $this->editorId = null;
     }
 
-    public function showComp($template_id, $template, $selected_vitals, $selected_elements, $selected_histories, $second_column_content, $third_column_enabled)
+    public function showComp($template_id, $template, $allow_third_column, $template_second_column_content, $selected_vitals, $selected_elements, $selected_histories, $second_column_content, $third_column_enabled)
     {
         $this->editorId = microtime(true);
         $this->template_id = $template_id;
@@ -40,7 +40,24 @@ class ViewTemplate extends Component
         $this->second_column_content = $second_column_content;
         $this->third_column_enabled = $third_column_enabled;
         File::cleanDirectory("storage/print_pdfs");
-        $visitType = NoteTemplate::where('id', $template_id)->first();
+        // $visitType = NoteTemplate::where('id', $template_id)->first();
+        $rows = $template['blocks'];
+        $visit_type = "";
+        foreach ($rows as $row) {
+            if ($row['id'] == 'visit_type') {
+                $visit_type = $row['data']['text'];
+            }
+        }
+        $visitType = new NoteTemplate([
+            "id" => "template id",
+            "visitType" => $visit_type,
+            "content" => json_encode($template),
+            "second_content" => json_encode($template_second_column_content),
+            "third_column_enabled" => $allow_third_column,
+            'selected_vitals' => $selected_vitals,
+            'selected_histories' => $selected_histories,
+            'selected_elements' => $selected_elements,
+        ]);
 
         $pdf = PDF::loadView('theme::prints.visits', [
             'visits' => [new Visit([
@@ -51,9 +68,9 @@ class ViewTemplate extends Component
                 "visit_at" => now(),
                 "visitType" => $visitType,
             ])],
-            'selected_vitals' => $this->selected_vitals,
-            'selected_histories' => $this->selected_histories,
-            'selected_elements' => $this->selected_elements,
+            'selected_vitals' => $selected_vitals,
+            'selected_histories' => $selected_histories,
+            'selected_elements' => $selected_elements,
         ])->output();
 
         Storage::put("public/print_pdfs/{$template_id}.pdf", $pdf);

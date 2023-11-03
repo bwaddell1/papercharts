@@ -151,7 +151,7 @@ class SettingsTableSeeder extends Seeder
                 'id' => 14,
                 'key' => 'auth.username_in_registration',
                 'display_name' => 'Username when Registering',
-                'value' => 'yes',
+                'value' => 'no',
                 'details' => '{
 "default" : "yes",
 "options" : {
