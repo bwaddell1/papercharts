@@ -71,7 +71,7 @@ class GetAthenaHealthAppointments extends Command
                                 $visit_type = \App\Models\NoteTemplate::create([
                                     'team_id' => $team->id,
                                     'visit_type' => $appointmenttype,
-                                    'content' => '{"time":1694709745372,"blocks":[{"id":"title","type":"paragraph","data":{"text":"' . $appointmenttype . '","alignment":"left"}}],"version":"2.28.0"}',
+                                    'content' => '{"time":1694709745372,"blocks":[{"id":"visit_type","type":"header","data":{"text":"' . $appointmenttype . '","level":1}}],"version":"2.28.0"}',
                                     'status' => 'published',
                                     'vitals' => '[]',
                                     'history' => '[]',

@@ -191,7 +191,7 @@ return [
         DevDojo\Themes\ThemesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */
@@ -204,6 +204,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         Laravel\Sanctum\SanctumServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -223,6 +224,7 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
 
 ];

@@ -73,22 +73,22 @@ class VisitController extends BaseController
         }
     }
 
-    
+
     public function print(Request $request)
     {
         $data = [
             'patient_name' => $request->patient_name,
             'date' => date('m/d/Y')
         ];
-          
+
         $visits = Visit::where("id", 8)->get();
-        
+
         $template = $visits[0]->visitType;
 
         $this->selected_vitals = array_filter(json_decode($template->vitals, true), function($e) {
             return $e;
         });
-        
+
         $this->selected_histories = array_filter(json_decode($template->history, true), function($e) {
             return $e;
         });
@@ -106,6 +106,16 @@ class VisitController extends BaseController
     }
 
     public function fill_out(Request $request, $visit_id)
+    {
+        $visit = Visit::find($visit_id);
+        if(!$visit) {
+            return redirect()->route('wave.dashboard');
+        }
+        return view('theme::visits.fill_out', [
+            "visit" => $visit,
+        ]);
+    }
+    public function edit(Request $request, $visit_id)
     {
         $visit = Visit::find($visit_id);
         if(!$visit) {

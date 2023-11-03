@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('team/update-role', '\Wave\Http\Controllers\ProfileController@update_role')->name('wave.update-role');
     Route::get('visits/print', '\App\Http\Controllers\VisitController@print')->name('wave.visits.print');
     Route::get('visits/fill-out/{visit_id}', '\App\Http\Controllers\VisitController@fill_out')->name('wave.visits.fill_out');
+    Route::get('visits/edit/{visit_id}', '\App\Http\Controllers\VisitController@edit')->name('wave.visits.edit');
     Route::view('profile', 'profile/show')->name('wave.test.profile');
 
 });

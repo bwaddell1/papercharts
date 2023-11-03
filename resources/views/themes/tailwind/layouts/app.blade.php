@@ -59,6 +59,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="{{ asset('themes/' . $theme->folder . '/css/style.css') }}" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
     @stack('header-scripts')
 
     @livewireScripts
@@ -74,7 +77,7 @@
 
     @include('theme::partials.header')
 
-    <main class="flex-grow overflow-x-hidden relative">
+    <main class="flex-grow relative">
         @yield('content')
     </main>
 

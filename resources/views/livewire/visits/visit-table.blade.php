@@ -111,7 +111,7 @@
                             FILL OUT
                         </th>
                         <th scope="col" class="px-2 py-3 text-center" style="width: 55px; min-width: 55px;">
-                            EDIT
+                            RESULT
                         </th>
                         <th scope="col" class="px-2 py-3 text-center text-black"
                             style="width: 55px; min-width: 55px;">
@@ -163,9 +163,10 @@
                                 </span>
                             </td>
                             <td class="px-2 py-4">
-                                <div wire:click="printVisits({{$visit->id}})" class="flex justify-center cursor-pointer">
+                                {{-- <div wire:click="printVisits({{$visit->id}})" class="flex justify-center cursor-pointer"> --}}
+                                <a class="cursor-pointer" href="{{ route('wave.visits.fill_out', $visit->id) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5" x="0px"
-                                        class="w-5 h-5" y="0px">
+                                        class="w-5 h-5" y="0px" style="margin: auto">
                                         <title>Asset 398</title>
                                         <g data-name="Layer 2">
                                             <g data-name="Layer 1">
@@ -179,10 +180,11 @@
                                             font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from
                                             the Noun Project</text>
                                     </svg>
-                                </div>
+                                </a>
+                                {{-- </div> --}}
                             </td>
                             <td class="px-2 py-4">
-                                <a class="cursor-pointer" href="{{ route('wave.visits.fill_out', $visit->id) }}">
+                                <a class="cursor-pointer" href="{{ route('wave.visits.edit', $visit->id) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black"
                                         style="margin: auto">

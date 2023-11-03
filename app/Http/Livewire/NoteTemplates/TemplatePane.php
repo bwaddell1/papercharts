@@ -26,7 +26,7 @@ class TemplatePane extends Component
     public $selected_elements = ["signature" => true];
     public $histories = ["medications", "allergies", "family_history", "social_history"];
     public $selected_histories = [];
-    public $allow_third_column = false;
+    public $allow_third_column;
 
     protected $queryString = ['allow_third_column' => ['except' => false]];
 
