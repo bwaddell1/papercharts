@@ -8,6 +8,7 @@ use App\Jobs\OcrVisitJob;
 class FillOutVisit extends Component
 {
     public $visit, $selected_vitals = [], $selected_histories = [], $selected_elements = [];
+    public $isDraw = true;
     protected $listeners = ['submitImage' => 'submitImage',];
 
     public function mount($visit)
@@ -29,6 +30,11 @@ class FillOutVisit extends Component
             $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Scanning process start!']);
             $this->emit('backToVisits');
         }
+    }
+
+    public function changeIsDraw($value)
+    {
+        $this->isDraw = $value == 1;
     }
 
     public function render()

@@ -163,3 +163,62 @@ a.disabled {
     font-size: 32px;
     font-weight: 700;
 }
+
+.a4-sheet {
+    overflow: hidden;
+}
+
+.a4-paper {
+    transform-origin: top left;
+}
+
+@media screen and (max-width: 1225px) {
+    .a4-sheet {
+        width: 760px;
+        height: 930px;
+    }
+    .a4-paper {
+        transform: scale(0.75);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .a4-sheet {
+        width: 525px;
+        height: 640px;
+    }
+    .a4-paper {
+        transform: scale(0.5);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .a4-sheet {
+        width: 435px;
+        height: 520px;
+    }
+    .a4-paper {
+        transform: scale(0.4);
+    }
+    .sheet-btns button {
+        padding: 4px 8px;
+        font-size: 10px;
+        gap: 2px;
+        min-width: 75px;
+    }
+    .sheet-btns button svg {
+        width: 13px;
+        height: 13px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .a4-sheet {
+        width: 280px;
+        height: 360px;
+        overflow-x: auto;
+    }
+    .a4-paper {
+        transform: scale(0.25);
+    }
+}
