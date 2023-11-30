@@ -93,7 +93,7 @@
                         @endif
                     </div>
 
-                    <div class="mt-6">
+                    {{-- <div class="mt-6">
                         <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
                             Password
                         </label>
@@ -119,7 +119,7 @@
                                 {{ $errors->first('password_confirmation') }}
                             </div>
                         @endif
-                    </div>
+                    </div> --}}
 
                     <div class="flex flex-col items-center justify-center text-sm leading-5">
                         <span class="block w-full mt-5 rounded-md shadow-sm">

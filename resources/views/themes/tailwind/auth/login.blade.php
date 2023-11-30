@@ -17,11 +17,12 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="px-4 py-8 bg-white border shadow border-gray-50 sm:rounded-lg sm:px-10">
-                <form action="{{ route('login') }}" method="POST">
+                {{-- <form action="{{ route('login') }}" method="POST"> --}}
+                <form action="{{ route('magic.login') }}" method="POST">
                     @csrf
                     <div>
 
-                        @if(setting('auth.email_or_username') && setting('auth.email_or_username') == 'username')
+                        @if (setting('auth.email_or_username') && setting('auth.email_or_username') == 'username')
                             <label for="username" class="block text-sm font-medium leading-5 text-gray-700">Username</label>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <input id="username" type="username" name="username" required class="w-full form-input" autofocus>
@@ -48,7 +49,7 @@
 
                     </div>
 
-                    <div class="mt-6">
+                    {{-- <div class="mt-6">
                         <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
                             Password
                         </label>
@@ -60,11 +61,25 @@
                                 {{ $errors->first('password') }}
                             </div>
                         @endif
-                    </div>
+                    </div> --}}
+
+                    @if (session('status'))
+                        @php
+                            $status_color = 'green';
+                            if (session('status') == 'Email incorrect! Please try another email.') {
+                                $status_color = 'red';
+                            }
+                        @endphp
+                        <div class="p-4 my-4 text-sm text-{{ $status_color }}-800 rounded-lg bg-{{ $status_color }}-50" role="alert">
+                            <span class="font-medium">{{ session('status') }}</span>
+                        </div>
+                    @endif
 
                     <div class="flex items-center justify-between mt-6">
                         <div class="flex items-center">
-                            <input id="remember" name="remember" type="checkbox" class="text-indigo-600 border-0 border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 rounded-xl" {{ old('remember') ? ' checked' : '' }}>
+                            <input id="remember" name="remember" type="checkbox"
+                                class="text-indigo-600 border-0 border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 rounded-xl"
+                                {{ old('remember') ? ' checked' : '' }}>
                             <label for="remember" class="block ml-2 text-sm leading-5 text-gray-900">
                                 Remember me
                             </label>
@@ -79,7 +94,8 @@
 
                     <div class="mt-6">
                         <span class="block w-full rounded-md shadow-sm">
-                            <button type="submit" class="flex bg-blue-500 justify-center w-full px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out border border-transparent rounded-md bg-blue-600 hover:bg-wave-500 focus:outline-none focus:border-wave-700 focus:shadow-outline-wave active:bg-wave-700">
+                            <button type="submit"
+                                class="flex bg-blue-500 justify-center w-full px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out border border-transparent rounded-md bg-blue-600 hover:bg-wave-500 focus:outline-none focus:border-wave-700 focus:shadow-outline-wave active:bg-wave-700">
                                 Sign in
                             </button>
                         </span>

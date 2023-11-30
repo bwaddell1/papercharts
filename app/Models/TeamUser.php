@@ -17,7 +17,6 @@ class TeamUser extends Model
     {
         parent::boot();
         self::updated(function ($teamuser) {
-            Log::info(1234);
             $teamuser->user->role_id = Role::where('name', $teamuser->role)->first()->id;
         });
 
@@ -27,7 +26,7 @@ class TeamUser extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function team()
     {
         return $this->belongsTo(Team::class);

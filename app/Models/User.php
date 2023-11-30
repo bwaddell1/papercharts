@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use Wave\User as Authenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Wave\User as Authenticatable;
+use App\Notifications\MagicLinkNotification;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -65,4 +66,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function sendMagicLinkNotification()
+    {
+        $this->notify(new MagicLinkNotification());
+    }
 }
