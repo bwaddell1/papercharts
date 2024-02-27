@@ -24,6 +24,6 @@ yarn-error.log
 .DS_Store
 /wave/vendor/
 /public/wave/docs
-/public/scanning
-/public/scanned
-/public/visits
+/public/scanning/*
+/public/scanned/*
+/public/visits/*

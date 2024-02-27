@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('note_templates', function (Blueprint $table) {
             //
             $table->json('second_content')->nullable();
-            $table->boolean('third_column_enabled')->default(false);
+            $table->boolean('third_column_enabled')->default(false)->nullable();
         });
     }
 

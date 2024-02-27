@@ -80,7 +80,7 @@
             </div>
             <div class="text-gray-500 text-sm font-normal leading-tight flex-1">{{ $visits->total() }} Visits</div>
         </div>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase" style="background: #E6E9F3">
                     <tr>
