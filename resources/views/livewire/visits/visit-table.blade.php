@@ -2,19 +2,16 @@
     <div class="flex flex-col px-8 mx-auto max-w-7xl xl:px-5 py-12">
         <div class="text-gray-900 text-3xl font-bold leading-9">Visits</div>
         <div class="flex justify-between py-2 flex-wrap items-center">
-            <div class="justify-end md:justify-start items-center gap-2 inline-flex flex-wrap mt-4"
-                style="height: fit-content;">
+            <div class="justify-end md:justify-start items-center gap-2 inline-flex flex-wrap mt-4" style="height: fit-content;">
                 <div class="relative w-44">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                         </svg>
                     </div>
                     <input name="dates" type="text" wire:change="handleChangeSearchDate" id="visit_daterange"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                        placeholder="Select Dates">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select Dates">
                 </div>
                 @if (auth()->user()->currentTeam)
                     <div class="relative w-44">
@@ -29,24 +26,20 @@
                 @endif
             </div>
             <div class="flex gap-2 flex-wrap justify-end mt-4 ml-auto">
-                <button data-modal-target="addVisitModal" data-modal-toggle="addVisitModal"
-                    class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
+                <button data-modal-target="addVisitModal" data-modal-toggle="addVisitModal" class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                         </div>
                         <div class="text-gray-700 text-sm font-medium leading-tight">Add Visits</div>
                     </div>
                 </button>
-                <button wire:click="showPrintVisits"
-                    class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
+                <button wire:click="showPrintVisits" class="w-44 px-4 py-2 rounded-md border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
                             </svg>
@@ -58,10 +51,8 @@
                     class="w-44 px-2 py-2 bg-indigo-600 rounded-md border border-gray-300 justify-center items-center inline-flex">
                     <div class="justify-start items-start gap-2 flex">
                         <div class="w-5 h-5 relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="white" class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                             </svg>
                         </div>
                         <div class="text-white text-sm font-medium leading-tight">Upload Visits</div>
@@ -71,8 +62,7 @@
         </div>
         <div class="justify-start items-center gap-1.5 flex pb-4 mt-4">
             <div class="pr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-5 h-5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -86,8 +76,7 @@
                     <tr>
                         <th scope="col" class="p-4" style="width: 48px;">
                             <div class="flex items-center">
-                                <input id="checkbox-all-search" type="checkbox"
-                                    wire:change="handleSelectAll($event.target.checked)"
+                                <input id="checkbox-all-search" type="checkbox" wire:change="handleSelectAll($event.target.checked)"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
                             </div>
@@ -113,8 +102,7 @@
                         <th scope="col" class="px-2 py-3 text-center" style="width: 55px; min-width: 55px;">
                             RESULT
                         </th>
-                        <th scope="col" class="px-2 py-3 text-center text-black"
-                            style="width: 55px; min-width: 55px;">
+                        <th scope="col" class="px-2 py-3 text-center text-black" style="width: 55px; min-width: 55px;">
                             AI
                         </th>
                         <th scope="col" class="px-2 py-3 text-center" style="width: 75px; min-width: 75px;">
@@ -127,10 +115,8 @@
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <td class="w-4 p-4">
                                 <div class="flex items-center">
-                                    <input id="checkbox-table-search-1" type="checkbox"
-                                        wire:change="handleSelectRow({{ $visit->id }})"
-                                        {{ in_array($visit->id, $selected_rows) ? 'checked' : '' }}
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                    <input id="checkbox-table-search-1" type="checkbox" wire:change="handleSelectRow({{ $visit->id }})"
+                                        {{ in_array($visit->id, $selected_rows) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                 </div>
                             </td>
@@ -157,26 +143,22 @@
                                 ];
                                 $i = $statusThemeList[$visit->status];
                                 ?>
-                                <span
-                                    class="bg-{{ $i }}-100 text-{{ $i }}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
+                                <span class="bg-{{ $i }}-100 text-{{ $i }}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                                     {{ strtoupper(formatString($visit->status)) }}
                                 </span>
                             </td>
                             <td class="px-2 py-4">
                                 {{-- <div wire:click="printVisits({{$visit->id}})" class="flex justify-center cursor-pointer"> --}}
                                 <a class="cursor-pointer" href="{{ route('wave.visits.fill_out', $visit->id) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5" x="0px"
-                                        class="w-5 h-5" y="0px" style="margin: auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5" x="0px" class="w-5 h-5" y="0px" style="margin: auto">
                                         <title>Asset 398</title>
                                         <g data-name="Layer 2">
                                             <g data-name="Layer 1">
                                                 <path
                                                     d="M23,14H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H23a3,3,0,0,1,3,3v8A3,3,0,0,1,23,14ZM3,2A1,1,0,0,0,2,3v8a1,1,0,0,0,1,1H23a1,1,0,0,0,1-1V3a1,1,0,0,0-1-1ZM23,9a1,1,0,0,0-1-1H21a1,1,0,0,0,0,2h1A1,1,0,0,0,23,9ZM19,9a1,1,0,0,0-1-1H8a1,1,0,0,0,0,2H18A1,1,0,0,0,19,9ZM6,9A1,1,0,0,0,5,8H4a1,1,0,0,0,0,2H5A1,1,0,0,0,6,9ZM23,5a1,1,0,0,0-1-1H21a1,1,0,0,0,0,2h1A1,1,0,0,0,23,5ZM19,5a1,1,0,0,0-1-1H17a1,1,0,0,0,0,2h1A1,1,0,0,0,19,5ZM15,5a1,1,0,0,0-1-1H12a1,1,0,0,0,0,2h2A1,1,0,0,0,15,5ZM10,5A1,1,0,0,0,9,4H8A1,1,0,0,0,8,6H9A1,1,0,0,0,10,5ZM6,5A1,1,0,0,0,5,4H4A1,1,0,0,0,4,6H5A1,1,0,0,0,6,5Zm7.447,16.9,6-3a1,1,0,1,0-.894-1.79L13,19.882,7.447,17.105a1,1,0,1,0-.894,1.79l6,3a1,1,0,0,0,.894,0Z" />
                                             </g>
-                                        </g><text x="0" y="37" fill="#000000" font-size="5px" font-weight="bold"
-                                            font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created
-                                            by Mohamed Salah Hajji</text><text x="0" y="42" fill="#000000"
-                                            font-size="5px" font-weight="bold"
+                                        </g><text x="0" y="37" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created
+                                            by Mohamed Salah Hajji</text><text x="0" y="42" fill="#000000" font-size="5px" font-weight="bold"
                                             font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from
                                             the Noun Project</text>
                                     </svg>
@@ -185,21 +167,17 @@
                             </td>
                             <td class="px-2 py-4">
                                 <a class="cursor-pointer" href="{{ route('wave.visits.edit', $visit->id) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black"
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black"
                                         style="margin: auto">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </a>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="cursor-pointer"
-                                    wire:click="handleOpenQuickNoteModal({{ $visit->id }})">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        id="bot" style="width: 24px; margin: auto;">
+                                <div class="cursor-pointer" wire:click="handleOpenQuickNoteModal({{ $visit->id }})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="bot" style="width: 24px; margin: auto;">
                                         <g fill="none" fill-rule="evenodd">
                                             <path stroke="#000000" stroke-linecap="round"
                                                 d="M7.707 22.293A1 1 0 0 1 6 21.586V20H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-2.293 2.293z">
@@ -208,10 +186,8 @@
                                             <circle cx="8.5" cy="13.5" r="1.5" fill="#000000"></circle>
                                             <circle cx="16.5" cy="13.5" r="1.5" fill="#000000"></circle>
                                             <circle cx="12.5" cy="3.5" r="1.5" stroke="#000000"></circle>
-                                            <rect width="4" height="1" x="10.5" y="17.5" stroke="#000000"
-                                                rx=".5"></rect>
-                                            <path stroke="#000000" stroke-linecap="round"
-                                                d="M8 17c-1.657 0-3-1.567-3-3.5S6.343 10 8 10h9c1.657 0 3 1.567 3 3.5S18.657 17 17 17">
+                                            <rect width="4" height="1" x="10.5" y="17.5" stroke="#000000" rx=".5"></rect>
+                                            <path stroke="#000000" stroke-linecap="round" d="M8 17c-1.657 0-3-1.567-3-3.5S6.343 10 8 10h9c1.657 0 3 1.567 3 3.5S18.657 17 17 17">
                                             </path>
                                         </g>
                                     </svg>
@@ -227,24 +203,19 @@
                                     class="text-black hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
                                     type="button">
                                     Actions
-                                    <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                                     </svg>
                                 </button>
 
                                 <!-- Dropdown menu -->
-                                <div id="dropdown"
-                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-36 dark:bg-gray-700">
-                                    <ul class="p-2 text-sm text-gray-700 dark:text-gray-200"
-                                        aria-labelledby="dropdownDefaultButton">
+                                <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-36 dark:bg-gray-700">
+                                    <ul class="p-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                                         <li>
-                                            <button onclick="openEditVisitModal({{ $visit->id }})"
-                                                class="block w-full px-4 py-2 hover:bg-gray-100 text-left">Edit</button>
+                                            <button onclick="openEditVisitModal({{ $visit->id }})" class="block w-full px-4 py-2 hover:bg-gray-100 text-left">Edit</button>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-red-400">
+                                            <button onclick="openDeleteVisitModal({{ $visit->id }})" class="block px-4 py-2 hover:bg-gray-100 text-red-400">
                                                 Delete</a>
                                         </li>
                                     </ul>
@@ -276,10 +247,8 @@
                             </h3>
                             <button type="button" wire:click="closeQuickNoteModal"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
@@ -298,10 +267,8 @@
                                         <p class="text-2xl text-bold text-center" style="padding: 12px 0;">Generating
                                         </p>
                                         <div style="margin-bottom: 12px; margin-top: 12px;">
-                                            <div
-                                                style="width: 100%; height: 10px; position: relative; background-color: #f0f0f0; border-radius: 20px;">
-                                                <div id="progress_bar"
-                                                    style="position: absolute; top: 0; left: 0; background-color: #007acc; border-radius: 20px; height: 100%; width: 0%;">
+                                            <div style="width: 100%; height: 10px; position: relative; background-color: #f0f0f0; border-radius: 20px;">
+                                                <div id="progress_bar" style="position: absolute; top: 0; left: 0; background-color: #007acc; border-radius: 20px; height: 100%; width: 0%;">
                                                 </div>
                                             </div>
                                         </div>
@@ -311,8 +278,7 @@
                                 @endif
                             </div>
                             <!-- Modal footer -->
-                            <div
-                                class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
+                            <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
                                 @if (!$note_generating)
                                     <button type="submit"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
@@ -332,14 +298,12 @@
         @endif
 
         @if ($generate_note_id)
-            <div modal-backdrop="" class="bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40"
-                wire:click="closeQuickNoteModal"></div>
+            <div modal-backdrop="" class="bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40" wire:click="closeQuickNoteModal"></div>
         @endif
 
         <div id="printVisitsPreviewModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
             class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 max-h-full {{ $showPreviewModal ? '' : 'hidden' }}">
-            <div class="relative w-full max-w-2xl max-h-full z-20"
-                style="{{ $showPreviewModal ? 'top: 50%; left: 50%; transform: translate(-50%, -50%)' : '' }}">
+            <div class="relative w-full max-w-2xl max-h-full z-20" style="{{ $showPreviewModal ? 'top: 50%; left: 50%; transform: translate(-50%, -50%)' : '' }}">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <!-- Modal header -->
@@ -350,10 +314,8 @@
                         <button wire:click="closePrintVisits" type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                             data-modal-hide="printVisitsPreviewModal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
                             <span class="sr-only">Close modal</span>
                         </button>
@@ -362,9 +324,8 @@
                     @if (count($pdf_list) == 0)
                         <div class="p-6 space-y-6">
                             <div role="status" class="flex justify-center py-6">
-                                <svg aria-hidden="true"
-                                    class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                                    viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                                         fill="currentColor" />
@@ -381,15 +342,13 @@
                                 <div>
                                     <h4 class="font-bold text-lg py-2 text-gray-800">#{{ $pdf['id'] }}
                                         {{ $pdf['name'] }} {{ $pdf['visitType'] }}</h4>
-                                    <embed src="{{ asset($pdf['link']) }}" type="application/pdf" width="100%"
-                                        height="600px" />
+                                    <embed src="{{ asset($pdf['link']) }}" type="application/pdf" width="100%" height="600px" />
                                 </div>
                             @endforeach
                         </div>
                     @endif
                     <!-- Modal footer -->
-                    <div
-                        class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <button wire:click="downloadZipFiles" type="button"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Download
                             All</button>
