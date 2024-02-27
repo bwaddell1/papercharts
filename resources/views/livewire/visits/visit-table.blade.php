@@ -215,7 +215,7 @@
                                             <button onclick="openEditVisitModal({{ $visit->id }})" class="block w-full px-4 py-2 hover:bg-gray-100 text-left">Edit</button>
                                         </li>
                                         <li>
-                                            <button onclick="openDeleteVisitModal({{ $visit->id }})" class="block px-4 py-2 hover:bg-gray-100 text-red-400">
+                                            <button onclick="openDeleteVisitModal({{ $visit->id }})" class="block w-full px-4 py-2 hover:bg-gray-100 text-red-400">
                                                 Delete</a>
                                         </li>
                                     </ul>
